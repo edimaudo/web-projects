@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Calculator</title>
+		
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+
+		<div id="main-div" align="center">
+		<p>Calculator</p>
+			<form>
+				<table>
+					<tr>
+						<td colspan="3">
+							<input type="text" id="textField"/>
+						</td>
+						<td>
+							<input type="submit" id="submitButton" 
+							value ="=" onclick='displayAnswer()' />
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="button" value="1"
+							onclick="addToField(1)" />
+						</td>
+						<td>
+							<input type="button" value="2"
+							onclick="addToField(2)" />
+						</td>
+
+						<td>
+							<input type="button" value="3"
+							onclick="addToField(3)" />
+						</td>
+						<td>
+							<input type="button" value="-"
+							onclick="addToField('-')" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="button" value="4"
+							onclick="addToField(4)" />
+						</td>
+						<td>
+							<input type="button" value="5"
+							onclick="addToField(5)" />
+						</td>
+
+						<td>
+							<input type="button" value="6"
+							onclick="addToField(6)" />
+						</td>
+						<td>
+							<input type="button" value="+"
+							onclick="addToField('+')" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="button" value="7"
+							onclick="addToField(7)" />
+						</td>
+						<td>
+							<input type="button" value="8"
+							onclick="addToField(8)" />
+						</td>
+
+						<td>
+							<input type="button" value="9"
+							onclick="addToField(9)" />
+						</td>
+						<td>
+							<input type="button" value="/"
+							onclick="addToField('/')" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="button" value="."
+							onclick="addToField('.')" />
+						</td>
+						<td>
+							<input type="button" value="0"
+							onclick="addToField(0)" />
+						</td>
+						<td>
+							<input type="reset" value="Pi"
+							onclick="addToField(3.14)" />
+						</td>
+
+						<td>
+							<input type="button" value="*"
+							onclick="addToField('*')" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="button" value="x^2"
+							onclick="power(2)" />
+						</td>
+						<td>
+							<input type="button" value="x^3"
+							onclick="power(3)" />
+						</td>
+						<td>
+							<input type="button" value="10^x"
+							onclick="powerten()" />
+						</td>
+						<td>
+							<input type="reset" value="C" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<script type="text/javascript" src="calc.js"></script>
+	</body>
+</html>

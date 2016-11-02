@@ -1,0 +1,57 @@
+<!DOCTYPE Html>
+<html>
+
+<head>
+	<title></title>
+	<style>
+	body {
+		background-color: #000;
+	}
+
+	h1{
+		text-align: center;
+		color: #fff;
+		margin: 0 0 auto;
+		font-size: 100px;
+	}
+	.ghost-container {
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	visibility: hidden;
+	}
+	.ghost {
+	z-index: 10;
+	display: block;
+	width: 550px;
+	position: relative;
+	margin: auto;
+	}		
+	.text-glow {
+		text-shadow: 1px 1px 15px white;
+	}
+	</style>
+</head>
+
+<body>
+<h1 class="text-glow">Boo!</h1>
+<div class="ghost-container">
+<img class=ghost src="http://www.freeiconspng.com/uploads/ghost-icon-28.png" alt="A picture of a scary ghost!">
+</div>
+</body>
+
+<script>
+var ghost = document.getElementsByClassName("ghost-container")[0];
+var sound = new Audio("file.mp3");
+//Shows ghost and plays sound after five seconds
+setTimeout(function () {
+sound.load();
+sound.play();
+ghost.style.visibility = "visible";
+}, 5000);
+//Hides ghost one second after appears
+setTimeout(function () {
+ghost.style.visibility = "hidden";
+}, 6000);
+</script>
+</html>
