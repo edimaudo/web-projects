@@ -1,0 +1,37 @@
+<html>
+	<div id="content"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+</html>
+
+<script>
+//http://api.open-notify.org/astros.json
+
+$(document).ready(function(){
+	$.ajax({
+		url:"http://api.open-notify.org/astros.json",
+		dataType:"jsonp",
+		success: searchCallBack
+	});
+
+});
+
+function searchCallBack(data){
+	$("#content").append("Found message " + data.message + "<br>");
+	$("#content").append("There are " + data.number + " people in space right now<br>");
+	peopleinfo = [];
+	$.each(data.people, function(index, person) {
+   		peopleinfo.push(person);
+   	});
+   	//output
+   	
+   	for (var i = 0; i < peopleinfo.length;i++){
+   		$("#content").append(peopleinfo[i].name + " " + peopleinfo[i].craft +"<br>");
+   	}
+
+
+
+
+}
+
+</script>

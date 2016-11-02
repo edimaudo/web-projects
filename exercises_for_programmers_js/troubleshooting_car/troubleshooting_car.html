@@ -1,0 +1,60 @@
+<html>
+<div>Car troubleshooting</div>
+<div id="content"></div>
+</html>
+
+
+<script>
+/*
+Create a program that walks the user through troubleshoot- ing issues with a car. Use the following decision tree to build the system:
+*/
+outputinfo = document.getElementById("content");
+questioninput = prompt("");
+answerinput = "Please enter an answer";
+while(noanswer(question) !== "done" || yesanswer(question) !== "done"){
+	if (noanswer(question) === "done" || yesanswer(question) === "done"){
+		break;
+	} else {
+
+		continue;
+	}
+}
+￼
+
+function noanswer(question){
+	if (question === "Is the car silent when you turn the key?"){
+		return "Does the car make a clicking noise?";
+	} else if (question === "Are the battery terminals corroded?"){
+		return "Replace cables and try again.";
+	} else if (question === "Does the car make a clicking noise?"){
+		return "Does the car crank up but fail to start?";
+	} else if (question === "Does your car have fuel injection?"){
+		return "Check to ensure the choke is opening and closing.";
+	} else {
+		return "done";
+	}
+}
+
+function yesanswer(question){
+	if (question === "Is the car silent when you turn the key?"){
+		return "Are the battery terminals corroded?";
+	} else if (question === "Are the battery terminals corroded?"){
+		return "Clean terminals and try starting again.";
+	} else if (question === "Does the car make a clicking noise?"){
+		return "Replace the battery.";
+	} else if (question === "Does the car crank up but fail to start?"){
+		return "Check spark plug connections.";
+	} else if (question === "Does the engine start and then die?"){
+		return "Does your car have fuel injection?";
+	} else if (question === "Does your car have fuel injection?"){
+		return "Get it in for service.";
+	} else {
+		return "done";
+	}
+}
+
+
+
+
+
+</script>

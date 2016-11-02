@@ -1,0 +1,77 @@
+<html>
+	<div>Compound interest</div>
+	<div id = "content"></div>
+
+</html>
+
+
+<script>
+/*
+Prompt for the rate as a percentage (like 15, not .15). Divide the input by 100 in your program.
+• Ensure that fractions of a cent are rounded up to the next penny.
+• Ensure that the output is formatted as money.
+
+Ensure that all of the inputs are numeric and that the program will not let the user proceed without valid inputs.
+• Create a version of the program that works in reverse, so you can determine the initial amount you’d need to invest to reach a specific goal.
+*/	
+
+//inputs
+var principal_amount;
+var intrest_rate;
+var number_year;
+var num_time;
+var investment;
+var outputinfo;
+var errortext;
+var validinput = true;
+outputinfo = document.getElementById("content");
+principal_amount_text = "What is the principal amount ";
+intrest_rate_text = "What is the rate ";
+number_year_text = "What is the number of years ";
+num_time_text = "What is the number of times the interest is compounded per year ";
+
+principal_amount = prompt(principal_amount_text);
+intrest_rate = prompt(intrest_rate_text);
+number_year = prompt(number_year_text);
+num_time = prompt(num_time_text);
+
+if (parseFloat(principal_amount) || parseFloat(intrest_rate) || parseFloat(number_year) || parseFloat(num_time)){
+	validinput = false;
+	outputinfo.innerHTML += principal_amount_text + principal_amount + "<br>";
+	outputinfo.innerHTML += intrest_rate_text + intrest_rate + "<br>";
+	outputinfo.innerHTML += number_year_text + number_year + "<br>";
+	outputinfo.innerHTML += num_time_text + num_time + "<br>";
+}
+
+while(validinput){
+	alert("You entered an invalid input");
+  principal_amount = prompt(principal_amount_text);
+  intrest_rate = prompt(intrest_rate_text);
+  number_year = prompt(number_year_text);
+  num_time = prompt(num_time_text);
+    if (parseFloat(principal_amount) || parseFloat(intrest_rate) || parseFloat(number_year) || 	parseFloat(num_time)){
+    validinput = false;
+    outputinfo.innerHTML += principal_amount_text + principal_amount + "<br>";
+    outputinfo.innerHTML += intrest_rate_text + intrest_rate + "<br>";
+    outputinfo.innerHTML += number_year_text + number_year + "<br>";
+    outputinfo.innerHTML += num_time_text + num_time + "<br>";
+    validinput = true;
+    break;
+  }
+  continue;
+}
+
+//output
+investment = Math.pow(parseFloat(principal_amount)*(1 + (parseFloat(interest_rate)/100)/parseFloat(num_time) ),parseFloat(num_time)*parseFloat(number_year));
+outputinfo.innerHTML += "$" + principal_amount + " invested at " + interest_rate + "%" + number_year + " years " + "compounded " + num_time + " times per year is $" + String(investment.toFixed(2));
+
+function checknumeric(value){
+	if (parseFloat(value)) {
+    return true;
+  } else {
+  	return false;
+  } 
+}
+
+
+</script>

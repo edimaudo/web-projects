@@ -1,0 +1,63 @@
+<html>
+	<div id="content"></div>
+</html>
+
+<script>
+outputinfo = document.getElementById("content");
+words = "badger badger badger badger mushroom mushroom snake badger badger badger column ted might joy rage pain laguther wrong ten ten ten more more hun hun hun hun huhn huhn hun hun hun hun hun hun hun hun hun";
+
+wordlist = words.split(" ");
+
+longestword = longest_word_length(wordlist);
+wordlistdict = {};
+
+for (var i = 0; i < wordlist.length; i++){
+	if (wordlistdict.hasOwnProperty(wordlist[i])){
+		wordlistdict[wordlist[i]] += 1;
+	} else {
+		wordlistdict[wordlist[i]] = 1;
+	}
+}
+
+// dictionary sort
+// Create items array
+var items = Object.keys(wordlistdict).map(function(key) {
+    return [key, wordlistdict[key]];
+});
+
+// Sort the array based on the second element
+wordlistdict2 = items.sort(function(first, second) {
+    return second[1] - first[1];
+});
+
+
+//output 
+for (var i = 0; i < wordlistdict2.length; i++){
+	
+  outputinfo.innerHTML += wordlistdict2[i][0] + ":" + create_character(longestword - wordlistdict2[i][0].length," ") + create_character(wordlistdict2[i][1],"*") + "<br>";
+}
+
+
+function create_character(value,charactervalue){
+	output = "";
+	for (var i = 0; i < value; i ++){
+		output += charactervalue;
+	}
+	return output;
+}
+
+function longest_word_length(valuelist){
+	var maxlength = 0;
+  for (var i = 0; i < valuelist.length; i++){
+  	if (valuelist[i].length > maxlength){
+  		maxlength = valuelist[i].length;
+  	}
+  }
+  return maxlength;
+}
+
+
+
+
+</script>
+

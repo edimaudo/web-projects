@@ -1,0 +1,89 @@
+<html>
+<div>Paint calculator</div>
+<div id = "content"></div>
+</html>
+
+<script>
+
+/*
+Calculate gallons of paint needed to paint the ceiling of a
+room. Prompt for the length and width, and assume one
+gallon covers 350 square feet. Display the number of gallons
+needed to paint the ceiling as a whole number.
+
+Constraints
+• Use a constant to hold the conversion rate.
+• Ensure that you round up to the next whole number.
+
+Revise the program to ensure that inputs are entered as
+numeric values. Don’t allow the user to proceed if the
+value entered is not numeric.
+• Implement support for a round room.
+
+
+
+*/
+outputinfo = document.getElementById("content");
+
+//room input
+roomtype = prompt("Please enter the room type: either circle or normal");
+roomtypecheck = true;
+
+if (roomtype === "circle" || roomtype === "normal"){
+	roomtypecheck = false;
+}
+
+//validate room type
+while(roomtypecheck){
+	alert("Please enter a valid room type");
+	roomtype = prompt("Please enter the room type(either circle or normal)");
+	if (roomtype === "circle" || roomtype === "normal"){
+		roomtypecheck = false;
+		break;
+	}
+	continue;
+}
+
+var roomlength;
+var roomwidth;
+var roomdimensioncheck = true;
+
+//get room dimensions
+if (roomtype === "normal"){
+	roomwidth = prompt("Please enter the room width");
+	roomlength = prompt("Please enter the room length ");
+} else {
+	roomlength = prompt("Please enter the room length ");
+}
+
+
+if( (roomtype === "circle" && parseFloat(roomlength)) ||   (parseFloat(roomlength) && parseFloat(roomwidth)) {
+	roomdimensioncheck = false;
+} 
+
+while (roomdimensioncheck){
+	alert("Please enter the proper dimensions");
+	if (roomtype === "normal"){
+		roomwidth = prompt("Please enter the room width");
+		roomlength = prompt("Please enter the room length ");
+	} else {
+		roomlength = prompt("Please enter the room length ");
+	}	
+	
+	if( (roomtype === "circle" && parseFloat(roomlength)) ||   (parseFloat(roomlength) && parseFloat(roomwidth)) {
+		roomdimensioncheck = false;
+		break;
+	} 
+	continue;
+}
+
+if (roomtype === "circle"){
+	calcval = Math.PI * Math.pow((parseFloat(roomlength)/2),2);
+} else {
+	calcval = parseFloat(roomlength) * parseFloat(roomwidth);
+}
+
+outputinfo.innerHTML += "You will need to purchase " + String(Math.ceil(calcval/350)) + " gallons of paint to cover " + String(calcval) + " Square feet";
+
+
+</script>

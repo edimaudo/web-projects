@@ -1,0 +1,47 @@
+<html>
+<div>Legal Driving age</div>
+<div id = "content"></div>
+
+</html>
+
+
+<script>
+/*
+Use a single output statement.
+• Use a ternary operator to write this program. If your
+language doesn’t support a ternary operator, use a regular
+if/else statement, and still use a single output statement
+to display the message.
+
+If the user enters a number that’s less than zero or enters
+non-numeric data, display an error message that asks
+the user to enter a valid age.
+
+*/
+
+outputinfo = document.getElementById("content");
+
+inputtext = "What is your age? ";
+inputval = prompt(inputtext);
+inputvalid = true;
+
+if (isNaN(parseFloat(inputval))){
+	inputvalid = false;
+	outputinfo.innerHTML += inputtext + inputval + "<br>";
+}
+
+while (inputvalid){
+	alert("Please enter a valid age");
+	inputval = prompt(inputtext);
+	if (isNaN(parseFloat(inputval))){
+	inputvalid = false;
+	outputinfo.innerHTML += inputtext + inputval + "<br>";
+	break;
+	}
+	continue;
+}
+
+//output
+parseFloat(inputval) > 15? outputinfo.innerHTML += "You are old enough to drive": outputinfo.innerHTML += "You are not old enough to drive";
+
+</script>

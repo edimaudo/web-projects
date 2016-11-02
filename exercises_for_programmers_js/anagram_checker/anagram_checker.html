@@ -1,0 +1,43 @@
+<html>
+	<div>Anagram checker</div>
+	<div id="content"></div>
+
+</html>
+
+
+<script>
+var outputinfo = document.getElementById("content");
+firstoutputtext = "Enter two strings and I'll tell you if they are anagrams: ";
+secondoutputtext = "Enter the first value: ";
+thirdoutputtext = "Enter the second value: ";
+
+firstinput = prompt(secondoutputtext);
+secondinput = prompt(thirdoutputtext);
+
+outputinfo.innerHTML += firstoutputtext + "<br>";
+outputinfo.innerHTML += secondoutputtext + firstinput + "<br>";
+outputinfo.innerHTML += thirdoutputtext + secondinput + "<br>";
+
+
+if (isAnagram(firstinput, secondinput)) {
+  outputinfo.innerHTML += firstinput + " and " + secondinput + " are anagrams";
+} else {
+  outputinfo.innerHTML += firstinput + " and " + secondinput + " are not anagrams";
+}
+
+function isAnagram(firstvalue, secondvalue) {
+  if (firstvalue.length !== secondvalue.length) {
+    return false;
+  } else if (orderword(firstvalue) === orderword(secondvalue)) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+function orderword(value) {
+  return value.split("").sort().join("");
+}
+
+</script>

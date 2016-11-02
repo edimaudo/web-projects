@@ -1,0 +1,58 @@
+<html>
+	<span>Computing simple interest</span>
+	<div id="content"></div>
+</html>
+
+<script>
+/*
+Create a program that computes simple interest. Prompt for the principal amount, the rate as a percentage, and the time, and display the amount accrued (principal + interest).
+The formula for simple interest is A = P(1 + rt), where P is the principal amount, r is the annual rate of interest, t is the number of years the amount is invested, and A is the amount at the end of the investment.
+
+Prompt for the rate as a percentage (like 15, not .15). Divide the input by 100 in your program.
+• Ensure that fractions of a cent are rounded up to the next penny.
+• Ensure that the output is formatted as money.
+
+challenges
+Ensure that the values entered for principal, rate, and number of years are numeric and that the program will not let the user proceed without valid inputs.
+• Alter the program to use a function called calculateSim- pleInterest that takes in the rate, principal, and number of years and returns the amount at the end of the investment.
+
+*/
+
+var count = 0;
+questionlist = ["Enter the principal: ", "Enter the rate: ", "Enter the number of years: "];
+answerlist = [];
+var outputinfo = document.getElementById("content");
+var errortext = "Please enter a number";
+var inputinfo;
+
+while (count < 3){
+	inputinfo = prompt(returnquestion(count));
+	if (isNaN(parseFloat(inputinfo))) {
+		alert(errortext);
+		continue;
+	} else {
+		outputinfo.innerHTML += returnquestion(count) + inputinfo + "<br>";
+		answerlist.push(parseFloat(inputinfo));
+		count++;
+	}
+}
+finaloutput(answerlist);
+
+function returnquestion(value){
+	for (var i = 0; i < questionlist.length;i++){
+  	if (value === i){
+    	return questionlist[i];
+    }
+  }
+}
+
+function yearcalc(principal, rate, time){
+	var calc = principal * (rate/100) * time;
+	return calc.toFixed(2);
+}
+
+function finaloutput(valuelist){
+	outputinfo.innerHTML += "After " + String(valuelist[2]) + " years " + "at " + String(valuelist[1]) + "%, <br>" + "the investment is worth $" + String(yearcalc(valuelist[0],valuelist[1],valuelist[2])); 
+}
+
+</script>

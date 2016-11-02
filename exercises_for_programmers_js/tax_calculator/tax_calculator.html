@@ -1,0 +1,80 @@
+<html>
+	<div>tax calculator</div>
+	<div id = "content"></div>
+</html>
+
+
+<script>
+
+/*
+Write a simple program to compute the tax on an order
+amount. The program should prompt for the order amount
+and the state. If the state is “WI,” then the order must be
+charged 5.5% tax. The program should display the subtotal,
+tax, and total for Wisconsin residents but display just the
+total for non-residents.
+
+constraints
+Implement this program using only a simple if statement—
+don’t use an else clause.
+• Ensure that all money is rounded up to the nearest cent.
+• Use a single output statement at the end of the program
+to display the program results.
+
+Allow the user to enter a state abbreviation in upper,
+lower, or mixed case.
+• Also allow the user to enter the state’s full name in
+upper, lower, or mixed case.
+
+*/
+
+
+var input_amount;
+var input_state;
+var tax_amount = 0.55;
+var total;
+var validateinput = true;
+var outputinfo = document.getElementById("content");
+var input_amount_text = "What is the order amount ";
+var input_state_text = "What is the state? ";
+var errortext = "Please enter a valid amount ";
+input_amount = prompt(input_amount_text);
+input_state = prompt(input_state_text);
+
+if (parseFloat(input_amount)){
+	validateinput = false;
+	outputinfo.innerHTML += input_amount_text + input_amount + "<br>";
+	outputinfo.innerHTML += input_state_text + input_state + "<br>";
+}
+
+while (validateinput){
+	alert(errortext);
+	input_amount = prompt(input_amount_text);
+	if (parseFloat(input_amount)){
+		validateinput = false;
+		outputinfo.innerHTML += input_amount_text + input_amount + "<br>";
+		outputinfo.innerHTML += input_state_text + input_state + "<br>";
+		break;
+	}
+	continue;
+}
+
+total = parseFloat(input_amount) + tax_amount;
+//output
+if (isEmpty(input_state)){
+	outputinfo.innerHTML += "The total is $" + String(total.toFixed(2)); 
+} else if (input_state.toLowerCase() === "wi" || input_state.toLowerCase() === "wisconsin" ){
+	outputinfo.innerHTML += "The subtotal is " + input_amount + "<br>";
+	outputinfo.innerHTML += "The total is $" + String(total.toFixed(2)); 
+} else {
+	outputinfo.innerHTML += "The total is $" + String(total.toFixed(2)); 
+}
+
+/*
+outputinfo.innerHTML += "The subtotal is " + input_amount + "<br>";
+outputinfo.innerHTML += "The total is $" + String(total); 
+*/
+
+
+
+</script>

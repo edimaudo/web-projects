@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.getJSON demo</title>
+   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<label>Search for photo</label>
+<input type="text" id="searchinput">
+<button id="btn">Search</button><br><br>
+<div id="images"></div>
+</html>
+
+<style>
+  img {
+    height: 100px;
+    float: left;
+  }
+
+label{
+  margin-right:10px;
+}
+
+#searchinput{
+ margin-right:10px; 
+}
+</style>
+
+<script>
+$(document).ready(function() {
+  userinput = document.getElementById("searchinput");
+
+  $("#btn").click(function() {
+    $("#images").empty();
+      (function() {
+        var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+        $.getJSON(flickerAPI, {
+            tags: userinput.value,
+            tagmode: "any",
+            format: "json"
+          })
+          .done(function(data) {
+            $.each(data.items, function(i, item) {
+              $("<img>").attr("src", item.media.m).appendTo("#images");
+              if (i === 5) {
+                return false;
+              }
+            });
+          });
+      })();
+
+  });
+
+});
+
+//
+/*
+
+  
+*/
+
+</script>

@@ -1,0 +1,36 @@
+<html>
+	<div id="content"></div>
+</html>
+
+
+<script>
+	outputinfo = document.getElementById("content");
+	employeelist = ["John Smith", "Jackie Jackson", "Chris Jones", "Amanda Cullen", "Jeremy Goodwin"];
+	
+	numofemployees = employeelist.length;
+
+	outputinfo.innerHTML += "There are " + numofemployees + " employees:<br>";
+	for (var i = 0; i < employeelist.length;i++){
+		outputinfo.innerHTML += employeelist[i] + "<br>";
+	}
+
+	inputtextinfo = "Enter an employee name to remove ";
+	inputinfo = prompt(inputtextinfo);
+	outputinfo.innerHTML += inputtextinfo + inputinfo;
+
+
+	employeeexist = employeelist.indexOf(inputtextinfo);
+	if (employeelist === -1){
+		outputinfo += "The name does not exist";
+	} else {
+		finallist = employeelist.filter(function(inputtextinfo){
+			return value !== inputtextinfo;
+		})
+		
+		outputinfo.innerHTML += "There are " + numofemployees + " employees:<br>";
+		for (var i = 0; i < finalist.length;i++){
+			outputinfo.innerHTML += finallist[i] + "<br>";
+		}
+	}
+
+</script>

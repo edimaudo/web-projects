@@ -1,0 +1,73 @@
+<html>
+<div> Area of a rectangluar room</div>
+<div id="content"></div>
+</html>
+
+<script>
+/*
+Create a program that calculates the area of a room. Prompt
+the user for the length and width of the room in feet. Then
+display the area in both square feet and square meters.
+
+• Revise the program to ensure that inputs are entered as
+numeric values. Don’t allow the user to proceed if the
+value entered is not numeric.
+• Create a new version of the program that allows you to
+choose feet or meters for your inputs.
+
+
+*/
+
+dimensioninput = prompt("Enter either feet or meters");
+checkdimension = true;
+var metre_feet = 0.09290304;
+outputinfo = document.getElementById("content");
+
+if (dimensioninput === "feet" || dimensioninput === "meters"){
+	checkdimension = false;
+}
+
+
+while (checkdimension){
+	alert("Please enter either feet or meters");
+	dimensioninput = prompt("Enter either feet or meters");
+	if (dimensioninput === "feet" || dimensioninput === "meters"){
+		checkdimension = false;
+		break;
+  }
+	continue;
+}
+
+
+roomlength = prompt("What is the length of the room in " + dimensioninput);
+roomwidth = prompt("What is the width of the room in " + dimensioninput);
+roomdimension = true;
+
+if (parseFloat(roomlength) || parseFloat(roomwidth)){
+	roomdimension = false;
+  outputinfo.innerHTML += "What is the length of the room in " + dimensioninput + "? " + roomlength + "<br>";
+  outputinfo.innerHTML +=  "What is the width of the room in " + dimensioninput + "? " + roomwidth + "<br>";
+}
+
+while (roomdimension){
+	alert("Please enter a valid length and width");
+	roomlength = prompt("What is the length of the room in " + dimensioninput);
+	roomwidth = prompt("What is the width of the room in " + dimensioninput);
+	if (parseFloat(roomlength) || parseFloat(roomwidth)){
+		roomdimension = false;
+  outputinfo.innerHTML += "What is the length of the room in " + dimensioninput + "? " + roomlength + "<br>";
+  outputinfo.innerHTML +=  "What is the width of the room in " + dimensioninput + "? " + roomwidth + "<br>";
+		break;
+	}
+	continue;
+}
+
+//output
+var calcfeet = (parseFloat(roomlength) * parseFloat(roomwidth));
+var calcmetres = ((parseFloat(roomlength) * parseFloat(roomwidth)) * metre_feet);
+outputinfo.innerHTML += "You entered dimensions of " + roomlength + " " + dimensioninput + " by " + roomwidth + " " + dimensioninput + "<br>";
+outputinfo.innerHTML += "The area is <br>";
+outputinfo.innerHTML += String(calcfeet.toFixed(3)) + " square feet <br>";
+outputinfo.innerHTML += String(calcmetres.toFixed(3)) + " square metres"; 
+
+</script>

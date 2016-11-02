@@ -1,0 +1,39 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<div id="content"></div>
+
+</html>
+
+<script>
+$(document).ready(function() {
+  //getWeather();
+
+  function getWeather() {
+    $.getJSON("http://freegeoip.net/json/", function(data) {
+      getWeatherData(data.city, data.latitude, data.longitude);
+    });
+  }
+//http://api.openweathermap.org/data/2.5/weather?lat=43.6561&lon=-79.3406&appid=b57679912376c0595eb2e17485b1d1f6
+  function getWeatherData(city, latitude, longitude) {
+    var baseapi = "http://api.openweathermap.org/data/2.5/weather?lat=";
+    var apikey = "b57679912376c0595eb2e17485b1d1f6";
+    var finalapi = baseapi + latitude + "&lon=" + longitude + "&appid=" + apikey;
+    console.log(finalapi);
+    //$.getJSON(finalapi, function(data){
+    //  console.log(finalapi);
+    //  showWeatherInfo(city, data.weather, data.main, data.wind, data.cloud, data.sys);
+    //});
+    
+  }
+  
+  function showWeatherInfo(cityinfo, weatherinfo, maininfo, windofin, cloudinfo, placeinfo){
+    
+  }
+
+});
+
+
+
+
+
+</script>
