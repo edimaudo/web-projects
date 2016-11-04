@@ -1,0 +1,34 @@
+#slider {
+	width: 400px;
+	height: 200px;
+	overflow: hidden;
+	margin: 30px auto;
+}
+
+#slider > img {
+	width: 400px;
+	height: 200px;
+	float: left;
+	display: none;
+}
+
+a {
+	padding: 5px 10px;
+	background: #f0f0f0;
+	margin-top: 30px;
+	text-decoration: none;
+
+}
+
+.wrapper {
+	width: 400px;
+	margin: 0px auto;
+}
+
+a.left {
+	float: left;
+}
+
+a.right {
+	float: right;
+}
