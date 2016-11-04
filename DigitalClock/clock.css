@@ -1,0 +1,33 @@
+div {
+	width: 600px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: Helvetica, sans-serif;
+	font-size: 20px;
+	text-align: center;
+}
+
+#clock {
+	display: block;
+	width: 500px;
+	height: 200px;
+	margin: 0 auto;
+	
+}
+
+ @media (max-width: 500px) {
+ 	div{
+ 		height: auto;
+ 		width: auto;
+ 	}
+
+ 	#clock{
+ 		display: block;
+ 		height: auto;
+ 		max-width: 100%;
+ 	}
+ }
+
