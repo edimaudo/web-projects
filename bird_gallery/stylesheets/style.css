@@ -1,0 +1,143 @@
+body {
+	background-color: #DAEDF2;	
+}
+
+a {
+	color: #C1272D
+}
+
+#wrapper {
+	width: 900px;
+	padding: 0 50px;
+	margin: 0 auto;
+}
+
+/* Header */
+header {
+	/* This is because the nav is floated */
+	overflow: auto;
+}
+
+header h1 {
+	float: left;
+	text-shadow: 0 1px 1px #fff;
+}
+
+nav ul {
+	float: right;
+	margin-top: 20px;
+	padding: 0 10px;
+
+	background-color: rgba(0,0,0,0.1);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 0 1px 1px #ddd;
+}
+
+nav li {
+	display: inline-block;
+}
+
+nav a {
+	display: inline-block;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	padding: 5px;
+}
+
+nav a:hover {
+	-webkit-transform: translate(0,-1px);
+}
+
+header {
+	overflow: auto;
+}
+
+/* Main gallery */
+
+.images {
+	padding: 0;
+}
+
+.images li {
+	display: inline-block;
+	padding: 10px;
+}
+
+.images li:nth-child(3n+1) {
+	padding-left: 0;
+}
+
+.images li:nth-child(3n+3) {
+	padding-right: 0;
+}
+
+.images figure {
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+
+.images figure:hover {
+	-webkit-transform: translate(0, -2px);
+}
+
+.images img {
+	max-width: 260px;
+	border: 1px solid #ccc;
+}
+
+.images figcaption {
+	font-size: .93em;
+	padding: 10px 0 5px 0;
+}
+
+.images li:first-child {
+	-webkit-transform: rotate(-1deg) translate(0, -2px);
+}
+
+.images li:nth-child(2) {
+	-webkit-transform: translate(0, -2px);
+}
+
+.images li:nth-child(3) {
+    -webkit-transform: rotate(1deg) translate(0, 2px);
+}
+
+/** Adding tape to our images **/
+.images figure {
+	position: relative;
+}
+
+.images figure:before {
+	content: "";
+	position: absolute;
+
+	top: -15px;
+	right: 70px;
+	
+	width: 150px;
+	height: 40px;
+	background-color: rgba(255, 255, 255,0.5);
+	
+	border-left: 1px dashed rgba(0,0,0,0.1);
+	border-right: 1px dashed rgba(0,0,0,0.1);	
+}
+
+.images figure:hover {
+	-webkit-transform: initial;
+}
+
+
+/* Footer */
+footer {
+	padding-top: 10px;
+	margin-top: 20px;
+	border-top: 1px solid #ccc;
+	font-size: .77em;
+	color: #666;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>HTML5 Image Gallery</title>
+
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28342169-1']);
+    _gaq.push(['_setDomainName', 'github.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  <!-- End Google Analytics -->
+
+</head>
+
+<body>
+<div id="wrapper">
+  <header>
+    <h1>My Image Gallery</h1>
+    <nav>
+      <ul>
+        <!-- Note: about and contact pages haven't been created yet. -->
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <p>Welcome to my image gallery. It looks plain now, but don&rsquo;t worry! We&rsquo;ll be spicing it up soon.</p>
+  <ul class="images">
+    <li>
+      <figure>
+        <img src="images/image1.jpg" />
+        <figcaption>This is a caption for image 1.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <img src="images/image2.jpg" />
+        <figcaption>This is a caption for image 2.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <img src="images/image3.jpg" />
+        <figcaption>This is a caption for image 3.</figcaption>
+      </figure>
+    </li>
+  </ul>
+
+  <footer>
+    <p>Project 1: <a href="http://html5stuco.com">98-177 Building HTML5 Web Apps</a></p>
+  </footer>
+</div>
+</body>
+</html>

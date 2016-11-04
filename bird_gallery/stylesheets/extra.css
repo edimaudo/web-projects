@@ -1,0 +1,19 @@
+.images figure {
+  position: relative;
+}
+
+.images figure:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  right: 80px;
+  width: 130px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-left: 1px dashed rgba(0,0,0,0.1);
+  border-right: 1px dashed rgba(0,0,0,0.1);
+}
+
+.images figure:hover {
+  -webkit-transform: initial; /* Cancel out transform */
+}
