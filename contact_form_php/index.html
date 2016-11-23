@@ -1,0 +1,413 @@
+<html>
+    <head>
+        <title>PHP Contact form</title>
+        <style>
+            #contact-form {
+    background-color:#F2F7F9;
+    width:465px;
+    padding:20px;
+    margin: 50px auto;    
+    border: 6px solid #8FB5C1;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    position:relative;
+}
+ 
+#contact-form h1 {
+    font-size:42px;
+}
+ 
+#contact-form h2 {
+    margin-bottom:15px;
+    font-style:italic;
+    font-weight:normal;
+}
+ 
+#contact-form input, 
+#contact-form select, 
+#contact-form textarea, 
+#contact-form label {
+    font-size:15px;
+    margin-bottom:2px;
+}
+ 
+#contact-form input, 
+#contact-form select, 
+#contact-form textarea {
+    width:450px;
+    border: 1px solid #CEE1E8;
+    margin-bottom:20px;
+    padding:4px;
+}
+ 
+#contact-form input:focus, 
+#contact-form select:focus, 
+#contact-form textarea:focus {
+    border: 1px solid #AFCDD8;
+    background-color: #EBF2F4;
+}
+ 
+#contact-form textarea {
+    height:150px;
+    resize: none;
+}
+ 
+#contact-form label {
+    display:block;
+}
+ 
+#contact-form .required {
+    font-weight:bold;
+    color:#F00;    
+}
+ 
+#contact-form #submit-button {
+    width: 100px;
+    background-color:#333;
+    color:#FFF;
+    border:none;
+    display:block;
+    float:right;
+    margin-bottom:0px;
+    margin-right:6px;
+    background-color:#8FB5C1;
+    -moz-border-radius:8px;
+}
+ 
+#contact-form #submit-button:hover {
+    background-color: #A6CFDD;
+}
+ 
+#contact-form #submit-button:active {
+    position:relative;
+    top:1px;
+}
+ 
+#contact-form #loading {
+    width:32px;
+    height:32px;
+    background-image:url(../img/loading.gif);
+    display:block;
+    position:absolute;
+    right:130px;
+    bottom:16px;
+    display:none;
+}
+ 
+#errors {
+    border:solid 1px #E58E8E;
+    padding:10px;
+    margin:25px 0px;
+    display:block;
+    width:437px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#FFE6E6 url(../img/cancel_48.png) no-repeat 405px center;
+    display:none;
+}
+ 
+#errors li {
+    padding:2px;
+    list-style:none;    
+}
+ 
+#errors li:before {
+    content: ' - ';    
+}
+ 
+#errors #info {
+    font-weight:bold;
+}
+ 
+#errors #info:before {
+    content: '';    
+}
+ 
+#success {
+    border:solid 1px #83D186;
+    padding:25px 10px;
+    margin:25px 0px;
+    display:block;
+    width:437px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#D3EDD3 url(../img/accepted_48.png) no-repeat 405px center;
+    font-weight:bold;
+    display:none;
+}
+ 
+#errors.visible, #success.visible {
+    display:block;    
+}
+ 
+#req-field-desc {
+    font-style:italic;
+}
+ 
+/* Remove box shadow firefox, chrome and opera put around required fields. It looks rubbish. */
+input:required, textarea:required {
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    -o-box-shadow:none;
+    box-shadow:none;
+}
+ 
+/* Normalize placeholder styles */
+ 
+/* chrome, safari */
+::-webkit-input-placeholder {
+    color:#CCC;
+    font-style:italic;
+}
+ 
+/* mozilla */
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color:#CCC;
+    font-style:italic;
+}
+ 
+/* ie (faux placeholder) */
+input.placeholder-text, textarea.placeholder-text  { 
+    color:#CCC;
+    font-style:italic;
+}
+
+        </style>
+    </head>
+    <body>
+<div id="contact-form" class="clearfix">
+    <h1>Get In Touch!</h1>
+    <h2>Fill out our super swanky HTML5 contact form below to get in touch with us! Please provide as much information as possible for us to help you with your enquiry :)</h2>
+    <?php
+    //init variables
+    $cf = array();
+    $sr = false;
+     
+    if(isset($_SESSION['cf_returndata'])){
+        $cf = $_SESSION['cf_returndata'];
+        $sr = true;
+    }
+    <ul id="errors" class="<?php echo ($sr && !$cf['form_ok']) ? 'visible' : ''; ?>">
+        <li id="info">There were some problems with your form submission:</li>
+        <?php 
+        if(isset($cf['errors']) && count($cf['errors']) > 0) :
+            foreach($cf['errors'] as $error) :
+        ?>
+        <li><?php echo $error ?></li>
+        <?php
+            endforeach;
+        endif;
+        ?>
+    </ul>
+    <form method="post" action="process.php">
+        <label for="name">Name: <span class="required">*</span></label>
+        <input type="text" id="name" name="name" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['name'] : '' ?>" placeholder="John Doe" required autofocus />
+         
+        <label for="email">Email Address: <span class="required">*</span></label>
+        <input type="email" id="email" name="email" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['email'] : '' ?>" placeholder="johndoe@example.com" required />
+         
+        <label for="telephone">Telephone: </label>
+        <input type="tel" id="telephone" name="telephone" value="<?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['telephone'] : '' ?>" />
+         
+        <label for="enquiry">Enquiry: </label>
+        <select id="enquiry" name="enquiry">
+            <option value="General" <?php echo ($sr && !$cf['form_ok'] && $cf['posted_form_data']['enquiry'] == 'General') ? "selected='selected'" : '' ?>>General</option>
+            <option value="Sales" <?php echo ($sr && !$cf['form_ok'] && $cf['posted_form_data']['enquiry'] == 'Sales') ? "selected='selected'" : '' ?>>Sales</option>
+            <option value="Support" <?php echo ($sr && !$cf['form_ok'] && $cf['posted_form_data']['enquiry'] == 'Support') ? "selected='selected'" : '' ?>>Support</option>
+        </select>
+         
+        <label for="message">Message: <span class="required">*</span></label>
+        <textarea id="message" name="message" placeholder="Your message must be greater than 20 charcters" required data-minlength="20"><?php echo ($sr && !$cf['form_ok']) ? $cf['posted_form_data']['message'] : '' ?></textarea>
+         
+        <span id="loading"></span>
+        <input type="submit" value="Holla!" id="submit-button" />
+        <p id="req-field-desc"><span class="required">*</span> indicates a required field</p>
+    </form>
+    <?php unset($_SESSION['cf_returndata']); ?>
+</div>
+    </body>
+
+    <script type="text/javascript">
+        $(function(){
+
+    //set global variables and cache DOM elements for reuse later
+    var form = $('#contact-form').find('form'),
+        formElements = form.find('input[type!="submit"],textarea'),
+        formSubmitButton = form.find('[type="submit"]'),
+        errorNotice = $('#errors'),
+        successNotice = $('#success'),
+        loading = $('#loading'),
+        errorMessages = {
+            required: ' is a required field',
+            email: 'You have not entered a valid email address for the field: ',
+            minlength: ' must be greater than '
+        }
+    
+    //feature detection + polyfills
+    formElements.each(function(){
+
+        //if HTML5 input placeholder attribute is not supported
+        if(!Modernizr.input.placeholder){
+            var placeholderText = this.getAttribute('placeholder');
+            if(placeholderText){
+                $(this)
+                    .addClass('placeholder-text')
+                    .val(placeholderText)
+                    .bind('focus',function(){
+                        if(this.value == placeholderText){
+                            $(this)
+                                .val('')
+                                .removeClass('placeholder-text');
+                        }
+                    })
+                    .bind('blur',function(){
+                        if(this.value == ''){
+                            $(this)
+                                .val(placeholderText)
+                                .addClass('placeholder-text');
+                        }
+                    });
+            }
+        }
+        
+        //if HTML5 input autofocus attribute is not supported
+        if(!Modernizr.input.autofocus){
+            if(this.getAttribute('autofocus')) this.focus();
+        }
+        
+    });
+    
+    //to ensure compatibility with HTML5 forms, we have to validate the form on submit button click event rather than form submit event. 
+    //An invalid html5 form element will not trigger a form submit.
+    formSubmitButton.bind('click',function(){
+        var formok = true,
+            errors = [];
+            
+        formElements.each(function(){
+            var name = this.name,
+                nameUC = name.ucfirst(),
+                value = this.value,
+                placeholderText = this.getAttribute('placeholder'),
+                type = this.getAttribute('type'), //get type old school way
+                isRequired = this.getAttribute('required'),
+                minLength = this.getAttribute('data-minlength');
+                
+            //if HTML5 formfields are supported            
+            if( (this.validity) && !this.validity.valid ){
+                formok = false;
+                
+                //if there is a value missing
+                if(this.validity.valueMissing){
+                    errors.push(nameUC + errorMessages.required);    
+                }
+                //if this is an email input and it is not valid
+                else if(this.validity.typeMismatch && type == 'email'){
+                    errors.push(errorMessages.email + nameUC);
+                }
+                
+                this.focus(); //safari does not focus element an invalid element
+                return false;
+            }
+            
+            //if this is a required element
+            if(isRequired){    
+                //if HTML5 input required attribute is not supported
+                if(!Modernizr.input.required){
+                    if(value == placeholderText){
+                        this.focus();
+                        formok = false;
+                        errors.push(nameUC + errorMessages.required);
+                        return false;
+                    }
+                }
+            }
+
+            //if HTML5 input email input is not supported
+            if(type == 'email'){     
+                if(!Modernizr.inputtypes.email){ 
+                    var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+                     if( !emailRegEx.test(value) ){    
+                        this.focus();
+                        formok = false;
+                        errors.push(errorMessages.email + nameUC);
+                        return false;
+                    }
+                }
+            }
+            
+            //check minimum lengths
+            if(minLength){
+                if( value.length < parseInt(minLength) ){
+                    this.focus();
+                    formok = false;
+                    errors.push(nameUC + errorMessages.minlength + minLength + ' charcters');
+                    return false;
+                }
+            }
+        });
+        
+        //if form is not valid
+        if(!formok){
+            
+            //animate required field notice
+            $('#req-field-desc')
+                .stop()
+                .animate({
+                    marginLeft: '+=' + 5
+                },150,function(){
+                    $(this).animate({
+                        marginLeft: '-=' + 5
+                    },150);
+                });
+            
+            //show error message 
+            showNotice('error',errors);
+            
+        }
+        //if form is valid
+        else {
+            loading.show();
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function(){
+                    showNotice('success');
+                    form.get(0).reset();
+                    loading.hide();
+                }
+            });
+        }
+        
+        return false; //this stops submission off the form and also stops browsers showing default error messages
+        
+    });
+
+    //other misc functions
+    function showNotice(type,data)
+    {
+        if(type == 'error'){
+            successNotice.hide();
+            errorNotice.find("li[id!='info']").remove();
+            for(x in data){
+                errorNotice.append('<li>'+data[x]+'</li>');    
+            }
+            errorNotice.show();
+        }
+        else {
+            errorNotice.hide();
+            successNotice.show();    
+        }
+    }
+    
+    String.prototype.ucfirst = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+    
+});
+    </script>
+</html>
+
