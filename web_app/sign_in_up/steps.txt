@@ -1,0 +1,11 @@
+Create a Database
+Create a Database Table with Following Five Fields:
+id, username, email, password, trn_date
+Create a Registration Form
+Create a Login Form
+Connect to the Database by using PHP
+Authenticate Logged in User
+Create Index Page
+Create Dashboard Page
+Create a Log Out
+Create a CSS File
