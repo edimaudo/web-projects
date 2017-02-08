@@ -6,7 +6,7 @@ For example, add(2, 3) should return 5, and add(2) should return a function.
 function add() {
   if (arguments.length > 1) {
     var val1 = checkNum(arguments[0]);
-    var val2 = checkNum(argumentss[1]);
+    var val2 = checkNum(arguments[1]);
     if (val1 === undefined || val2 === undefined) {
       return undefined;
     } else {
