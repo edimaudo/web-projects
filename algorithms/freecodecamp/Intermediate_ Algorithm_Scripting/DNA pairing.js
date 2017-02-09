@@ -18,10 +18,12 @@ function getPair(n){
   }
 }
 
-function pair(str) {
+function pairElement(str) {
  tempArray = [];
   for (var i = 0; i < str.length; i++){
    tempArray.push(getPair(str[i]));
  }
   return tempArray;
 }
+
+pairElement("GCG");
