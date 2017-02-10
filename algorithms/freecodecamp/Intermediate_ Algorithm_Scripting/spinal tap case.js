@@ -6,7 +6,7 @@ function spinalCase(str) {
   var newstr = "";
   for (var i = 0; i <str.length; i++) {
     if (str[i].toUpperCase() === str[i]) {
-       newstr += "-" + str[i].toLowerCase();;
+       newstr += "-" + str[i].toLowerCase();
     } else {
       newstr += str[i];
     }

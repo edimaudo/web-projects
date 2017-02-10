@@ -7,8 +7,9 @@ Those methods are getFirstName(), getLastName(), getFullName(), setFirstName(fir
 var Person = function(firstAndLast) {
   var fullName = firstAndLast;
   names = fullName.split(" ");
-  //var first = names[0];
-  //var last = names[1];
+  var first = names[0];
+  var last = names[1];
+  
   this.getFirstName = function(){
     return names[0];
   }; 
@@ -16,15 +17,20 @@ var Person = function(firstAndLast) {
     return names[1];
   }; 
   this.getFullName = function(){
-    return fullName;
+    return names[0] +" "+ names[1];
   }; 
   this.setFirstName = function(first){
     names[0] = first;
-  }
+    //first = names[0];
+  };
   this.setLastName = function(last){
     names[1] = last;
-  } 
+    //last = names[1];
+  };
   this.setFullName = function(firstAndLast){
-    fullName = firstAndLast;
+     firstAndLast = names[0] + " " + names[1];
   };
 };
+
+var bob = new Person('Bob Ross');
+bob.getFullName();
