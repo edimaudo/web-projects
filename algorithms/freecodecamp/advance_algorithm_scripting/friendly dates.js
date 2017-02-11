@@ -1,19 +1,4 @@
-/*
-Implement a way of converting two dates into a more friendly date range that could be presented to a user.
-
-It must not show any redundant information in the date range.
-
-For example, if the year and month are the same then only the day range should be displayed.
-
-Secondly, if the starting year is the current year, and the ending year can be inferred by the reader, the year should be omitted.
-
-Input date is formatted as YYYY-MM-DD
-*/
-console.log(friendly(['2015-07-01', '2015-07-04']));
-console.log(friendly(['2017-01-01', '2017-01-01']));
-console.log(friendly(['2015-12-01', '2016-02-03']));
-
-function friendly(str) {
+function makeFriendlyDates(str) {
   var date1 = new Date(str[0].slice(0, 4), str[0].slice(5, 7) - 1, str[0].slice(8, 10));
   var date2 = new Date(str[1].slice(0, 4), str[1].slice(5, 7) - 1, str[1].slice(8, 10));
   var year1 = date1.getFullYear();
@@ -26,21 +11,28 @@ function friendly(str) {
   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   var tempArray = [];
-
+  //alert(diffDays);
   //same dates
   if (diffDays === 0) {
     tempArray.push(monthInfo(month1) + " " + getOrdinal(day1) + ", " + year1);
   } //first check month and year are the same
   else if (year1 === year2 && month1 === month2) {
     tempArray.push(monthInfo(month1) + " " + getOrdinal(day1), getOrdinal(day2));
-    // 2 months aparts
-  } else if (diffDays < 70) {
+  }   //one month apart
+   else if (month2 - month1 === 1) {
     tempArray.push(monthInfo(month1) + " " + getOrdinal(day1), monthInfo(month2) + " " + getOrdinal(day2));
-    //one month apart
-  } else if (month2 - month1 === 1) {
+  }// 2 months aparts
+   else if (diffDays < 66 & year2 - year1 === 1) {
     tempArray.push(monthInfo(month1) + " " + getOrdinal(day1), monthInfo(month2) + " " + getOrdinal(day2));
-    //default
-  }  else {
+  } 
+  else if (diffDays < 66 ) {
+    tempArray.push(monthInfo(month1) + " " + getOrdinal(day1) + ", " + year1, monthInfo(month2) + " " + getOrdinal(day2));
+  } 
+  // less than a year  
+  else if (diffDays < 365){
+    tempArray.push(monthInfo(month1) + " " + getOrdinal(day1) + ", " + year1, monthInfo(month2) + " " + getOrdinal(day2));
+  }//default
+  else {
     tempArray.push(monthInfo(month1) + " " + getOrdinal(day1) + ", " + year1, monthInfo(month2) + " " + getOrdinal(day2) + ", " + year2);
   }
   return tempArray;
@@ -61,6 +53,7 @@ function monthInfo(num) {
     [10, 'November'],
     [11, 'December']
   ];
+  
   for (var i = 0; i < monthdata.length; i++) {
     if (num === monthdata[i][0]) {
       return monthdata[i][1];
