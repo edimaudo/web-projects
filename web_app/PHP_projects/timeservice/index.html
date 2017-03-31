@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timeservice app</title>
+        <meta description="unix time service app conversion">
+        <style>
+            #container{
+  margin-right:auto;
+  margin-left:auto;
+  width:400;
+  height:400px;
+ 
+  text-align:center;
+  margin-top:20px;
+}
+
+span{
+  text-align:center;
+  font-size: 25px;
+  font-style:normal;
+  margin-bottom:25px;
+}
+
+#userout{
+  text-align:center;
+  font-size:25px;
+  margin-top:25px;
+}
+        </style>
+    </head>
+    
+    <body>
+<div id="container">
+  <form method="POST" action="timeservice.php">
+    <span>Time stamp information</span><br><br>
+    <input type="text" name="info" required placeholder="enter a unix timestamp" />
+    <input type="submit" value="Submit" />
+  </form>
+  <div id="userout"></div>
+
+</div>
+    </body>
+</html>

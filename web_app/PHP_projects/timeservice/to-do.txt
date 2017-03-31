@@ -1,0 +1,10 @@
+- build html file - d
+- build php file
+- design php file to check for information
+- design php file to return data back to html
+- run test
+
+
+information
+- d is done
+https://timestamp-ms.herokuapp.com/
