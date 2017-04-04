@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<form class="form" action="contactus.php" method="post" name="contactus">
+
+<fieldset>
+
+<legend>Your Info</legend>
+
+<h5>* means required</h5>
+
+<label>Name</label>
+<input name="name" type="text" size="45" placeholder="Name *" required/><br />
+
+<label>Email</label><input name="email" type="text" size="45" placeholder="Email *" required/><br />
+
+<label>Website</label><input name="website" type="text" size="45" /><br />
+
+</fieldset>
+
+<fieldset>
+
+<legend>Your Message</legend>
+
+<label>Subject</label>
+<input name="subject" type="text" size="45" placeholder="Subject*" required/><br />
+
+<label>Message</label>
+<textarea name="message" cols="35" rows="7" required></textarea>
+
+</fieldset>
+
+<input name="sendmail" type="submit" value="Send Email" />
+
+</form>
+
+</body>
+</html>

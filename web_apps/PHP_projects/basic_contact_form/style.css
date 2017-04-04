@@ -1,0 +1,57 @@
+.form {
+margin:0;
+padding:0;
+font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size:16px;
+width:500px;
+margin-left:auto;
+margin-right: auto;
+}
+.form fieldset{
+border: #cce0b8 solid 1px;
+width:30%;
+margin-bottom:20px;
+background-color: #f1ffe3;
+}
+.form legend{
+text-transform:uppercase;
+font-size:14px;
+padding:4px;
+background-color: #cce0b8;
+color: #3b6d0a;
+margin-top: 30px;
+
+}
+.form label{
+display: inline-block;
+width:14%;
+text-align:right;
+padding:4px;
+vertical-align:top;
+}
+.form input{
+border:1px solid #cce0b8;
+padding:4px;
+color: #48820e;
+}
+.form textarea{
+border:1px solid #cce0b8;
+padding:6px;
+color: #3a6c08;
+}
+.errors{
+color: #900;
+margin:10px;
+font-size:18px;
+font-style:italic;
+border-bottom:1px dotted #CCC;
+width:20%;
+}
+.done{
+color: #090;
+margin:10px;
+font-size:18px;
+font-style:italic;
+border-bottom:1px dotted #CCC;
+width:25%;
+}
