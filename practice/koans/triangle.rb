@@ -14,7 +14,22 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+
+  sorted = [a,b,c].sort
+
+  if a == 0 and b == 0 and c == 0
+    raise TriangleError, "It's a point!"
+  elsif a < 0 or b < 0 or c < 0
+    raise TriangleError, "Cannot have negative side lengths"
+  elsif sorted[0] + sorted[1] <= sorted[2]
+    raise TriangleError, "Two sides must be greater than the sum of the third"
+  elsif a == b and a == c
+    return :equilateral
+  elsif a == b or a == c or b == c
+    return :isosceles
+  else
+    :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
