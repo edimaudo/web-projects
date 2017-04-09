@@ -31,6 +31,52 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  dicecount = [0,0,0,0,0,0]
+
+  #evaluate dice in to array
+  dice.each do |die|
+    dicecount[die-1] = dicecount[die-1] + 1
+  end
+
+  # sum = 0
+  # if dicecount[0] > 3
+  #   sum += 1000
+  # elsif dicecount[0] == 4 || 5
+  #   sum += 100* dicecount[0]-3
+  # else
+  #   sum += (100*dicecount[0])
+  # end
+
+  #score dice
+  sum = 0
+  #run score
+  # * A one (that is not part of a set of three) is worth 100 points.
+  sum += (100*dicecount[0])
+  # * A set of three ones is 1000 points
+  if (dicecount[0] >= 3)
+    sum += 700
+  end
+  # * A set of three numbers (other than ones) is worth 100 times the
+  #   number. (e.g. three fives is 500 points).
+  #return list of values 3 or greater
+
+  #calculate score
+  $i=1
+  begin
+    if (dicecount[$i] >= 3)
+      sum += ($i+1)*100
+    end
+    $i+=1
+  end while $i < dicecount.length
+
+  # * A five (that is not part of a set of three) is worth 50 points.
+  if dicecount[4] < 3
+    sum += dicecount[4]*50
+  elsif  dicecount[4] > 3
+    sum += (dicecount[4]-3)*50
+  end
+
+  return sum
 end
 
 class AboutScoringProject < Neo::Koan

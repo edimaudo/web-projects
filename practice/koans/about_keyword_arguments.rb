@@ -8,8 +8,8 @@ class AboutKeywordArguments < Neo::Koan
 
   def test_keyword_arguments
     assert_equal Array, method_with_keyword_arguments.class
-    assert_equal [1,"two"], method_with_keyword_arguments
-    assert_equal ["one","two"], method_with_keyword_arguments(one: 'one')
+    assert_equal [1, 'two'], method_with_keyword_arguments
+    assert_equal ['one','two'], method_with_keyword_arguments(one: 'one')
     assert_equal [1,2], method_with_keyword_arguments(two: 2)
   end
 
@@ -21,7 +21,7 @@ class AboutKeywordArguments < Neo::Koan
     exception = assert_raise (ArgumentError) do
       method_with_keyword_arguments_with_mandatory_argument
     end
-    assert_match(/(0 for 1)/, exception.message)
+    assert_match(/wrong number of arguments/, exception.message)
   end
 
   # THINK ABOUT IT:

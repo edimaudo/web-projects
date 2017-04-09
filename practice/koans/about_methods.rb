@@ -18,7 +18,7 @@ class AboutMethods < Neo::Koan
   # (NOTE: We are Using eval below because the example code is
   # considered to be syntactically invalid).
   def test_sometimes_missing_parentheses_are_ambiguous
-    eval "assert_equal 5, my_global_method( 2, 3)" # ENABLE CHECK
+    eval "assert_equal(5, my_global_method(2, 3))" # ENABLE CHECK
     #
     # Ruby doesn't know if you mean:
     #
@@ -36,12 +36,12 @@ class AboutMethods < Neo::Koan
     exception = assert_raise(ArgumentError) do
       my_global_method
     end
-    assert_match(/0 for 2/, exception.message)
+    assert_match(/wrong number of arguments/, exception.message)
 
     exception = assert_raise(ArgumentError) do
       my_global_method(1,2,3)
     end
-    assert_match(/3 for 2/, exception.message)
+    assert_match(/wrong number of arguments/, exception.message)
   end
 
   # ------------------------------------------------------------------
@@ -65,7 +65,7 @@ class AboutMethods < Neo::Koan
     assert_equal Array, method_with_var_args.class
     assert_equal [], method_with_var_args
     assert_equal [:one], method_with_var_args(:one)
-    assert_equal [:one,:two], method_with_var_args(:one, :two)
+    assert_equal [:one, :two], method_with_var_args(:one, :two)
   end
 
   # ------------------------------------------------------------------
@@ -120,7 +120,7 @@ class AboutMethods < Neo::Koan
     exception = assert_raise(NoMethodError) do
       self.my_private_method
     end
-    assert_match /my_private_method/, exception.message
+    assert_match /private method/, exception.message
   end
 
   # ------------------------------------------------------------------
