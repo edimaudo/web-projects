@@ -1,0 +1,91 @@
+var APPROVALS_SPREADSHEET_ID = "INSERT_YOUR_OWN_HERE";
+var APPROVAL_FORM_URL = "INSERT_YOUR_OWN_HERE";
+var STATE_MANAGER_EMAIL = "MANAGER_EMAIL";
+var STATE_APPROVED = "APPROVED";
+var STATE_DENIED = "DENIED";
+var COLUMN_STATE = 6;
+var COLUMN_COMMENT = 7;
+
+// Main tutorial function:
+// For each row (expense report):
+//   - if it's new, email the report to a manager for approval
+//   - if it has recently been accepted or denied by a manager, email the results to the employee
+//   - otherwise (expense reports that have already been fully processed or old expense reports
+//     that still have not been approved or rejected), do nothing
+// Ideally, this function would be run every time the approvals spreadsheet or the expense report
+// spreadsheet are updated (via a Form submission) or regularly (once a day).
+function onReportOrApprovalSubmit() {
+  // This is the Expense Report Spreadsheet
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheets()[0];
+
+  // Also open the approvals spreadsheet
+  var approvalsSpreadsheet = SpreadsheetApp.openById(APPROVALS_SPREADSHEET_ID);
+  var approvalsSheet = approvalsSpreadsheet.getSheets()[0];
+
+  // Fetch all the data from the expense report spreadsheet
+  // getRowsData was reused from Reading Spreadsheet Data using JavaScript Objects tutorial
+  var data = getRowsData(sheet);
+
+  // Fetch all the data from the approvals spreadsheet
+  var approvalsData = getRowsData(approvalsSheet);
+
+  // For every expense report
+  for (var i = 0; i < data.length; ++i) {
+    var row = data[i];
+    row.rowNumber = i + 2;
+    if (!row.state) {
+      // This is a new Expense Report.
+      // Email the manager to request his approval.
+      sendReportToManager(row);
+      // Update the state of the report to avoid email sending multiple emails
+      // to managers about the same report.
+      sheet.getRange(row.rowNumber, COLUMN_STATE).setValue(row.state);
+    } else if (row.state == STATE_MANAGER_EMAIL) {
+      // This expense report has already been submitted to a manager for approval.
+      // Check if the manager has accepted or rejected the report in the approval spreadsheet.
+      for (var j = 0; j < approvalsData.length; ++j) {
+        var approval = approvalsData[j];
+        if (row.rowNumber != approval.expenseReportId) {
+          continue;
+        }
+        // Email the employee to notify the Manager's decision about the expense report.
+        sendApprovalResults(row, approval);
+        // Update the state of the report to APPROVED or DENIED
+        sheet.getRange(row.rowNumber, COLUMN_STATE).setValue(row.state);
+        break;
+      }
+    }
+  }
+}
+
+// Sends an email to an employee to communicate the manager's decision on a given Expense Report.
+function sendApprovalResults(row, approval) {
+  var approvedOrRejected = (approval.approveExpenseReport == "Yes") ? "approved" : "rejected";
+  var message = "<html><body>"
+    + "<p>" + approval.emailAddress + " has " + approvedOrRejected + " your expense report."
+    + "<p>Amount: $" + row.amount
+    + "<p>Description: " + row.description
+    + "<p>Report Id: " + row.rowNumber
+    + "<p>Manager's comment: " + (approval.comments || "")
+    + "</body></html>";
+  MailApp.sendEmail(row.emailAddress, "Expense Report Approval Results", "", {htmlBody: message});
+  if (approval.approveExpenseReport == "Yes") {
+    row.state = STATE_APPROVED;
+  } else {
+    row.state = STATE_DENIED;
+  }
+}
+
+// Sends an email to a manager to request his approval of an employee expense report.
+function sendReportToManager(row) {
+  var message = "<html><body>"
+    + "<p>" + row.emailAddress + " has requested your approval for an expense report."
+    + "<p>" + "Amount: $" + row.amount
+    + "<p>" + "Description: " + row.description
+    + "<p>" + "Report Id: " + row.rowNumber
+    + '<p>Please approve or reject the expense report <a href="' + APPROVAL_FORM_URL + '">here</a>.'
+    + "</body></html>";
+  MailApp.sendEmail(row.managersEmailAddress, "Expense Report Approval Request", "", {htmlBody: message});
+  row.state = STATE_MANAGER_EMAIL;
+}
