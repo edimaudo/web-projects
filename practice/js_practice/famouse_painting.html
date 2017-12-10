@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h2>Some famous paintings</h2>
+<table id="paintings">
+    <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Artist</th>
+    </tr>
+</table>
+ <div id="content"></div>
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+	var content = document.getElementById('content');
+
+fetch(
+  "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/paintings.json"
+)
+.then(response => response.json())
+.then(paintings => {
+   paintings.forEach(painting => {
+      // Display title of each movie
+      //console.log(painting);
+     content.innerHTML += "<td>" + painting.name + "</td>" + "&nbsp" + 
+        "<td>" + painting.year + "</td>" + "&nbsp" + 
+        "<td>" + painting.artist + "</td><br>"; 
+    });
+})
+</script>
