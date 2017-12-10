@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/phpcrudapp~dda-php/!svn/ver/21/trunk/app/database/oracle
+END
+create-wishes-trigger.sql
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-wishes-trigger.sql
+END
+insert-wishes.sql
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/insert-wishes.sql
+END
+create-format_due_date-function.sql
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/phpcrudapp~dda-php/!svn/ver/21/trunk/app/database/oracle/create-format_due_date-function.sql
+END
+create-wishers-trigger.sql
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-wishers-trigger.sql
+END
+insert-wishers.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/insert-wishers.sql
+END
+create-wishes-table.sql
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/oracle/create-wishes-table.sql
+END
+create-set_due_date-function.sql
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/oracle/create-set_due_date-function.sql
+END
+create-wishes-sequence.sql
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-wishes-sequence.sql
+END
+oracle_script.sql
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/phpcrudapp~dda-php/!svn/ver/21/trunk/app/database/oracle/oracle_script.sql
+END
+create-wishers-table.sql
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-wishers-table.sql
+END
+create-wishers-sequence.sql
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-wishers-sequence.sql
+END
+create-user.sql
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/phpcrudapp~dda-php/!svn/ver/18/trunk/app/database/oracle/create-user.sql
+END

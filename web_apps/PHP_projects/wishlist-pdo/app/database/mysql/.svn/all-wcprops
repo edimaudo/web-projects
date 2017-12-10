@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/mysql
+END
+insert-wishes.sql
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/phpcrudapp~dda-php/!svn/ver/17/trunk/app/database/mysql/insert-wishes.sql
+END
+create-format_due_date-function.sql
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/mysql/create-format_due_date-function.sql
+END
+insert-wishers.sql
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/phpcrudapp~dda-php/!svn/ver/17/trunk/app/database/mysql/insert-wishers.sql
+END
+create-wishes-table.sql
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/phpcrudapp~dda-php/!svn/ver/17/trunk/app/database/mysql/create-wishes-table.sql
+END
+mysql-dump.sql
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/mysql/mysql-dump.sql
+END
+create-set_due_date-function.sql
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/phpcrudapp~dda-php/!svn/ver/20/trunk/app/database/mysql/create-set_due_date-function.sql
+END
+create-wishers-table.sql
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/phpcrudapp~dda-php/!svn/ver/17/trunk/app/database/mysql/create-wishers-table.sql
+END
