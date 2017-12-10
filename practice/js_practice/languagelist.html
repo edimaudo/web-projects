@@ -1,0 +1,19 @@
+<html>
+<h2>A few programming languages</h2>
+<ul id="languageList">
+</ul>
+</html>
+
+<script>
+var lang = document.getElementById('languageList');
+fetch(
+  "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/languages.txt"
+)
+.then(response => response.text()) 
+.then(text => {
+  var textout = text.split(";");
+  for (var i = 0; i < textout.length;i++){
+    lang.innerHTML += "<li>" + textout[i] + "</li>";
+  }
+});
+</script>
