@@ -16,9 +16,13 @@ contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :sy
 contents.each do |row|
   name = row[:first_name]
 
-  legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
+  legislator_names = legislators.collect do |legislator|
+    "#{legislator.first_name} #{legislator.last_name}"
+  end
 
-  puts "#{name} #{zipcode} #{legislators}"
+  legislators_string = legislator_names.join(", ")
+
+  puts "#{name} #{zipcode} #{legislators_string}"
 end
 
 
