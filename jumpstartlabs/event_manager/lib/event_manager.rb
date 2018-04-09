@@ -1,12 +1,12 @@
 #event engagement app - A number of people have registered for an upcoming event. She has asked for your help in engaging these future attendees.
 require "csv"
-puts "initialized!"
+puts "EventManager initialized."
 
-#using ruby csv
-contents = CSV.open "event_attendees.csv", headers: true
+contents = CSV.open "event_attendees.csv", headers: true, header_converters: :symbol
 contents.each do |row|
-  name = row[2]
-  puts name
+  name = row[:first_name]
+  zipcode = row[:zipcode]
+  puts "#{name} #{zipcode}"
 end
 
 =beginlines = File.readlines "event_attendees.csv"
