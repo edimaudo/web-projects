@@ -13,7 +13,7 @@
 
       <% if logged_in? %>
         <%= link_to "submit a link", "#" %>
-        <%= link_to "logout", "#" %>
+        <%= link_to "logout", sessions_path, method: :delete %>
       <% end %>
     </div>
   </nav>
