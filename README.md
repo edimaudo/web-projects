@@ -1,3 +1,3 @@
 # web projects
 
-Web development projects using HTML, CSS, Javascript, Node, Express, PHP, MySQL and MongoDB
+Web development projects using HTML, CSS, Javascript, PHP, Python (Django)
