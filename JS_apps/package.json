@@ -1,5 +1,5 @@
 {
-  "name": "package",
+  "name": "helloworld",
   "version": "1.0.0",
   "description": "package for js apps",
   "main": "index.js",
@@ -10,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [
+    "helloworld"
+  ]
 }
