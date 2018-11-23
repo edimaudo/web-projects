@@ -1,3 +1,5 @@
 
 rails_practice/sample_app/app/assets/images/rails.png
 *.png
+flask_project/ideaBox/app/templates/index.html
+flask_project/ideaBox/app/routes.py
