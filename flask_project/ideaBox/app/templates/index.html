@@ -1,6 +1,43 @@
-{% extends "base.html" %}
+<html>
+  <head>
+    <title>IdeaBox</title>
+  </head>
+  <body>
+    <h1>Add Idea</h1>
+    <form action='/' method='POST'>
+      <p>
+        Your Idea:
+      </p>
+      <input type='text' name='idea_title'/><br/>
+      <label>Description</label><br>
+      <textarea name='idea_description'></textarea><br/>
+      <input type='submit'/>
+    </form>
 
-{% block content %}
- 	<textbox></textbox>
- 	<textarea></textarea>
-{% endblock %}
+<h1>Ideas</h1>
+    <table>
+      {% for idea in ideas %}
+        <tr>
+          <td>
+            {{idea.idea_name}} 
+          </td>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{idea.idea_name}}" name="oldname">
+              <input type="text" value="{{idea.idea_name}}" name="newname">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{idea.idea_name}}" name="title">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+  </body>
+</html>
