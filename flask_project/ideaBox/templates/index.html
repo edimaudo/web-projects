@@ -4,14 +4,38 @@
 	<title>IdeaBox</title>
 </head>
 <body>
-	    <h1>Add Idea</h1>
+	<h1>Add Ideas</h1>
     <form method="POST" action="/">
       <label>Idea Name</label><br>
       <input type="text" name="title"><br>
       <label>Idea Description</label><br>
-      <input type="text" name="description"><br>
+      <input type="textarea" name="description"><br>
       <input type="submit" value="Add">
     </form>
+
+    <h1>Update Ideas</h1>
+    <table>
+      {% for idea in ideas %}
+        <tr>
+          <td>
+            {{boo.title}}
+          </td>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{book.title}}" name="oldtitle">
+              <input type="text" value="{{book.title}}" name="newtitle">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{book.title}}" name="title">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>   
 
 </body>
 </html>
