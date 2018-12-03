@@ -9,7 +9,7 @@
       <label>Idea Name</label><br>
       <input type="text" name="title"><br>
       <label>Idea Description</label><br>
-      <input type="textarea" name="description"><br>
+      <input type="text" name="description"><br>
       <input type="submit" value="Add">
     </form>
 
@@ -18,18 +18,20 @@
       {% for idea in ideas %}
         <tr>
           <td>
-            {{boo.title}}
+            {{idea.title}}
           </td>
           <td>
             <form method="POST" action="./update" style="display: inline">
-              <input type="hidden" value="{{book.title}}" name="oldtitle">
-              <input type="text" value="{{book.title}}" name="newtitle">
+              <input type="hidden" value="{{idea.title}}" name="oldtitle">
+              <input type="text" value="{{idea.title}}" name="newtitle">
+              <input type="hidden" value="{{idea.description}}" name="olddescription">
+              <input type="text" value="{{idea.description}}" name="newdescription">
               <input type="submit" value="Update">
             </form>
           </td>
           <td>
             <form method="POST" action="./delete" style="display: inline">
-              <input type="hidden" value="{{book.title}}" name="title">
+              <input type="hidden" value="{{idea.title}}" name="title">
               <input type="submit" value="Delete">
             </form>
           </td>
