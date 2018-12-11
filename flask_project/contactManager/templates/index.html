@@ -7,7 +7,7 @@
   <h1>Add Contacts</h1>
     <form method="POST" action="/">
       <label>Contact First Name</label><br>
-      <input type="text" name="firstname"><br>
+      <input type="text" name="firstname" required="required"><br>
       <label>Contact Last Name</label><br>
       <input type="text" name="lastname"><br>
       <label>Contact email</label><br>
@@ -20,22 +20,19 @@
       {% for contact in contacts %}
         <tr>
           <td>
-            {{contact.id}}
-          </td>
-          <td>
             <form method="POST" action="./update" style="display: inline">
-              <input type="hidden" value="{{contact.firstname}}" name="oldfirstname">
-              <input type="text" value="{{contact.firstname}}" name="newfirstname">
-              <input type="hidden" value="{{contact.lastname}}" name="oldlastname">
-              <input type="text" value="{{contact.lastname}}" name="newlastname">
-              <input type="hidden" value="{{contact.email}}" name="oldemail">
-              <input type="text" value="{{contact.email}}" name="newemail">              
+              <input type="hidden" value="{{contact.contact_firstname}}" name="oldfirstname">
+              <input type="text" value="{{contact.contact_firstname}}" name="newfirstname">
+              <input type="hidden" value="{{contact.contact_lastname}}" name="oldlastname">
+              <input type="text" value="{{contact.contact_lastname}}" name="newlastname">
+              <input type="hidden" value="{{contact.contact_email}}" name="oldemail">
+              <input type="text" value="{{contact.contact_email}}" name="newemail">              
               <input type="submit" value="Update">
             </form>
           </td>
           <td>
             <form method="POST" action="./delete" style="display: inline">
-              <input type="hidden" value="{{contact.id}}">
+              <input type="hidden" value="{{contact.id}}" name="contact_id">
               <input type="submit" value="Delete">
             </form>
           </td>
