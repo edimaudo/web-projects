@@ -1,5 +1,3 @@
-
-
 from flask_table import Table, Col, LinkCol
  
 class Results(Table):
@@ -10,3 +8,4 @@ class Results(Table):
     publisher = Col('Publisher')
     media_type = Col('Media')
     edit = LinkCol('Edit', 'edit', url_kwargs=dict(id='id'))
+    delete = LinkCol('Delete', 'delete', url_kwargs=dict(id='id'))
