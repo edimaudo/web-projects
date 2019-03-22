@@ -7,7 +7,7 @@ def hello():
     return "Hello World!"
 
 @app.route('/name')
-def welcome():
+def name():
     return "Welcome to our application!"
 
 
@@ -17,15 +17,15 @@ def welcome():
 
 
 @app.route('/welcome/home')
-def welcome():
+def home():
     return "Welcome home"
 
 
 @app.route('/welcome/back')
-def welcome():
+def back():
     return "Welcome back"
 
 
 @app.route('/sum')
-def welcome():
+def sum():
     return 5 + 5
