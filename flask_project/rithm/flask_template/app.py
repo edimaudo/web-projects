@@ -9,3 +9,21 @@ def say_name_age(person,age):
 @app.route('/calculate')
 def calculate():
 	return render_template("calc.html")
+
+@app.route('/math')
+def print_name():
+    number1 = int(request.args.get('Number1'))
+    number2 = int(request.args.get('Number2'))
+    #selectedOption = "Add"
+    selectedOption = request.args.get('option')
+    divideOption = "NaN"
+    if selectedOption == "Divide":
+    	if number2 != 0:
+    		return f"The division of {number1} and {number2} is {number1/number2}."
+    	return f"The division of {number1} and {number2} is {divideOption}."
+    elif selectedOption == "Multiply":
+    	return f"The multiplication of {number1} and {number2} is {number1 * number2}."
+    elif selectedOption == "Add":
+    	return f"The Addition of {number1} and {number2} is {number1 + number2}."
+    else:
+    	return f"The subtraction of {number1} and {number2} is {number1 - number2}."
