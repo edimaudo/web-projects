@@ -12,11 +12,12 @@ def calculate():
 
 @app.route('/math')
 def print_name():
+    
     number1 = int(request.args.get('Number1'))
     number2 = int(request.args.get('Number2'))
-    #selectedOption = "Add"
+    
     selectedOption = str(request.args.get('comp_select'))
-    print(selectedOption)
+    
     divideOption = "NaN"
     if selectedOption == "Divide":
     	if number2 != 0:
