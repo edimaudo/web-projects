@@ -15,7 +15,8 @@ def print_name():
     number1 = int(request.args.get('Number1'))
     number2 = int(request.args.get('Number2'))
     #selectedOption = "Add"
-    selectedOption = request.args.get('option')
+    selectedOption = str(request.args.get('comp_select'))
+    print(selectedOption)
     divideOption = "NaN"
     if selectedOption == "Divide":
     	if number2 != 0:
@@ -25,5 +26,6 @@ def print_name():
     	return f"The multiplication of {number1} and {number2} is {number1 * number2}."
     elif selectedOption == "Add":
     	return f"The Addition of {number1} and {number2} is {number1 + number2}."
-    else:
+    elif selectedOption == "Subtract":
     	return f"The subtraction of {number1} and {number2} is {number1 - number2}."
+    return "None"
