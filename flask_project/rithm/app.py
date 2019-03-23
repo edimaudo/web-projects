@@ -11,9 +11,17 @@ def welcome():
 def title():
     return render_template('title.html')
 
-@app.route('/second')
-def second():
-    return "WELCOME TO THE SECOND PAGE!"
+# we need a route to render the form
+@app.route('/show-form')
+def show_form():
+    return render_template('first-form.html')
+
+# we need to do something when the form is submitted
+@app.route('/data')
+def print_name():
+    first = request.args.get('first')
+    last = request.args.get('last')
+    return f"You put {first} {last}"
 
 
 
