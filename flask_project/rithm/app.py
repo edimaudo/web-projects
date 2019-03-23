@@ -28,4 +28,4 @@ def back():
 
 @app.route('/sum')
 def sum():
-    return "ten"
+    return str(5+5)
