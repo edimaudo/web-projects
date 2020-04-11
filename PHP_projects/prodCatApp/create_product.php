@@ -20,8 +20,54 @@ include_once "layout_header.php";
 echo "<div class='right-button-margin'>";
     echo "<a href='index.php' class='btn btn-default pull-right'>Read Products</a>";
 echo "</div>";
+
+// display the products if there are any
+if($num>0){
  
+    echo "<table class='table table-hover table-responsive table-bordered'>";
+        echo "<tr>";
+            echo "<th>Product</th>";
+            echo "<th>Price</th>";
+            echo "<th>Description</th>";
+            echo "<th>Category</th>";
+            echo "<th>Actions</th>";
+        echo "</tr>";
+ 
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+ 
+            extract($row);
+ 
+            echo "<tr>";
+                echo "<td>{$name}</td>";
+                echo "<td>{$price}</td>";
+                echo "<td>{$description}</td>";
+                echo "<td>";
+                    $category->id = $category_id;
+                    $category->readName();
+                    echo $category->name;
+                echo "</td>";
+ 
+                echo "<td>";
+                    // read one, edit and delete button will be here
+                echo "</td>";
+ 
+            echo "</tr>";
+ 
+        }
+ 
+    echo "</table>";
+ 
+    // paging buttons will be here
+}
+ 
+// tell the user there are no products
+else{
+    echo "<div class='alert alert-info'>No products found.</div>";
+}
+
 ?>
+
+
 
 <?php 
 // if the form was submitted 
