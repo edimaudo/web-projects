@@ -1,0 +1,42 @@
+Project Name: RazzPay
+
+Project Description:
+
+Develop an online payroll solution specifically for startups and SMEs which employ between 1-100 employees. Focus on a clean UI and improved UX in comparison. Make employee onboarding simple and do not collect more data than is needed. Run payroll with one easy click providing clear visibility on deductions.
+
+Aim is to initially develop a basic prototype that allows:
+
+• Employer to input data
+• Employee to input data
+• Accountant to add Employer and input data on their behalf (Same interface)
+• Calculate Payroll deductions
+• Execute Payroll and create an XML for an Employer to upload into their e-banking interface.
+• Create Payroll Payslip for both Employee and Employer interface
+
+
+Target Country:
+Switzerland
+• Switzerland is composed of 26 Cantons.
+
+
+Target Users
+Focus on startup and SME clients in addition to accountants who typically manage employee onboarding and payroll processing.
+
+Competitors/Competitive Advantage in Switzerland:
+Closest competitors are Klara and Bexio. They label themselves as business software providing a range of services such as CRM, project management, bookeeping, invoicing, banking and have slotted in a payroll service. They focus on everything which unfortunately takes away from their ability to truly perfect anything. Their payroll functionality has a clunky UI and the UX causes many users to abandon the service due to the overwhelming complexity to gather data. Users on the platform are predominantly using them for invoicing or project management.
+
+Comparable Software in the U.S Market
+Gusto
+Justworks
+
+Inspiration for Solution:
+The idea for a Swiss payroll solution stemmed from my experience managing payroll for startup clients in Silicon Valley. Using U.S payroll software, I was able to streamline operations and manage a portfolio of 18 startup clients. Prospective clients in Switzerland approached me asking to provide a similar payroll service however there was a lack of software solutions in the Swiss market to allow me to fulfill that demand an efficient manner.
+
+Wireframes:
+Frames are fully developed and will be shared upon NDA signing. The UI and UX should mimic that of Gusto.com, a similar solution in the U.S Market.
+
+Payroll Deductions:
+The necessary payroll deductions are highlighted in ANNEX III - Payroll Deductions Details.
+
+Declaration of Payroll:
+Payroll Declaration for the prototype will be done manually to the relevant authorities. They can be found in ANNEX I.
