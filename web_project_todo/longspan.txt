@@ -1,0 +1,2 @@
+longspan
+My company sells a range of Pallet Racking and warehouse shelving. We have a number of different heights, widths and lengths and so our staff have to work out which size will fit the area required best. You will see a calculator for our longspan I had created a while back which no longer works. What I want is a better version and something we can possibly add to our website so customers can use it.
