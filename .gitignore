@@ -8,3 +8,9 @@ flask_project/ideaBox/app/routes.py
 *.db
 *.db
 *.pyc
+fullstack_side_projects/craigslist.txt
+fullstack_side_projects/jobs_board.txt
+fullstack_side_projects/pokedex/Data.zip
+fullstack_side_projects/pokedex/README.md
+fullstack_side_projects/pokedex/Data/pokemon.csv
+fullstack_side_projects/pokedex/Data 2/pokemon.csv
