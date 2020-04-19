@@ -1,0 +1,8 @@
+User profile, with guest browsing.
+Jobs database
+Employer database
+Jobs listings — A collection view, with filters, possibly mapping component to make it easier for users to find career opportunities.
+Job profile pages — Details of a particular job, requirements, how to apply.
+Automated job page posting for approved employers/representatives.
+Employer profile pages – [optional] One or more Web pages profiling an employer (usually paid).
+Tips content – [optional] Articles, videos, tips and other content for job seekers.
