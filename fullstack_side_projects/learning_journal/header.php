@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
-    <title><?php echo $page_title; ?></title>
+    <title>Learning Journal</title>
  
     <!-- Latest compiled and minified Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -23,6 +23,7 @@
         <?php
         // show page header
         echo "<div class='page-header'>
-                <h1>{$page_title}</h1>
+                <h1>Learning Journal</h1>
+                <h2>{$page_title}</h2>
             </div>";
         ?>
