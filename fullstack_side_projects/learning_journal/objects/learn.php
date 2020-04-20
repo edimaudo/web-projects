@@ -140,5 +140,77 @@
                  
             }
 
+            // delete the learning
+            function delete(){
+             
+                $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+                 
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(1, $this->id);
+             
+                if($result = $stmt->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+
+            // read learning by search term
+            public function search($search_term, $from_record_num, $records_per_page){
+             
+                // select query
+                $query = "SELECT
+                            p.id, p.title, p.time_spent, p.learning, p.resources, p.created
+                        FROM
+                            " . $this->table_name . " p
+                        WHERE
+                            p.title LIKE ? OR p.learning LIKE ?
+                        ORDER BY
+                            p.title ASC
+                        LIMIT
+                            ?, ?";
+             
+                // prepare query statement
+                $stmt = $this->conn->prepare( $query );
+             
+                // bind variable values
+                $search_term = "%{$search_term}%";
+                $stmt->bindParam(1, $search_term);
+                $stmt->bindParam(2, $search_term);
+                $stmt->bindParam(3, $from_record_num, PDO::PARAM_INT);
+                $stmt->bindParam(4, $records_per_page, PDO::PARAM_INT);
+             
+                // execute query
+                $stmt->execute();
+             
+                // return values from database
+                return $stmt;
+            }
+             
+            public function countAll_BySearch($search_term){
+             
+                // select query
+                $query = "SELECT
+                            COUNT(*) as total_rows
+                        FROM
+                            " . $this->table_name . " p 
+                        WHERE
+                            p.title LIKE ? OR p.learning LIKE ?";
+             
+                // prepare query statement
+                $stmt = $this->conn->prepare( $query );
+             
+                // bind variable values
+                $search_term = "%{$search_term}%";
+                $stmt->bindParam(1, $search_term);
+                $stmt->bindParam(2, $search_term);
+             
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+             
+                return $row['total_rows'];
+            }
+
     }
 ?>
