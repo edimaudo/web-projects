@@ -1,3 +1,0 @@
-PHP: 7.4.2
-MySQL: 5.7.26
-Bootstrap 3.3.7
