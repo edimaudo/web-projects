@@ -16,4 +16,4 @@ I built it using PHP, MySQL and Bootstrap 3
 ### Possible extensions
 - Ability to add images and sound
 - Ability to add tags
-- Ability to sort data
+- Ability to sort the titles or by date
