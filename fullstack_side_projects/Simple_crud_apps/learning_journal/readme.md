@@ -22,5 +22,9 @@ I built it using PHP, MySQL and Bootstrap 3
 ### Views
 
 [Index](https://github.com/edimaudo/Web-projects/tree/master/fullstack_side_projects/Simple_crud_apps/learning_journal/index.png)
+
+
 [Read](https://github.com/edimaudo/Web-projects/tree/master/fullstack_side_projects/Simple_crud_apps/learning_journal/read.png)
+
+
 [Edit](https://github.com/edimaudo/Web-projects/tree/master/fullstack_side_projects/Simple_crud_apps/learning_journal/update.png)
