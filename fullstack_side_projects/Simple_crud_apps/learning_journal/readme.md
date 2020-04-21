@@ -20,5 +20,11 @@ I built it using PHP, MySQL and Bootstrap 3
 
 
 ### Views
-
+## Index
 <img src="./index.jpg">
+
+## Read
+<img src="./read.jpg">
+
+## Update
+<img src="./update.jpg">
