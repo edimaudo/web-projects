@@ -24,14 +24,14 @@ I built it using PHP, MySQL and Bootstrap 3
 ## Index
 <img src="./index.jpg">
 
-## Read
+## Add
 <img src="./add.jpg">
 
 ## Edit
 <img src="./edit.jpg">
 
-## Edit
+## View
 <img src="./view.jpg">
 
-## Edit
+## Delete
 <img src="./delete.jpg">
