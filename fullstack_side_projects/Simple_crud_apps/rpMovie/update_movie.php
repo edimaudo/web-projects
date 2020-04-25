@@ -39,15 +39,61 @@ echo "</div>";
 <?php 
 // if the form was submitted
 if($_POST){
- 
+    function validateDate($date, $format = 'Y-m-d'){
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) === $date;
+    }
     // set movie property values
-    $movie->title = $_POST['title'];
-    $movie->release_date = $_POST['release_date'];
-    $movie->genre = $_POST['genre'];
-    $movie->price = $_POST['price'];
- 
+    #$movie->title = $_POST['title'];
+    #$movie->release_date = $_POST['release_date'];
+    #$movie->genre = $_POST['genre'];
+    #$movie->price = $_POST['price'];
+    $date_err = $price_err = $name_err = $genre_err = "";
+   
+    // set genre property values
+    if (!filter_var($_POST['title'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/"))))
+    {
+        $name_err = "Please enter a valid name.";
+    }
+    else 
+    {
+        $movie->title = $_POST['title'];
+    }
+    
+   
+    if (!validateDate($_POST['release_date'])){
+        $date_err = "Please enter a valid date.";
+    }
+    else {
+        $movie->release_date = $_POST['release_date'];
+    }
+      
+    if (!filter_var($_POST['genre'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+        $genre_err = "Please enter a valid genre.";
+    }
+    else {
+        $movie->genre = $_POST['genre'];
+    }
+
+   
+     if (!is_numeric($_POST['price'])){
+        $price_err = "Please enter a valid price.";
+    } elseif ($price < 0) {
+        $price_err = "Please enter a valid price.";
+    }
+    else {
+        $movie->price = $_POST['price'];
+    }
+
+
+
     // update the movie
-    if($movie->update()){
+    if(empty($name_err) && empty($price_err) && empty($genre_err) && empty($date_err)){
+        echo "<div class='alert alert-danger alert-dismissable'>";
+            echo "Unable to update movie.";
+        echo "</div>";
+    }
+    elseif($movie->update()){
         echo "<div class='alert alert-success alert-dismissable'>";
             echo "movie was updated.";
         echo "</div>";
@@ -83,7 +129,7 @@ if($_POST){
  
         <tr>
             <td>Price</td>
-            <td><input type="number" name='price' value='<?php echo $movie->price; ?>'class='form-control'/> </td>
+            <td><input type="number" step="0.01" min="0" name='price' value='<?php echo $movie->price; ?>'class='form-control'/> </td>
         </tr>
  
         <tr>
