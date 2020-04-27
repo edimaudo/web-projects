@@ -1,7 +1,0 @@
-Listings database, with details for each ad, including duration, responses, etc.
-Location-based partitions – The site determines where you are, within a region, and gives you a more local version of the site.
-Search – For user convenience.
-Categories – Ad categories for easier searching.
-Filters – For more powerful searching.
-Payments – Craigslist ads are mostly free, with some exceptions.
-Message forwarding – Craigslist allows listing users to receive inquiries from users without initially having to reveal their identities, via a temporary email address
