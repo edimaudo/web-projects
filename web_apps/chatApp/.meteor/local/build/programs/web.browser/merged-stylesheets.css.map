@@ -1,0 +1,1 @@
+{"version":3,"sources":["meteor://💻app/app/client/main.css"],"names":[],"mappings":"AAAA;;AACA;EACE;EACA;;;AAGF;EACE","sourcesContent":["/* CSS declarations go here */\nhtml {\n  padding: 10px;\n  font-family: Verdana, sans-serif;\n}\n\n.login-buttons-dropdown-align-right {\n  float: right;\n}"]}
