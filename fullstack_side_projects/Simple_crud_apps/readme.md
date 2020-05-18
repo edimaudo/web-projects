@@ -2,11 +2,10 @@
 ***
 
 ### Goals
-
 - Use OOP
 - Understand and use MVC pattern
-- Understand and build crud technique
-- Build simple database 
+- Understand CRUD
+- Build simple databases
 - Keep things simple
 
 ### Tools
@@ -14,6 +13,8 @@
 - MySQL 5.6 
 - Bootstrap 3
 - Jquery
+- Python
+- Django
 
 ### Apps
 Build simple crud apps
@@ -25,15 +26,15 @@ Build simple crud apps
 
 ### Next steps for future projects (Level up CRUD)
 - Use more OOP principles
-- Use solid, dry techniques
+- Use better design principles techniques
 - Use better templating
 - add testing
-- incorporate apis
-- use php libraries
+- use php libraries or django only
 - Build admin area
 - Have login functionality (sessions and cookies)
 - Cleaner & more complex UIs (Ajax if needed)
-- More complex databases
+- More complex database relationships
+- Do API tasks
 
 ### Learning resources
 - Jumpstart labs
