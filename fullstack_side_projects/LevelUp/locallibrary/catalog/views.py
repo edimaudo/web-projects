@@ -9,6 +9,12 @@ def index(request):
     # Generate counts of some of the main objects
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
+
+    #Generate genre count
+    num_genres = Genre.objects.all().count()
+
+    num_genre_type = Genre.objects.filter(name='Science Fiction').count()
+    num_book_available = Book.objects.filter(title='Great Gatsby').count()
     
     # Available books (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
