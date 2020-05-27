@@ -3,19 +3,14 @@
 {% block content %}
 <div class="grid-100">
       <ul class="minerals__container">
-        {% if book_list %}
           {% for mineral in mineral_list %}
             <li class="minerals__item">
-              <a class="minerals__anchor" href="mineral_detail.html">{{ }}  Abelsonite</a>
+              <a class="minerals__anchor" href="mineral_detail.html">{{mineral.name}}</a>
             </li> 
           {% endfor %}
-        
-        {% end if %}
-   
       </ul>
 </div>
 {% endblock %}
-
 
 
 
