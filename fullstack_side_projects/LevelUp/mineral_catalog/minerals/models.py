@@ -24,10 +24,9 @@ class Minerals(db.Model):
 	
 	def __repr__(self):
 		return '<Minerals {}>'.format(self.name) 
-
+    
     # def add_minerals(self):
-    #     """Adds all minerals from .json data file to database."""
-    # 	import json
+    #     import json
     #     filename = 'minerals.json'
 
     #     with open(filename, encoding='utf-8') as file:
@@ -55,3 +54,8 @@ class Minerals(db.Model):
     #             crystal_habit = mineral['crystal habit'],
     #             specific_gravity = mineral['specific gravity']
     #         )
+
+    #     return ""
+
+
+                ##     """Adds all minerals from .json data file to database."""
