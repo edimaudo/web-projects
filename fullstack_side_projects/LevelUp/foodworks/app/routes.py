@@ -6,9 +6,10 @@ from flask import render_template, flash, redirect, url_for
 def index():
     return render_template('index.html')
 
-
-@app.route('/add_product')
+@app.route('/add_product', methods=["GET", "POST"])
 def add_product():
+	if request.form:
+		print(request.form)
 	return render_template("add_product.html")
 
 
