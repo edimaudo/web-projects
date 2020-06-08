@@ -8,5 +8,9 @@ class Product(db.Model):
     image_url = db.Column(db.String(120))
     stock = db.Column(db.Float)
 
-    def __repr__(self):
-        return '<Product {}>'.format(self.title)  
+    def __init__(self, title, price, description, image_url, stock): 
+    	self.title = title
+    	self.price = price
+    	self.description = description
+    	self.image_url = image_url
+    	self.stock = stock
