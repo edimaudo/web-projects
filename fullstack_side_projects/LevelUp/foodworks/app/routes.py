@@ -10,7 +10,7 @@ def index():
 
 @app.route('/add_product', methods=["GET", "POST"])
 def add_product():
-	# if request.method:
+	# if request.method == POST:
 	# 	title = request.form['title']
 	# 	price = request.form['price']
 	# 	description = request.form['description']
@@ -20,7 +20,7 @@ def add_product():
 	# 	db.session.add(my_data)
 	# 	db.session.commit()
 	# 	flash("Product Added succesfully")
-	return redirect(url_for('index'))#redirect(url_for('index'))
+	return render_template("add_product.html")#redirect(url_for('index'))
 
 
 
