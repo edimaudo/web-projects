@@ -18,3 +18,5 @@ fullstack_side_projects/pokedex/Data 2/pokemon.csv
 fullstack_side_projects/learning_journal/config/database.php
 fullstack_side_projects/learning_journal/config/database.php
 fullstack_side_projects/LevelUp/mineral_catalog/config/database.php
+*.py
+*.arff
