@@ -2,5 +2,31 @@
 
 
 {% block content %}
+        <h3>
+            <a href = "{{ url_for('products') }}"></a>
+        </h3>
+        <h3>Products (<a href = "{{ url_for('add_product') }}">Add Products</a>)</h3>
+        <table>
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Group</th>
+                  <th>Price</th>
+                  <th>Color</th>
+               </tr>
+            </thead>
+            
+            <tbody>
+               {% for product in products %}
+                  <tr>
+                     <td>{{ product.name }}</td>
+                     <td>{{ product.group }}</td>
+                     <td>{{ product.price }}</td>
+                     <td>{{ product.color }}</td>
+                  </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+    
 
 {% endblock %}
