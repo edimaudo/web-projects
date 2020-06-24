@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Add product</h3>
+
+<form action = "{{ request.path }}" method = "post">
+
+    <label for = "name">Name</label><br>
+    <input type = "text" name = "name" required><br>
+    
+    <label for = "group">Group</label><br>
+    <input type = "text" name = "group" required><br>
+    
+    <label for = "price">Price</label><br>
+    <input type = "number" name = "price" min="1" required><br>
+    
+    <label for = "color">Color</label><br>
+    <input type = "text" name = "color" required><br>
+    
+    <input type = "submit" value = "Submit" />
+ </form>
+
+{% endblock %}

@@ -24,17 +24,6 @@ Build simple crud apps
 - Contact Manager
 - rpMovie
 
-### Next steps for future projects (Level up CRUD)
-- Use more OOP principles
-- Use better design principles techniques
-- Use better templating
-- add testing
-- use php libraries or django only
-- Build admin area
-- Have login functionality (sessions and cookies)
-- Cleaner & more complex UIs (Ajax if needed)
-- More complex database relationships
-- Do API tasks
 
 ### Learning resources
 - Jumpstart labs
