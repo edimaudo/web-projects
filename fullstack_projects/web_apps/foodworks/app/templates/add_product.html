@@ -1,15 +1,29 @@
 <html>
   <body>
-    <h1>Add Product</h1>
-    <form action="{{url_for('index')}}" method="POST">
+    <h1>Product</h1>
+    <form action="{{url_for(request.path)}}" method="POST">
     	<label>Title:</label>
         <input type="text" name="title" required=""><br>
         <label>Price:</label>
         <input type="number" min="1" name="price" required=""><br>
         <label>Description:</label>
-        <input type="text" name="description" required=""><br>
-        <label>Image URL:</label>
-        <input type="text" name="image_url" required=""><br>
+        <textarea name="description" required></textarea><br>
+        <label>Images</label>
+        <select name="image_url" required>
+          <option value="arugula.jpg">Arugula</option>
+          <option value="broccoli.jpg">Broccoli</option>
+          <option value="carrots.jpg">Carrots</option>
+          <option value="cucumber.jpg">Cucumber</option>
+          <option value="eggs.jpg">Eggs</option>
+          <option value="green_apples.jpg">Green apples</option>
+          <option value="green_grapes.jpg">Green grapes</option>
+          <option value="milk.jpg">Milk</option>
+          <option value="oranges.jpg">Oranges</option>
+          <option value="purple_grapes.jpg">Purples Grapes</option>
+          <option value="romaine.jpg">Romaine</option>
+          <option value="swiss_cheese.jpg">Swiss Cheese</option>
+        </select>
+        <br>
         <input type="submit" value="Add">
     </form>
    </body>
