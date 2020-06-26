@@ -13,7 +13,7 @@
 	    <input name="description" required="" value="{{product.description}}"></input><br>
 
 	    <label>Stock</label>
-	    <input type="number" min="1" name="stock" step = 1 required="" value="{{product.stock}}"><br>
+	    <input type="number" min="0" name="stock" step = 1 required="" value="{{product.stock}}"><br>
 
 	    <label>Images</label>
 	    	<select name="image_url" required value="{{product.image_url}}">
@@ -35,8 +35,7 @@
 	    
 	  </form>
 
-   <p><button><a href="{{ url_for('index') }}"></a>Back to Products</button></p>
-   <p><button><a href="{{ url_for('index') }}">Add Product</a></button></p>
+   <p><button><a href="{{ url_for('index') }}">Products</a></button></p>
 
 
 {% endblock %}
