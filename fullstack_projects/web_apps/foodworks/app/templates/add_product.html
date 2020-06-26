@@ -15,7 +15,7 @@
         <input name="description" required=""></input><br>
 
         <label>Stock</label>
-        <input type="number" min="1" name="stock" step = 1 required=""><br>
+        <input type="number" min="0" name="stock" step = 1 required=""><br>
 
         <label>Images</label>
         <select name="image_url" required>
@@ -35,4 +35,5 @@
         <br>
         <input type="submit" value="Add">
     </form>
+  <p><button><a href="{{ url_for('index') }}">Products</a></button></p>
 {% endblock %}
