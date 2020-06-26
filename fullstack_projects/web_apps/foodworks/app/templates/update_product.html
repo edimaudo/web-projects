@@ -1,8 +1,42 @@
-{% for product in products %}
-  <p>{{book.title}}</p>
-  <form method="POST" action="./update">
-    <input type="hidden" value="{{product.title}}" name="oldtitle">
-    <input type="text" value="{{product.title}}" name="newtitle">
-    <input type="submit" value="Update">
-  </form>
-{% endfor %}
+
+{% block content %}
+	  <form action="/update_product/{{product.id}}?_method=PATCH" method="POST">
+	  	<input type="hidden"  name="id" value="{{product.id}}">
+
+	    <label>Title</label>
+	    <input type="text" name="title" required="" value="{{product.title}}"><br>
+	        
+	    <label>Price</label>
+	    <input type="number" min="1" name="price" required="" value="{{product.price}}"><br>
+	        
+	    <label>Description</label>
+	    <input name="description" required="" value="{{product.description}}"></input><br>
+
+	    <label>Stock</label>
+	    <input type="number" min="1" name="stock" step = 1 required="" value="{{product.stock}}"><br>
+
+	    <label>Images</label>
+	    	<select name="image_url" required value="{{product.image_url}}">
+	          <option value="arugula.jpg">Arugula</option>
+	          <option value="broccoli.jpg">Broccoli</option>
+	          <option value="carrots.jpg">Carrots</option>
+	          <option value="cucumber.jpg">Cucumber</option>
+	          <option value="eggs.jpg">Eggs</option>
+	          <option value="green_apples.jpg">Green apples</option>
+	          <option value="green_grapes.jpg">Green grapes</option>
+	          <option value="milk.jpg">Milk</option>
+	          <option value="oranges.jpg">Oranges</option>
+	          <option value="purple_grapes.jpg">Purples Grapes</option>
+	          <option value="romaine.jpg">Romaine</option>
+	          <option value="swiss_cheese.jpg">Swiss Cheese</option>
+	        </select><br>
+
+	    <input type="submit" value="Update">
+	    
+	  </form>
+
+   <p><button><a href="{{ url_for('index') }}"></a>Back to Products</button></p>
+   <p><button><a href="{{ url_for('index') }}">Add Product</a></button></p>
+
+
+{% endblock %}
