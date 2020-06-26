@@ -1,9 +1,9 @@
-{% extends "base.html" %}
-
-
 {% block content %}
 <h1>Listing products</h1>
-<button><a href="{{ url_for('add_product') }}"></a>Add Product</button>
+
+<p><button><a href="{{ url_for('add_product') }}">Add Product</a></button></p>
+
+
 <table>
   <thead>
     <tr>
@@ -23,7 +23,10 @@
       <td>{{ product.title }}</td>
       <td>{{ product.price }}</td>
       <td>{{ product.stock }}</td>
-      <td><a href="/update/{{product.id}}">Edit Product</a></td>
+      <td><a href="/update_product/{{product.id}}">View</a></td>
+      <td><a href="/update_product/{{product.id}}">Edit</a></td>
+      <td><a href="/delete_product/{{product.id}}">Delete</a></td>
+
     </tr>
     {% endfor %}
 </tbody>
