@@ -21,8 +21,8 @@
                      <td>{{ product.price }}</td>
                      <td>{{ product.color }}</td>
                      <td>{{ product.stock }}</td>
-                     <td><a href="/update/{{product.id}}">Edit</a></td>
-                     <td><button><a href="/delete_product/{{product.id}} onclick="return confirm('Are You Sure To Delete ?')">Delete</a></button></td>
+                     <td><button><a href="/update_product/{{product.id}}">Edit</a></button></button></td>
+                     <td><button><a href="/delete_product/{{product.id}}">Delete</a></button></td>
                   </tr>
                {% endfor %}
             </tbody>
