@@ -9,6 +9,7 @@
                   <th>Group</th>
                   <th>Price</th>
                   <th>Color</th>
+                  <th>Stock</th>
                </tr>
             </thead>
             
@@ -19,8 +20,9 @@
                      <td>{{ product.group }}</td>
                      <td>{{ product.price }}</td>
                      <td>{{ product.color }}</td>
-                     <td><button>Edit</button></td>
-                     <td><button>Delete</button></td>
+                     <td>{{ product.stock }}</td>
+                     <td><a href="/update/{{product.id}}">Edit</a></td>
+                     <td><button><a href="/delete_product/{{product.id}} onclick="return confirm('Are You Sure To Delete ?')">Delete</a></button></td>
                   </tr>
                {% endfor %}
             </tbody>
