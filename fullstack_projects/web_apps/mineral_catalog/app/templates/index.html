@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block search %}
+<!-- Search form -->
+    <form id="searchform" method="get" action="{% url_for('search') %}" accept-charset="utf-8">
+        {% search_form %}
+        <input type="submit" class="button" value="Search">
+    </form>
+{% endblock %}
+
+
+{block content}
 	<div class="grid-100">
 		<ul class="minerals__container">
      	{% for mineral in minerals %}
@@ -10,7 +19,12 @@
         {% endfor %}
       </ul>
     </div>
+{% endblock %}
+
+
+{% block footer %}
     <div class="minerals__random">
     	<a class="minerals__anchor" href="{{ url_for('random') }}">Show random mineral</a>
   	</div>
 {% endblock %}
+
