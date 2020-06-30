@@ -226,14 +226,14 @@ table, p, ul { margin-bottom: 2.5rem; }
     font-size: 1.2em;
 }
 
-/* Search Form (not working) */
+
 #id_q {
   width: 90%;
 }
 
 #searchform {
     margin: 0 auto;
-    width: 80%;
+    width: 10%;
 }
 
 /* Filter by Group */
