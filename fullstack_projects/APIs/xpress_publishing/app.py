@@ -92,36 +92,16 @@ def artistFunction():
 #/api/artists/:artistId
 @app.route('/artistApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def artistFunctionId(id):
-#GET
-#Returns a 200 response containing the artist with the supplied artist ID on the artist property of the response body
-#If an artist with the supplied artist ID doesn't exist, returns a 404 response
     if request.method == 'GET':
         return get_artist(id)
-
-#/api/artists/:artistId
-#PUT
-#Updates the artist with the specified artist ID using the information from the artist property of the request body and 
-#saves it to the database. 
-#Returns a 200 response with the updated artist on the artist property of the response body
-#If any required fields are missing, returns a 400 response
-#If an artist with the supplied artist ID doesn't exist, returns a 404 response
-
     elif request.method == 'PUT':
     	artist_name = request.args.get('artist_name', '')
     	date_of_birth = request.args.get('date_of_birth', '')
     	biography = request.args.get('biography', '')
     	is_currently_employed = request.args.get('is_currently_employed','')
-        return updateArtist(id, artist_name, date_of_birth, biography, is_currently_employed)
-
-#DELETE
-#Updates the artist with the specified artist ID to be unemployed (is_currently_employed equal to 0). 
-#Returns a 200 response.
-#If an artist with the supplied artist ID doesn't exist, returns a 404 response
+    	return updateArtist(id, artist_name, date_of_birth, biography, is_currently_employed)
     elif request.method == 'DELETE':
-        return deleteArtist(id)
-
-
-
+    	return deleteArtist(id)
 
 #==============
 #Series html routing
@@ -142,21 +122,44 @@ def newSeries():
     else:
         return render_template('newSeries.html')
 
-
 #==============
 #Series api functions
 #==============
+def get_series():
+    series = session.query(series).all()
+    return jsonify(series=[a.serialize for a in series])	
 
+def get_series(series_id):
+	series = session.query(series).filter_by(id=series_id).one()
+	#add check if id does not exist
+	return jsonify(series=series.serialize)
+
+def makeANewseries(series_name, description):
+	addedseries = series(series_name = series_name, description = description)
+	session.add(addedseries)
+	session.commit()
+	return jsonify(series=addedseries.serialize)
+
+def updateseries(id, series_name, description):
+    updatedseries = session.query(Series).filter_by(id=id).one()
+    if not series_name:
+        updatedseries.series_name = series_name
+    if not description:
+        updatedseries.description = description
+    session.add(updatedseries)
+    session.commit()
+    return 'Updated an series with id %s' % id
+
+def deleteseries(id):
+    seriesToDelete = session.query(series).filter_by(id=id).one()
+    session.delete(seriesToDelete)
+    session.commit()
+    return 'Removed series with id %s' % id
 
 #==============
-#Artist API routing
+#Series API routing
 #==============
-#/api/artists
-
-
-
 #/api/series
-
 @app.route('/seriesApi', methods=['GET', 'POST'])
 def seriesFunction():
     if request.method == 'GET':
@@ -166,21 +169,6 @@ def seriesFunction():
         description = request.args.get('description', '')
         return makeANewSeries(series_name, description)
 
-
-
-#/api/series/:seriesId
-#GET
-#Returns a 200 response containing the series with the supplied series ID on the series property of the response body
-#If a series with the supplied series ID doesn't exist, returns a 404 response
-#PUT
-#Updates the series with the specified series ID using the information from the series property of the request body and saves it to the database. Returns a 200 response with the updated series on the series property of the response body
-#If any required fields are missing, returns a 400 response
-#If a series with the supplied series ID doesn't exist, returns a 404 response
-#DELETE
-#Deletes the series with the supplied series ID from the database if that series has no related issues. Returns a 204 response.
-#If the series with the supplied series ID has related issues, returns a 400 response.
-#If a series with the supplied series ID doesn't exist, returns a 404 response
-
 #/api/series/:seriesId
 @app.route('/seriesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def seriesFunctionId(id):
@@ -189,7 +177,7 @@ def seriesFunctionId(id):
     elif request.method == 'PUT':
     	series_name = request.args.get('series_name', '')
     	description = request.args.get('description', '')
-        return updateSeries(id, series_name, description)
+    	return updateSeries(id, series_name, description)
     elif request.method == 'DELETE':
         return deleteSeries(id)
 
