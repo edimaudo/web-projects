@@ -43,9 +43,9 @@ class Series(Base):
     @property
     def serialize(self):
         return {
-            series_name = self.series_name,
-            description = self.description,
-            id = self.id,
+            'series_name': self.series_name,
+            'description': self.description,
+            'id': self.id,
         }
 
 class Issue(Base):
