@@ -92,10 +92,9 @@ def artistFunction():
 #/api/artists/:artistId
 @app.route('/artistApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def artistFunctionId(id):
-	#GET
+#GET
 #Returns a 200 response containing the artist with the supplied artist ID on the artist property of the response body
-
-    #If an artist with the supplied artist ID doesn't exist, returns a 404 response
+#If an artist with the supplied artist ID doesn't exist, returns a 404 response
     if request.method == 'GET':
         return get_artist(id)
 
@@ -124,6 +123,75 @@ def artistFunctionId(id):
 
 
 
+#==============
+#Series html routing
+#==============
+@app.route('/series')
+def showSeries():
+	artists = session.query(Series).all()
+	return render_template('series.html', series=series)
+
+@app.route('/series/new/', methods=['GET', 'POST'])
+def newSeries():
+    if request.method == 'POST':
+        newArtist = Series(series_name=request.form['series_name'],
+                       description=request.form['description'])
+        session.add(newSeries)
+        session.commit()
+        return redirect(url_for('showSeries'))
+    else:
+        return render_template('newSeries.html')
+
+
+#==============
+#Series api functions
+#==============
+
+
+#==============
+#Artist API routing
+#==============
+#/api/artists
+
+
+
+#/api/series
+
+@app.route('/seriesApi', methods=['GET', 'POST'])
+def seriesFunction():
+    if request.method == 'GET':
+        return get_series()
+    elif request.method == 'POST':
+        series_name = request.args.get('series_name', '')
+        description = request.args.get('description', '')
+        return makeANewSeries(series_name, description)
+
+
+
+#/api/series/:seriesId
+#GET
+#Returns a 200 response containing the series with the supplied series ID on the series property of the response body
+#If a series with the supplied series ID doesn't exist, returns a 404 response
+#PUT
+#Updates the series with the specified series ID using the information from the series property of the request body and saves it to the database. Returns a 200 response with the updated series on the series property of the response body
+#If any required fields are missing, returns a 400 response
+#If a series with the supplied series ID doesn't exist, returns a 404 response
+#DELETE
+#Deletes the series with the supplied series ID from the database if that series has no related issues. Returns a 204 response.
+#If the series with the supplied series ID has related issues, returns a 400 response.
+#If a series with the supplied series ID doesn't exist, returns a 404 response
+
+#/api/series/:seriesId
+@app.route('/seriesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def seriesFunctionId(id):
+    if request.method == 'GET':
+        return get_series(id)
+    elif request.method == 'PUT':
+    	series_name = request.args.get('series_name', '')
+    	description = request.args.get('description', '')
+        return updateSeries(id, series_name, description)
+    elif request.method == 'DELETE':
+        return deleteSeries(id)
 
 
 
