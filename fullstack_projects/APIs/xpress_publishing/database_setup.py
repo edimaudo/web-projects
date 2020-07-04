@@ -20,7 +20,7 @@ class Artist(Base):
     __tablename__ = 'artist'
     id = Column(Integer, primary_key=True)
     artist_name = Column(String(250), nullable= False)
-    date_of_birth = Column(Date, nullable=False)
+    date_of_birth = Column(DateTime, nullable=False)
     biography = Column(String(500), nullable=False)
     is_currently_employed = Column(Integer, default = 1)
 
