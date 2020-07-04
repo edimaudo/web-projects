@@ -181,5 +181,84 @@ def seriesFunctionId(id):
     elif request.method == 'DELETE':
         return deleteSeries(id)
 
+#==============
+#Issues api functions
+#==============
+def get_issues():
+    issue = session.query(issue).all()
+    return jsonify(issue=[a.serialize for a in issue])    
 
+def get_issue(issue_id):
+    issue = session.query(issue).filter_by(id=issue_id).one()
+    #add check if id does not exist
+    return jsonify(issue=issue.serialize)
+
+def makeANewissue(issue_name, issue_number, publication_date, series_id):
+    addedissue = issue(issue_name = issue_name, issue_number = issue_number, publication_date = publication_date, 
+    	series_id = series_id)
+    session.add(addedissue)
+    session.commit()
+    return jsonify(issue=addedissue.serialize)
+
+def updateIssue(id, issue_name, issue_number, publication_date):
+    updatedissue = session.query(issue).filter_by(id=id).one()
+    if not issue_name:
+        updatedissue.issue_name = issue_name
+    if not description:
+        updatedissue.description = description
+    session.add(updatedissue)
+    session.commit()
+    return 'Updated an issue with id %s' % id
+
+def deleteIssue(id):
+    issueToDelete = session.query(issue).filter_by(id=id).one()
+    session.delete(issueToDelete)
+    session.commit()
+    return 'Removed issue with id %s' % id
+
+
+#==============
+#Issues API routing
+#==============
+
+#/api/series/:seriesId/issues
+@app.route('/seriesApi/<int:id/issues', methods=['GET', 'POST'])
+def seriesFunction():
+    if request.method == 'GET':
+        return get_issues()
+    elif request.method == 'POST':
+        issue_name = request.args.get('issue_name', '')
+        issue_number = request.args.get('issue_number', '')
+        publication_date = request.args.get('publication_date','')
+        series_id = id
+        return makeANewIssue(issue_name, issue_number, publication_date, series_id)
+
+
+@app.route('/seriesApi/<int:series_id>/issues/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def seriesFunctionId(id):
+    if request.method == 'GET':
+        return get_issue(id)
+    elif request.method == 'PUT':
+    	issue_name = request.args.get('issue_name', '')
+    	issue_number = request.args.get('issue_number', '')
+    	publication_date = request.args.get('publication_date','')
+    	return updateIssue(id, issue_name, issue_number, publication_date)
+    elif request.method == 'DELETE':
+        return deleteIssue(id)
+
+
+
+
+#/api/series/:seriesId/issues/:issueId
+#PUT
+#Updates the issue with the specified issue ID using the information from the issue property of the request body 
+#and saves it to the database. Returns a 200 response with the updated issue on the issue property of the response body
+#If any required fields are missing, returns a 400 response
+#If a series with the supplied series ID doesn't exist, returns a 404 response
+#If an issue with the supplied issue ID doesn't exist, returns a 404 response
+
+#DELETE
+#Deletes the issue with the supplied issue ID from the database. Returns a 204 response.
+#If a series with the supplied series ID doesn't exist, returns a 404 response
+#If an issue with the supplied issue ID doesn't exist, returns a 404 response
 
