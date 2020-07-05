@@ -29,7 +29,7 @@ def showArtists():
 @app.route('/artist/new/', methods=['GET', 'POST'])
 def newArtist():
     if request.method == 'POST':
-        newArtist = Book(artist_name=request.form['artist_name'],
+        newArtist = Artist(artist_name=request.form['artist_name'],
                        date_of_birth=request.form['date_of_birth'],
                        biography=request.form['biography'],
                        is_currently_employed=request.form['s_currently_employed'])
