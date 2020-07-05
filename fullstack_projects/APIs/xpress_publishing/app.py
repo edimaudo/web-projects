@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -14,13 +15,16 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+
+
 #==============
 #Artist html routing
 #==============
+@app.route('/')
 @app.route('/artists')
 def showArtists():
 	artists = session.query(Artist).all()
-	return render_template('books.html', artists=artists)
+	return render_template('index.html', artists=artists)
 
 @app.route('/artist/new/', methods=['GET', 'POST'])
 def newArtist():
@@ -106,21 +110,21 @@ def artistFunctionId(id):
 #==============
 #Series html routing
 #==============
-@app.route('/series')
-def showSeries():
-	artists = session.query(Series).all()
-	return render_template('series.html', series=series)
+# @app.route('/series')
+# def showSeries():
+# 	artists = session.query(Series).all()
+# 	return render_template('series.html', series=series)
 
-@app.route('/series/new/', methods=['GET', 'POST'])
-def newSeries():
-    if request.method == 'POST':
-        newArtist = Series(series_name=request.form['series_name'],
-                       description=request.form['description'])
-        session.add(newSeries)
-        session.commit()
-        return redirect(url_for('showSeries'))
-    else:
-        return render_template('newSeries.html')
+# @app.route('/series/new/', methods=['GET', 'POST'])
+# def newSeries():
+#     if request.method == 'POST':
+#         newArtist = Series(series_name=request.form['series_name'],
+#                        description=request.form['description'])
+#         session.add(newSeries)
+#         session.commit()
+#         return redirect(url_for('showSeries'))
+#     else:
+#         return render_template('newSeries.html')
 
 #==============
 #Series api functions
@@ -224,27 +228,30 @@ def deleteIssue(id):
 #==============
 
 #/api/series/:seriesId/issues
-@app.route('/seriesApi/<int:id/issues', methods=['GET', 'POST'])
-def seriesFunction(id):
-    if request.method == 'GET':
-        return get_issues()
-    elif request.method == 'POST':
-        issue_name = request.args.get('issue_name', '')
-        issue_number = request.args.get('issue_number', '')
-        publication_date = request.args.get('publication_date','')
-        series_id = id
-        return makeANewIssue(issue_name, issue_number, publication_date, series_id)
+# @app.route('/seriesApi/<int:id>/issues', methods=['GET', 'POST'])
+# def seriesFunction(id):
+#     if request.method == 'GET':
+#         return get_issues()
+#     elif request.method == 'POST':
+#         issue_name = request.args.get('issue_name', '')
+#         issue_number = request.args.get('issue_number', '')
+#         publication_date = request.args.get('publication_date','')
+#         series_id = request.args.get('id','')
+#         return makeANewIssue(issue_name, issue_number, publication_date, series_id)
 
 
-@app.route('/seriesApi/<int:series_id>/issues/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def seriesFunctionId(id):
-    if request.method == 'GET':
-        return get_issue(id)
-    elif request.method == 'PUT':
-    	issue_name = request.args.get('issue_name', '')
-    	issue_number = request.args.get('issue_number', '')
-    	publication_date = request.args.get('publication_date','')
-    	return updateIssue(id, issue_name, issue_number, publication_date)
-    elif request.method == 'DELETE':
-        return deleteIssue(id)
+# @app.route('/seriesApi/<int:series_id>/issues/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# def seriesFunctionId(id):
+#     if request.method == 'GET':
+#         return get_issue(id)
+#     elif request.method == 'PUT':
+#     	issue_name = request.args.get('issue_name', '')
+#     	issue_number = request.args.get('issue_number', '')
+#     	publication_date = request.args.get('publication_date','')
+#     	return updateIssue(id, issue_name, issue_number, publication_date)
+#     elif request.method == 'DELETE':
+#         return deleteIssue(id)
 
+if __name__ == '__main__':
+	app.debug = True
+	app.run(host='0.0.0.0', port=5000)
