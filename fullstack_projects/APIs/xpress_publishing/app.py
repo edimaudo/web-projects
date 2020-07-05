@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Artist, Series, Issue
+from database_setup import Base, Artist, Series, Issue
 
 # Connect to Database and create database session
 engine = create_engine('sqlite:///xpress_publishing.db?check_same_thread=False')
