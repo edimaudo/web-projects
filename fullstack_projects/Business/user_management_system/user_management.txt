@@ -4,42 +4,46 @@ User management system
 
 Must be secure. Allow user creation, delete, edit and add
 
-user level (admin / standard) assignment. The entire system will only be accessible to logged in users. In terms of main functionality, system database consists of the following tables: - Company - Contact - Contact History - Industry - Sector - Country Country
+user level (admin / standard) assignment. The entire system will only be accessible to logged in users. 
+In terms of main functionality, system database consists of the following tables: 
+- Company 
+- Contact 
+- Contact History 
 
+
+Admin use cases
 - Admins can add / delete / edit country names 
 - Admins can add / delete / edit industry names 
-Sectors - Sectors are sub-sets of industry and each industry will have a number of sectors. Sectors shouldn't be duplicated across industries. 
+- Admin can add/edit/delete sectors
+- Admins can add /edit/ delete a contact. 
+- admins can add/edit/delete a contact history entry
+- Admins can add/edit/delete a company.
 
-All users
-can add sector names, but when users add sectors, they should be checked against duplication. Only admins can delete / edit sector names or place them under a different industry. 
-
-Company - Has a number of fields. Each company is linked to 1 country, multiple
-languages, 1 industry, multiple sectors. 
-All users can add / edit companies. Only admins can delete a company. Each company can have 0 to multiple contacts. 
-A company can have a direct contact history (in the case of 0 contacts) or contact history associated with each contact. 
-
-Contact - Each contact has a number of fields. Each contact may be linked to multiple companies, multiple sectors. All users can add / edit contacts. 
-Only admins can delete a contact. Each contact can multiple contact histories associated
-with each company or as an individual. 
-
-Contact History - All users can add a contact history entry. Only admins and the user who added the entry can edit it. Only admins can delete a contact history entry. Each contact history entry is tied to a contact and/or company. 
-
-Reporting functionality: 
-1. Search for companies and contacts based on keywords. Filtering results by industry, sector, country and/or language. 
-2. Admins should be able to run the following reports for each user: 
+Admin reporting
+Admins should be able to run the following reports for each user: 
 (a) Contacts and companies added each month 
 (b) Number of contact history entries made each month. Filtering results by specific fields within the contact history
 
-build
-users
-admin
+
+All users
+Company - Has a number of fields. Each company is linked to 1 country, multiple languages, 1 industry, multiple sectors. 
+All users can add / edit companies.  Each company can have 0 to multiple contacts. 
+A company can have a direct contact history (in the case of 0 contacts) or contact history associated with each contact. 
+
+Contact - Each contact has a number of fields. Each contact may be linked to multiple companies, multiple sectors. All users can add / edit contacts.  Each contact can multiple contact histories associated with each company
+
+Contact History - All users can add a contact history entry. Only admins and the user who added the entry can edit it. Each contact history entry is tied to a contact.  It can also be tied to a company
+
+User Reporting 
+1. Search for companies and contacts based on keywords. Filtering results by industry, sector, country and/or language. 
+
+
+users (user id, user pwd) - main user and admin
 admin interface
 login interface
-company
-sector
-industry
-contact
-contact history
+company (company name, company address, company location, company industry, company languages, company sector, company_contact)
+contact (contact name, contact email, contact number, contact_company)
+contact history (contact name, contact comments, comment date, contact company)
 search functionality
 filter functionality
-crud mainly
+
