@@ -3,12 +3,12 @@ from app import db
 Company 
 - Has a number of fields. Each company is linked to 1 country, multiple languages, 
 1 industry, multiple sectors. 
- 
 Each company can have 0 to multiple contacts. 
 A company can have a direct contact history (in the case of 0 contacts) 
 or contact history associated with each contact. 
 
-Contact - Each contact has a number of fields. Each contact may be linked to multiple companies, multiple sectors. 
+Contact - Each contact has a number of fields. 
+Each contact may be linked to multiple companies, multiple sectors. 
 All users can add / edit contacts.  
 Each contact can multiple contact histories associated with each company
 
@@ -17,31 +17,34 @@ Only admins and the user who added the entry can edit it.
 Each contact history entry is tied to a contact.  It can also be tied to a company
 
 
-#company (company name, company address, company city, company country, company industry, company languages, company sectors)
-contact (contact name, contact email, contact number, contact_company)
-contact history (contact name, contact comments, comment date, contact company)
+#company (company name, company address, company city, company country, company industry, 
+#company languages, company sectors)
+
+#contact (contact name, contact email, contact number, contact_company)
+
+#contact history (contact name, contact comments, comment date, contact company)
 
 #user model
 # Define User data-model
-class User(db.Model, UserMixin):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
+# class User(db.Model, UserMixin):
+#     __tablename__ = 'users'
+#     id = db.Column(db.Integer, primary_key=True)
 
-    # User Authentication fields
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    email_confirmed_at = db.Column(db.DateTime())
-    username = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(255), nullable=False)
+#     # User Authentication fields
+#     email = db.Column(db.String(255), nullable=False, unique=True)
+#     email_confirmed_at = db.Column(db.DateTime())
+#     username = db.Column(db.String(50), nullable=False, unique=True)
+#     password = db.Column(db.String(255), nullable=False)
 
-    # User fields
-    active = db.Column(db.Boolean()),
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+#     # User fields
+#     active = db.Column(db.Boolean()),
+#     first_name = db.Column(db.String(50), nullable=False)
+#     last_name = db.Column(db.String(50), nullable=False)
 
-# Setup Flask-User
-user_manager = UserManager(app, db, User)
+# # Setup Flask-User
+# user_manager = UserManager(app, db, User)
 
-#company model
+#company model fix
 class Company(db.model):
 	__tablename__ = 'company'
 	id = db.Column(db.Integer, primary_key = True)
@@ -66,7 +69,7 @@ class Company(db.model):
 		#self.sectors = sectors
 
 
-#contact model
+#contact model fix
 class Contact(db.model):
 	__tablename__ = 'contact'
 	id = db.Column(db.Integer, primary_key=True)
@@ -99,7 +102,7 @@ class Industry(db.model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(255), default='')
 
-#sector
+#sector - fix
 class Sector(db.model):
 	__tablename__ = 'sector'
 	id = db.Column(db.Integer, primary_key=True)
