@@ -41,7 +41,7 @@ User Reporting
 
 
 users (user id, user pwd) - main user and admin
-user and login interface
+user and a
 
 data information
 company (company name, company address, company location, company industry, company languages, company sector, company_contact)
@@ -50,10 +50,17 @@ contact history (contact name, contact comments, comment date, contact company)
 search functionality
 filter functionality
 
+- installation flask flask-WTF flask-sqlalchemy flask-login flask-migrate - done
+- setup folders - done
+- setup files touch __init__.py routes.py models.py - done
+- design models - done
+- design models 2 + user login and model
+- add bootstrap file
 
--setup folders
--design files
--design models
--design routes
--add css using bootstrap
--add testing
+- load data for country, language, industry, sector
+- initalize models + db
+
+- design routes for non login
+- design html files for non login
+
+- add testing
