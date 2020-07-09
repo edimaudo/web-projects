@@ -56,9 +56,6 @@ class Contact(db.model):
 		self.email = email
 		self.number = number
 
-#Contact History  
-#Each contact history entry is tied to a contact.
-#contact comments, comment date, contact company
 
 contactHistory = db.Table('contactHistory',
     db.Column('contact_id', db.Integer, db.ForeignKey('contact.id'), primary_key=True),
