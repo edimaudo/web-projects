@@ -101,8 +101,9 @@ class Industry(db.model):
 	__tablename__ = 'industry'
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(255), default='')
+	sectors = db.relationship('Sector', backref='person', lazy=True)
 
-#sector - fix
+#sector
 class Sector(db.model):
 	__tablename__ = 'sector'
 	id = db.Column(db.Integer, primary_key=True)
