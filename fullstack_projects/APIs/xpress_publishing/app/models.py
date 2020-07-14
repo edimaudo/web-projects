@@ -1,17 +1,14 @@
 from app import db
 
 
-class Bucketlist(db.Model):
-    """This class represents the bucketlist table."""
-
-    __tablename__ = 'bucketlists'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(
-        db.DateTime, default=db.func.current_timestamp(),
-        onupdate=db.func.current_timestamp())
+class Artist(db.model): #update the logic
+    __tablename__ = 'artist'
+    id = Column(Integer, primary_key=True)
+    artist_name = Column(String(250), nullable= False)
+    date_of_birth = Column(String(10), nullable=False)
+    biography = Column(String(500), nullable=False)
+    is_currently_employed = Column(Integer, default = 1)
+    issues = db.relationship('Issue', backref='artist')
 
     def __init__(self, name):
         """initialize with name."""
@@ -23,11 +20,28 @@ class Bucketlist(db.Model):
 
     @staticmethod
     def get_all():
-        return Bucketlist.query.all()
+        return Artist.query.all()
 
     def delete(self):
         db.session.delete(self)
         db.session.commit()
 
     def __repr__(self):
-        return "<Bucketlist: {}>".format(self.name)
+        return "<Artist: {}>".format(self.name)
+
+class Series(db.model): #update the remaining portion
+    __tablename__ = 'series'
+    id = Column(Integer, primary_key=True)
+    series_name = Column(String(250), nullable=False)
+    description = Column(String(500), nullable=False)
+    issues = db.relationship('Issue', backref='series')
+
+
+class Issue(db.model): #update remaining part
+    __tablename__ = 'issue'
+    id = Column(Integer, primary_key=True)
+    issue_name = Column(String(250), nullable = False)
+    issue_number = Column(Integer, nullable = False)
+    publication_date = Column(String(10), nullable = False)
+    artist_id = Column(Integer, ForeignKey('artist.id'), nullable = False)
+    series_id = Column(Integer, ForeignKey('series.id'), nullable = False)
