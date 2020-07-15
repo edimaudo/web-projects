@@ -36,6 +36,26 @@ class Series(db.model): #update the remaining portion
     description = Column(String(500), nullable=False)
     issues = db.relationship('Issue', backref='series')
 
+    def __init__(self, series_name):
+        """initialize with name."""
+        self.series_name = series_name
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @staticmethod
+    def get_all():
+        return Series.query.all()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return "<Series: {}>".format(self.series_name)
+
+
 
 class Issue(db.model): #update remaining part
     __tablename__ = 'issue'
@@ -45,3 +65,22 @@ class Issue(db.model): #update remaining part
     publication_date = Column(String(10), nullable = False)
     artist_id = Column(Integer, ForeignKey('artist.id'), nullable = False)
     series_id = Column(Integer, ForeignKey('series.id'), nullable = False)
+
+    def __init__(self, issue_name):
+        """initialize with name."""
+        self.issue_name = issue_name
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @staticmethod
+    def get_all():
+        return Issue.query.all()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return "<Issue: {}>".format(self.issue_name)
