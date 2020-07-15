@@ -10,9 +10,9 @@ class Artist(db.model): #update the logic
     is_currently_employed = Column(Integer, default = 1)
     issues = db.relationship('Issue', backref='artist')
 
-    def __init__(self, name):
+    def __init__(self, artist_name):
         """initialize with name."""
-        self.name = name
+        self.artist_name = artist_name
 
     def save(self):
         db.session.add(self)
@@ -27,7 +27,7 @@ class Artist(db.model): #update the logic
         db.session.commit()
 
     def __repr__(self):
-        return "<Artist: {}>".format(self.name)
+        return "<Artist: {}>".format(self.artist_name)
 
 class Series(db.model): #update the remaining portion
     __tablename__ = 'series'
