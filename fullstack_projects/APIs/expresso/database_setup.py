@@ -55,6 +55,7 @@ class Menu(Base):
     __tablename__ = 'menu'
     id = Column(Integer, primary_key=True)
     title = Column(Integer, nullable = False)
+    menu_items = relationship('MenuItem', backref='menu')
 
     @property
     def serialize(self):
@@ -63,30 +64,22 @@ class Menu(Base):
             'id': self.id,
         }
 
-
-MenuItem
-id - Integer, primary key, required
-name - Text, required
-description - Text, optional
-inventory - Integer, required
-price - Integer, required
-menu_id - Integer, foreign key, required
-
 class MenuItem(Base):
-    __tablename__ = 'issue'
+    __tablename__ = 'menuitem'
     id = Column(Integer, primary_key=True)
-    issue_name = Column(String(250), nullable = False)
-    issue_number = Column(Integer, nullable = False)
-    publication_date = Column(String(10), nullable = False)
-    artist_id = Column(Integer, ForeignKey('artist.id'), nullable = False)
-    series_id = Column(Integer, ForeignKey('series.id'), nullable = False)
+    menu_item_name = Column(String(250), nullable = False)
+    description = Column(String(250))
+    inventory = Column(Integer, nullable = False)
+    price = Column(Float, nullable = False)
+    menu_id = Column(Integer, ForeignKey('menu.id'), nullable = False)
 
     @property
     def serialize(self):
         return {
-            'issue_name' : self.issue_name,
-            'issue_number' : self.issue_number,
-            'publication_date' : self.publication_date,
+            'menu_item_name' : self.menu_item_name,
+            'description' : self.description,
+            'inventory' : self.inventory,
+            'price' : self.price,
             'id': self.id
         }
 
