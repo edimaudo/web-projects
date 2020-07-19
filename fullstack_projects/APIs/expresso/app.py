@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Artist, Series, Issue
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///xpress_publishing.db?check_same_thread=False')
+engine = create_engine('sqlite:///expresso.db?check_same_thread=False')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -31,7 +31,6 @@ session = DBSession()
 #===========
 # /api/employees
 #===========
-
 @app.route('/employeesApi', methods=['GET', 'POST'])
 def employee_api():
     if request.method == 'GET':
@@ -46,20 +45,22 @@ def employee_api():
 #===========
 # /api/employees/:employeeId
 #===========
-@app.route('/employeesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def employee_api_id(id):
+@app.route('/employeesApi/<int:employee_id>', methods=['GET', 'PUT', 'DELETE'])
+def employee_api_id(employee_id):
     if request.method == 'GET':
-        return employee(id)
+        return employee(employee_id)
     elif request.method == 'PUT':
         employee_name = request.args.get('employee_name', '')
         position = request.args.get('position', '')
         wage = request.args.get('wage', '')
         is_currently_employee = request.args.get('is_currently_employee','')
-    	return update_employee(id, employee_name, position, wage, is_currently_employee)
+    	return update_employee(employee_id, employee_name, position, wage, is_currently_employee)
     elif request.method == 'DELETE':
     	return delete_employee(id)
 
-
+#==========
+#/api/employees/:employeeId/timesheets
+#==========
 @app.route('/employeesApi/<int:employee_id>/timesheets', methods=['GET', 'POST'])
 def employee_api_timesheet(employee_id):
 	if request.method == "GET":
@@ -70,8 +71,11 @@ def employee_api_timesheet(employee_id):
 		date = request.args.get('date','')
 		return create_timesheet(employee_id, hours, rate, date)
 
-
-@app.route('/employeesApi/<int:employee_id>/timesheets/<int:timesheet_id', methods=['GET', 'PUT', 'DELETE'])
+#==========
+#/api/employees/:employeeId/timesheets/:timesheetId
+#==========
+@app.route('/employeesApi/<int:employee_id>/timesheets/<int:timesheet_id>', 
+	methods=['GET', 'PUT', 'DELETE'])
 def employee_api_timesheet_id(employee_id,timesheet_id):
 	if request.method == 'PUT':
 		hours = request.args.get('hours','')
@@ -96,43 +100,44 @@ def menu_api():
 #==========
 # /api/menus/:menuId
 #==========
-@app.route('/menusApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def menu_api_id(id):
+@app.route('/menusApi/<int:menu_id>', methods=['GET', 'PUT', 'DELETE'])
+def menu_api_id(menu_id):
 	if request.method == 'GET':
-		return menu(id)
+		return menu(menu_id)
 	elif request.method == 'PUT':
 		title = request.args.get('title','')
-		return update_menu(id, title)
+		return update_menu(menu_id, title)
 	elif request.method == 'DELETE':
-		return delete_menu(id)
+		return delete_menu(menu_id)
 
 #==========
 # /api/menus/:menuId/menu-items
 #==========
-@app.route('/menusApi/<int:id>/menu-items', methods=['GET', 'POST'])
-
-# GET
-# Returns a 200 response containing all saved menu items related to the menu with the supplied menu ID on the menu items property of the response body
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
-# POST
-# Creates a new menu item, related to the menu with the supplied menu ID, with the information from the menuItem property of the request body and saves it to the database. Returns a 201 response with the newly-created menu item on the menuItem property of the response body
-# If any required fields are missing, returns a 400 response
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+@app.route('/menusApi/<int:menu_id>/menu-items', methods=['GET', 'POST'])
+def menu_api_menu_items(menu_id):
+	if request.method == 'GET':
+		return menu_items(menu_id)
+	elif request.method == 'POST':
+		menu_item_name = request.args.get('menu_item_name','')
+		description = request.args.get('description','')
+		inventory = request.args.get('inventory','')
+		price = request.args.get('price','')
+		return create_menu_item(menu_id, menu_item_name, description, inventory, price)
 
 #==========
 # /api/menus/:menuId/menu-items/:menuItemId
 #==========
-@app.route('/menusApi/<int:menu_id>/menu-items/menu_item_id', methods=['PUT', 'DELETE'])
-
-# PUT
-# Updates the menu item with the specified menu item ID using the information from the menuItem property of the request body and saves it to the database. Returns a 200 response with the updated menu item on the menuItem property of the response body
-# If any required fields are missing, returns a 400 response
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
-# If a menu item with the supplied menu item ID doesn't exist, returns a 404 response
-# DELETE
-# Deletes the menu item with the supplied menu item ID from the database. Returns a 204 response.
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
-# If a menu item with the supplied menu item ID doesn't exist, returns a 404 response
+@app.route('/menusApi/<int:menu_id>/menu-items/<int:menu_item_id>', methods=['PUT', 'DELETE'])
+def menu_api_menu_item_id(menu_id, menu_item_id):
+	if request.method == 'PUT':
+		menu_item_name = request.args.get('menu_item_name','')
+		description = request.args.get('description','')
+		inventory = request.args.get('inventory','')
+		price = request.args.get('price','')
+		return update_menu_menu_item(menu_id, menu_item_id, menu_item_name, 
+			description, inventory, price)
+	elif request.method == 'DELETE':
+		return delete_menu_item(menu_id, menu_item_id)
 
 if __name__ == '__main__':
 	app.debug = True
