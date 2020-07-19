@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Artist, Series, Issue
+from database_setup import Base, Employee, Timesheet, Menu, MenuItem
 
 # Connect to Database and create database session
 engine = create_engine('sqlite:///expresso.db?check_same_thread=False')
