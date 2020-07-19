@@ -106,8 +106,11 @@ def menu_api_id(id):
 	elif request.method == 'DELETE':
 		return delete_menu(id)
 
-
+#==========
 # /api/menus/:menuId/menu-items
+#==========
+@app.route('/menusApi/<int:id>/menu-items', methods=['GET', 'POST'])
+
 # GET
 # Returns a 200 response containing all saved menu items related to the menu with the supplied menu ID on the menu items property of the response body
 # If a menu with the supplied menu ID doesn't exist, returns a 404 response
@@ -116,7 +119,11 @@ def menu_api_id(id):
 # If any required fields are missing, returns a 400 response
 # If a menu with the supplied menu ID doesn't exist, returns a 404 response
 
+#==========
 # /api/menus/:menuId/menu-items/:menuItemId
+#==========
+@app.route('/menusApi/<int:menu_id>/menu-items/menu_item_id', methods=['PUT', 'DELETE'])
+
 # PUT
 # Updates the menu item with the specified menu item ID using the information from the menuItem property of the request body and saves it to the database. Returns a 200 response with the updated menu item on the menuItem property of the response body
 # If any required fields are missing, returns a 400 response
