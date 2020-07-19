@@ -19,200 +19,109 @@ session = DBSession()
 #===========
 
 
-#==============
-#Artist API functions
-#==============
-def get_artists():
-    artists = session.query(Artist).all()
-    return jsonify(books=[a.serialize for a in artists])	
+#===========
+# helper functions - should
+#===========
 
-def get_artist(artist_id):
-	artists = session.query(Artist).filter_by(id=artist_id).one()
-	#add check if id does not exist
-	return jsonify(artists=artists.serialize)
+#===========
+# /api/employees
+#===========
+    employee_name = Column(String(250), nullable= False)
+    position = Column(String(250), nullable= False)
+    wage = Column(Float, nullable = False)
+    is_currently_employee = Column(Integer, default = 1)
 
-def makeANewArtist(artist_name, date_of_birth, biography, is_currently_employed):
-	addedArtist = Artist(artist_name = artist_name, date_of_birth = date_of_birth, biography = biography,
-		is_currently_employed = is_currently_employed)
-	session.add(addedArtist)
-	session.commit()
-	return jsonify(Artist=addedArtist.serialize)
-
-def updateArtist(id, artist_name, date_of_birth, biography, is_currently_employed):
-    updatedArtist = session.query(Book).filter_by(id=id).one()
-    if not artist_name:
-        updatedArtist.artist_name = artist_name
-    if not date_of_birth:
-        updatedArtist.date_of_birth = date_of_birth
-    if not biography:
-        updatedArtist.biography = biography
-    if not is_currently_employed:
-    	updatedArtist.is_currently_employed = is_currently_employed
-    session.add(updatedArtist)
-    session.commit()
-    return 'Updated an Artist with id %s' % id
-
-def deleteArtist(id):
-    artistToDelete = session.query(Artist).filter_by(id=id).one()
-    session.delete(artistToDelete)
-    session.commit()
-    return 'Removed Artist with id %s' % id
-
-#==============
-#Artist API routing
-#==============
-#/api/artists
-@app.route('/artistApi', methods=['GET', 'POST'])
-def artistFunction():
+@app.route('/employeesApi', methods=['GET', 'POST'])
+def employeeFunction():
     if request.method == 'GET':
-        return get_artists()
+        return get_employees()
     elif request.method == 'POST':
-        artist_name = request.args.get('artist_name', '')
-        date_of_birth = request.args.get('date_of_birth', '')
-        biography = request.args.get('biography', '')
-        is_currently_employed = request.args.get('is_currently_employed','')
-        return makeANewArtist(artist_name, date_of_birth, biography, is_currently_employed)
+        employee_name = request.args.get('employee_name', '')
+        position = request.args.get('position', '')
+        wage = request.args.get('wage', '')
+        is_currently_employee = request.args.get('is_currently_employee','')
+        return makeANewEmployee(employee_name, position, wage, is_currently_employee)
 
-#/api/artists/:artistId
-@app.route('/artistApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def artistFunctionId(id):
+#===========
+# /api/employees/:employeeId
+#===========
+@app.route('/employeesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def employeeFunctionId(id):
     if request.method == 'GET':
-        return get_artist(id)
+        return get_employees(id)
     elif request.method == 'PUT':
-    	artist_name = request.args.get('artist_name', '')
-    	date_of_birth = request.args.get('date_of_birth', '')
-    	biography = request.args.get('biography', '')
-    	is_currently_employed = request.args.get('is_currently_employed','')
-    	return updateArtist(id, artist_name, date_of_birth, biography, is_currently_employed)
+        employee_name = request.args.get('employee_name', '')
+        position = request.args.get('position', '')
+        wage = request.args.get('wage', '')
+        is_currently_employee = request.args.get('is_currently_employee','')
+    	return updateEmployee(id, employee_name, position, wage, is_currently_employee)
     elif request.method == 'DELETE':
     	return deleteArtist(id)
 
 
-#==============
-#Series api functions
-#==============
-def get_series():
-    series = session.query(series).all()
-    return jsonify(series=[a.serialize for a in series])	
-
-def getAseries(series_id):
-	series = session.query(series).filter_by(id=series_id).one()
-	#add check if id does not exist
-	return jsonify(series=series.serialize)
-
-def makeANewseries(series_name, description):
-	addedseries = series(series_name = series_name, description = description)
-	session.add(addedseries)
-	session.commit()
-	return jsonify(series=addedseries.serialize)
-
-def updateSeries(id, series_name, description):
-    updatedseries = session.query(Series).filter_by(id=id).one()
-    if not series_name:
-        updatedseries.series_name = series_name
-    if not description:
-        updatedseries.description = description
-    session.add(updatedseries)
-    session.commit()
-    return 'Updated an series with id %s' % id
-
-def deleteSeries(id):
-    seriesToDelete = session.query(series).filter_by(id=id).one()
-    session.delete(seriesToDelete)
-    session.commit()
-    return 'Removed series with id %s' % id
-
-#==============
-#Series API routing
-#==============
-#/api/series
-@app.route('/seriesApi', methods=['GET', 'POST'])
-def seriesFunction():
-    if request.method == 'GET':
-        return get_series()
-    elif request.method == 'POST':
-        series_name = request.args.get('series_name', '')
-        description = request.args.get('description', '')
-        return makeANewSeries(series_name, description)
-
-#/api/series/:seriesId
-@app.route('/seriesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def seriesFunctionId(id):
-    if request.method == 'GET':
-        return getAseries(id)
-    elif request.method == 'PUT':
-    	series_name = request.args.get('series_name', '')
-    	description = request.args.get('description', '')
-    	return updateSeries(id, series_name, description)
-    elif request.method == 'DELETE':
-        return deleteSeries(id)
-
-#==============
-#Issues api functions
-#==============
-def get_issues():
-    issue = session.query(issue).all()
-    return jsonify(issue=[a.serialize for a in issue])    
-
-def get_issue(issue_id):
-    issue = session.query(issue).filter_by(id=issue_id).one()
-    #add check if id does not exist
-    return jsonify(issue=issue.serialize)
-
-def makeANewissue(issue_name, issue_number, publication_date, series_id):
-    addedissue = issue(issue_name = issue_name, issue_number = issue_number, publication_date = publication_date, 
-    	series_id = series_id)
-    session.add(addedissue)
-    session.commit()
-    return jsonify(issue=addedissue.serialize)
-
-def updateIssue(id, issue_name, issue_number, publication_date):
-    updatedissue = session.query(issue).filter_by(id=id).one()
-    if not issue_name:
-        updatedissue.issue_name = issue_name
-    if not issue_number:
-        updatedissue.issue_number = issue_number
-    if not publication_date:
-        updatedissue.publication_date = publication_date
-    session.add(updatedissue)
-    session.commit()
-    return 'Updated an issue with id %s' % id
-
-def deleteIssue(id):
-    issueToDelete = session.query(issue).filter_by(id=id).one()
-    session.delete(issueToDelete)
-    session.commit()
-    return 'Removed issue with id %s' % id
+@app.route('/employeesApi/<int:id>/timesheets', methods=['GET', 'POST'])
+def employeeTimesheetFunction(id):
+	if request.method == "GET":
+		return get_employees_timesheet(id)
+	elif request.method == 'POST':
+		hours = request.args.get('hours','')
+		rate = request.args.get('rate','')
+		date = request.args.get('date','')
+		return makeNewTimesheet(id, hours, rate, date)
 
 
-#==============
-#Issues API routing
-#==============
+@app.route('/employeesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 
-#/api/series/:seriesId/issues
-@app.route('/seriesApi/<int:id>/issues', methods=['GET', 'POST'])
-def seriesFunction(id):
-    if request.method == 'GET':
-        return get_issues()
-    elif request.method == 'POST':
-        issue_name = request.args.get('issue_name', '')
-        issue_number = request.args.get('issue_number', '')
-        publication_date = request.args.get('publication_date','')
-        series_id = request.args.get('id','')
-        return makeANewIssue(issue_name, issue_number, publication_date, series_id)
+# /api/employees/:employeeId/timesheets/:timesheetId
+# PUT
+# Updates the timesheet with the specified timesheet ID using the information from the timesheet property of the request body and saves it to the database. Returns a 200 response with the updated timesheet on the timesheet property of the response body
+# If any required fields are missing, returns a 400 response
+# If an employee with the supplied employee ID doesn't exist, returns a 404 response
+# If an timesheet with the supplied timesheet ID doesn't exist, returns a 404 response
+# DELETE
+# Deletes the timesheet with the supplied timesheet ID from the database. Returns a 204 response.
+# If an employee with the supplied employee ID doesn't exist, returns a 404 response
+# If an timesheet with the supplied timesheet ID doesn't exist, returns a 404 response
 
+# /api/menus
+# GET
+# Returns a 200 response containing all saved menus on the menus property of the response body
+# POST
+# Creates a new menu with the information from the menu property of the request body and saves it to the database. Returns a 201 response with the newly-created menu on the menu property of the response body
+# If any required fields are missing, returns a 400 response
 
-@app.route('/seriesApi/<int:series_id>/issues/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def seriesFunctionId(id):
-    if request.method == 'GET':
-        return get_issue(id)
-    elif request.method == 'PUT':
-    	issue_name = request.args.get('issue_name', '')
-    	issue_number = request.args.get('issue_number', '')
-    	publication_date = request.args.get('publication_date','')
-    	return updateIssue(id, issue_name, issue_number, publication_date)
-    elif request.method == 'DELETE':
-        return deleteIssue(id)
+# /api/menus/:menuId
+# GET
+# Returns a 200 response containing the menu with the supplied menu ID on the menu property of the response body
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+# PUT
+# Updates the menu with the specified menu ID using the information from the menu property of the request body and saves it to the database. Returns a 200 response with the updated menu on the menu property of the response body
+# If any required fields are missing, returns a 400 response
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+# DELETE
+# Deletes the menu with the supplied menu ID from the database if that menu has no related menu items. Returns a 204 response.
+# If the menu with the supplied menu ID has related menu items, returns a 400 response.
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+
+# /api/menus/:menuId/menu-items
+# GET
+# Returns a 200 response containing all saved menu items related to the menu with the supplied menu ID on the menu items property of the response body
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+# POST
+# Creates a new menu item, related to the menu with the supplied menu ID, with the information from the menuItem property of the request body and saves it to the database. Returns a 201 response with the newly-created menu item on the menuItem property of the response body
+# If any required fields are missing, returns a 400 response
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+
+# /api/menus/:menuId/menu-items/:menuItemId
+# PUT
+# Updates the menu item with the specified menu item ID using the information from the menuItem property of the request body and saves it to the database. Returns a 200 response with the updated menu item on the menuItem property of the response body
+# If any required fields are missing, returns a 400 response
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+# If a menu item with the supplied menu item ID doesn't exist, returns a 404 response
+# DELETE
+# Deletes the menu item with the supplied menu item ID from the database. Returns a 204 response.
+# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+# If a menu item with the supplied menu item ID doesn't exist, returns a 404 response
 
 if __name__ == '__main__':
 	app.debug = True
