@@ -20,88 +20,92 @@ session = DBSession()
 
 
 #===========
-# helper functions - should
+# helper functions
+#===========
+
+
+#===========
+#API functions
 #===========
 
 #===========
 # /api/employees
 #===========
-    employee_name = Column(String(250), nullable= False)
-    position = Column(String(250), nullable= False)
-    wage = Column(Float, nullable = False)
-    is_currently_employee = Column(Integer, default = 1)
 
 @app.route('/employeesApi', methods=['GET', 'POST'])
-def employeeFunction():
+def employee_api():
     if request.method == 'GET':
-        return get_employees()
+        return employees()
     elif request.method == 'POST':
         employee_name = request.args.get('employee_name', '')
         position = request.args.get('position', '')
         wage = request.args.get('wage', '')
         is_currently_employee = request.args.get('is_currently_employee','')
-        return makeANewEmployee(employee_name, position, wage, is_currently_employee)
+        return create_employee(employee_name, position, wage, is_currently_employee)
 
 #===========
 # /api/employees/:employeeId
 #===========
 @app.route('/employeesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def employeeFunctionId(id):
+def employee_api_id(id):
     if request.method == 'GET':
-        return get_employees(id)
+        return employee(id)
     elif request.method == 'PUT':
         employee_name = request.args.get('employee_name', '')
         position = request.args.get('position', '')
         wage = request.args.get('wage', '')
         is_currently_employee = request.args.get('is_currently_employee','')
-    	return updateEmployee(id, employee_name, position, wage, is_currently_employee)
+    	return update_employee(id, employee_name, position, wage, is_currently_employee)
     elif request.method == 'DELETE':
-    	return deleteArtist(id)
+    	return delete_employee(id)
 
 
-@app.route('/employeesApi/<int:id>/timesheets', methods=['GET', 'POST'])
-def employeeTimesheetFunction(id):
+@app.route('/employeesApi/<int:employee_id>/timesheets', methods=['GET', 'POST'])
+def employee_api_timesheet(employee_id):
 	if request.method == "GET":
-		return get_employees_timesheet(id)
+		return employees_timesheet(employee_id)
 	elif request.method == 'POST':
 		hours = request.args.get('hours','')
 		rate = request.args.get('rate','')
 		date = request.args.get('date','')
-		return makeNewTimesheet(id, hours, rate, date)
+		return create_timesheet(employee_id, hours, rate, date)
 
 
-@app.route('/employeesApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/employeesApi/<int:employee_id>/timesheets/<int:timesheet_id', methods=['GET', 'PUT', 'DELETE'])
+def employee_api_timesheet_id(employee_id,timesheet_id):
+	if request.method == 'PUT':
+		hours = request.args.get('hours','')
+		rate = request.args.get('rate','')
+		date = request.args.get('date','')
+		return update_employee_timesheet(employee_id,timesheet_id, hours, rate, date)
+	elif request.method == 'DELETE':
+		return delete_employee_timesheet(employee_id,timesheet_id)
 
-# /api/employees/:employeeId/timesheets/:timesheetId
-# PUT
-# Updates the timesheet with the specified timesheet ID using the information from the timesheet property of the request body and saves it to the database. Returns a 200 response with the updated timesheet on the timesheet property of the response body
-# If any required fields are missing, returns a 400 response
-# If an employee with the supplied employee ID doesn't exist, returns a 404 response
-# If an timesheet with the supplied timesheet ID doesn't exist, returns a 404 response
-# DELETE
-# Deletes the timesheet with the supplied timesheet ID from the database. Returns a 204 response.
-# If an employee with the supplied employee ID doesn't exist, returns a 404 response
-# If an timesheet with the supplied timesheet ID doesn't exist, returns a 404 response
 
+#==========
 # /api/menus
-# GET
-# Returns a 200 response containing all saved menus on the menus property of the response body
-# POST
-# Creates a new menu with the information from the menu property of the request body and saves it to the database. Returns a 201 response with the newly-created menu on the menu property of the response body
-# If any required fields are missing, returns a 400 response
+#=========
+@app.route('/menusApi', methods=['GET', 'POST'])
+def menu_api():
+	if request.method == "GET":
+		return menus()
+	elif request.method == 'POST':
+		title  = request.args.get('title ','')
+		return create_menu(title)
 
+#==========
 # /api/menus/:menuId
-# GET
-# Returns a 200 response containing the menu with the supplied menu ID on the menu property of the response body
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
-# PUT
-# Updates the menu with the specified menu ID using the information from the menu property of the request body and saves it to the database. Returns a 200 response with the updated menu on the menu property of the response body
-# If any required fields are missing, returns a 400 response
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
-# DELETE
-# Deletes the menu with the supplied menu ID from the database if that menu has no related menu items. Returns a 204 response.
-# If the menu with the supplied menu ID has related menu items, returns a 400 response.
-# If a menu with the supplied menu ID doesn't exist, returns a 404 response
+#==========
+@app.route('/menusApi/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def menu_api_id(id):
+	if request.method == 'GET':
+		return menu(id)
+	elif request.method == 'PUT':
+		title = request.args.get('title','')
+		return update_menu(id, title)
+	elif request.method == 'DELETE':
+		return delete_menu(id)
+
 
 # /api/menus/:menuId/menu-items
 # GET
