@@ -23,7 +23,8 @@ table {
 
 
 /* general styles */
-#main { background: #eee }
+/*#main { background: #eee }*/
+#main { background: #f7f7e9 }
 
 #singleColumn {
     margin: 20px 30px;
