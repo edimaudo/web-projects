@@ -23,3 +23,5 @@ fullstack_side_projects/LevelUp/mineral_catalog/config/database.php
 fullstack_projects/Business/vet_web_app/Feed Prescription Template SWINE.xlsm
 fullstack_projects/Business/vet_web_app/RX, Sinke, GR Finisher, Tylan-40 & Posistac.doc
 fullstack_projects/Business/vet_web_app/vet.txt
+*.yaml
+fullstack_projects/corteza/.env
