@@ -6,7 +6,7 @@ class Contact(db.Model):
     last_name = db.Column(db.String(120))
     phone_number = db.Column(db.String(120))
     email = db.Column(db.String(120))
-    note= db.Column(db.String(120))
+    note= db.Column(db.String(255))
 
 
     def __repr__(self):
