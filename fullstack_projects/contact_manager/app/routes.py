@@ -4,4 +4,5 @@ from flask import render_template, flash, redirect, url_for
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Hello, World!"
+	all_data = Product.query.all()
+	return render_template('index.html', products = all_data)
