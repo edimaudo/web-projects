@@ -30,7 +30,7 @@ def add_contact():
     return render_template("add_contact.html")
 
 @app.route('/edit_contact/<int:id>',methods = ['GET', 'POST'])
-def update_product(id):
+def edit_contact(id):
 	if request.method == "POST":
 		my_data = Contact.query.get(id)
 		my_data.first_name = request.form['first_name']
@@ -42,13 +42,12 @@ def update_product(id):
 		flash("Product updated succesfully")
 		return redirect(url_for("index"))
 	else:
-		product = Product.query.get(id)
-		return render_template("update_product.html", product = product)
+		contact = Contact.query.get(id)
+		return render_template("edit_contact.html", contact = contact)
 
-
-@app.route("/delete_product/<int:id>")
-def delete_product(id):
-	my_data = Product.query.get(id)
+@app.route("/delete_contact/<int:id>")
+def delete_contact(id):
+	my_data = Contact.query.get(id)
 	db.session.delete(my_data)
 	db.session.commit()
 	flash("Product Deleted succesfully")
