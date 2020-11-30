@@ -1,0 +1,41 @@
+{% block content %}
+<h1>Contact List</h1>
+
+<p><button><a href="{{ url_for('add_contact') }}">Add Product</a></button></p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Note</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+<tbody>
+    {% for contact in contacts %}
+    <tr>
+      <td>{{ contact.first_name }}</td>
+      <td>{{ contact.last_name }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.phone_number }}</td>
+      <td>{{ contact.note }}</td>
+      <td><a href="/view_contact/{{product.id}}">View</a></td>
+      <td><a href="/edit_contact/{{product.id}}">Edit</a></td>
+      <td><a href="/delete_contact/{{product.id}}">Delete</a></td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+</table>
+
+
+{% endblock %}
