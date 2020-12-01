@@ -80,7 +80,7 @@ div#account a:hover{
 }
 
 
-#new_product{
+#new_contact{
   margin: 10px 10px;
 }
 
@@ -156,7 +156,7 @@ div#account a:hover{
     padding: 6px 10px 6px 10px;
 }
 
-.main span.product_title{
+.main span.contact_name{
     display: block;
     font-weight: bold;
     font-size: 120%;
@@ -176,7 +176,7 @@ pre {
   font-size: 11px;
 }
 
-a#new_product{
+a#new_contact{
   position: absolute;
   top: 16px;
   right: 20px;
@@ -201,7 +201,7 @@ a#new_product{
   text-decoration: none;
 }
 
-a:hover#new_product{
+a:hover#new_contact{
   color: #333;
   text-shadow: white 0 0px;
 }
