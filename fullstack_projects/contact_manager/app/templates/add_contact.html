@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+<h1> Add Contact </h1>
+{% block content %}
+    
+    <form action="{{ url_for('add_contact') }}" method="POST">
+    	
+        <label>First Name</label>
+        <input type="text" name="first_name" required=""><br>
+        
+        <label>Last name</label>
+        <input type="text" name="last_name"><br>
+
+        <label>Email</label>
+        <input type="email" name="email"><br>
+
+        <label>Phone Number</label>
+        <input type="tel" name="phone_number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br>
+
+        <label>Note</label>
+        <input type="text" name="note"><br>
+        
+        <input type="submit" value="Add">
+    </form>
+  <p><button><a href="{{ url_for('index') }}">Contact s</a></button></p>
+{% endblock %}
