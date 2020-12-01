@@ -14,7 +14,7 @@ def view_contact(id):
 	my_data = Contact.query.get(id)
 	return render_template("view_contact.html", contact = my_data)
 
-@app.route('/add_contact/', method=['GET','POST'])
+@app.route('/add_contact/', methods=['GET','POST'])
 def add_contact():
     if request.method == "POST":
         first_name = request.form['first_name']
