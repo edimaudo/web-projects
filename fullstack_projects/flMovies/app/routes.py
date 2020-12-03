@@ -3,18 +3,19 @@ from flask import render_template, flash, redirect, url_for, request
 from app import db
 from app.models import Movie
 
+
 @app.route('/')
 @app.route('/index')
 def index():
 	all_data = Movie.query.all()
-	return render_template('index.html', movie = all_data)
+	return render_template('index.html', movies = all_data)
 
-@app.route('/view_movie/<int:id>')
+@app.route('/view/<int:id>')
 def view_movie(id):
 	my_data = Movie.query.get(id)
 	return render_template("view_movie.html", movie = my_data)
 
-@app.route('/add_movie/', methods=["GET", "POST"])
+@app.route('/add/', methods=["GET", "POST"])
 def add_movie():
 	if request.method == "POST":
 		title = request.form['title']
@@ -29,7 +30,7 @@ def add_movie():
 	return render_template('add_movie.html')
 
 
-@app.route('/edit_movie/<int:id>',methods = ['GET', 'POST'])
+@app.route('/edit/<int:id>',methods = ['GET', 'POST'])
 def edit_movie(id):
 	if request.method == "POST":
 		my_data = Product.query.get(id)
@@ -45,7 +46,7 @@ def edit_movie(id):
 		return render_template("edit_movie.html", movie = movie)
 
 
-@app.route("/delete_movie/<int:id>")
+@app.route("/delete/<int:id>")
 def delete_movie(id):
 	my_data = Movie.query.get(id)
 	db.session.delete(my_data)
