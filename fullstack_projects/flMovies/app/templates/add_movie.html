@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+<div class="modal-content"></div>
+          <div class="modal-header">
+            <h4 class="modal-title">Add Movie</h4>
+          </div>
+            <div class="modal-body">
+                <form action="{{ url_for('add_movie') }}" method="POST">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" required="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <input type="text" class="form-control" name="genre">
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" class="form-control" name="release_date">
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" class="form-control" name="price">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit"><a href="{{ url_for('index') }}">Movies</a></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+             </form>
+          </div>
+</div>
+{% endblock %}
