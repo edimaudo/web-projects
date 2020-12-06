@@ -9,9 +9,9 @@
         <div class="col md-12">
             <div class="jumbotron p-3">
                     <h2><b>Movies </b>
-                        <button type="button" class="btn btn-success float-right" type="submit">
-                            <a href="{{ url_for('add_movie') }}"></a>Add New Movies
-                        </button><br>                    
+                            <a href="{{ url_for('add_movie') }}">
+                                <button type="button" class="btn btn-success float-right">Add Movies</button>
+                            </a><br>                      
                     </h2>
                 {% block search %}
                     <!-- Search form -->
@@ -39,8 +39,14 @@
                         <td>{{movie.price}}</td>
 
                         <td>
-                            <a href="/view/{{movie.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{movie.id}}">Edit</a>
-                            <a href="/update/{{movie.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{movie.id}}">Edit</a>
+                            <a href="/view/{{movie.id}}">
+                                <button type ="button" class="btn btn-warning btn-xs">View</button>
+                            </a> 
+
+                            <a href="/update/{{movie.id}}">
+                                <button type ="button" class="btn btn-warning btn-xs">Edit</button>
+                            </a>
+
                             <a href="/delete/{{movie.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
                         </td>
 
