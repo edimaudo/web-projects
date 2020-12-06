@@ -9,7 +9,7 @@
         <h4 class="modal-title">Update Movie</h4>
     </div>
     <div class="modal-body">
-        <form action="{{url_for('edit_movie')}}" method="POST">  
+        <form action="/edit/{{movie.id}}" method="POST">  
             <div class="form-group">
                 <label>Title</label>
                  <input type="hidden"  name="id" value="{{movie.id}}">
@@ -28,8 +28,8 @@
                 <input type="number" class="form-control" name="price" value="{{movie.price}}">
              </div>
              <div class="form-group">
-                <button class="btn btn-primary" type="submit"><a href="{{ url_for('index') }}"></a>Movies</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit"><a href="{{ url_for('index') }}"></a>Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="{{ url_for('index') }}"></a>Close</button>
             </div>
         </form>  
     </div>
