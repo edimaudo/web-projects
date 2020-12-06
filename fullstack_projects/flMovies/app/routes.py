@@ -27,7 +27,8 @@ def add_movie():
 		price = request.form['price']
 		genre = request.form['genre']
 		release_date = request.form['release_date']
-		my_data = Product(title, price, genre, release_date)
+		my_data = Movie(title, genre, release_date, price)
+        #title, genre, release_date, price
 		db.session.add(my_data)
 		db.session.commit()
 		flash("Movie Added succesfully")
@@ -38,7 +39,7 @@ def add_movie():
 @app.route('/edit/<int:id>',methods = ['GET', 'POST'])
 def edit_movie(id):
 	if request.method == "POST":
-		my_data = Product.query.get(id)
+		my_data = Movie.query.get(id)
 		my_data.title = request.form['title']
 		my_data.price = request.form['price']
 		my_data.genre = request.form['genre']
