@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% include 'header.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} View movie {% endblock %}
 
 {% block body %}
 <div class="modal-content">
@@ -9,7 +9,7 @@
         <h4 class="modal-title">Movie</h4>
     </div>
     <div class="modal-body">
-        <form action="{{url_for('view_movie')}}" method="POST">  
+        <form action="/view/{{movie.id}}" method="POST">  
             <div class="form-group">
                 <label>Title</label>
                  <input type="hidden"  name="id" value="{{movie.id}}">
@@ -28,10 +28,12 @@
                 <input type="number" class="form-control" name="price" value="{{movie.price}}">
              </div>
              <div class="form-group">
-                <button class="btn btn-primary" type="submit"><a href="{{ url_for('index') }}"></a>Movies</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
             </div>
-        </form>  
+        </form> 
+        <a href="{{ url_for('index') }}">
+            <button class="btn btn-primary">Back to Movies</button>
+        </a>  
     </div>
 </div>
 {% endblock %}
