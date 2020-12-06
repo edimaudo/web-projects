@@ -9,7 +9,7 @@ def index():
     movies = None
     if request.method == "POST":
         title = request.form['search']
-        movies = Movie.query.filter(Movie.title.contains(title)).order_by(Minerals.title).all()
+        movies = Movie.query.filter(Movie.title.contains(title)).order_by(Movie.title).all()
         return render_template("index.html",movies = movies)
     else:
         movies = Movie.query.all()
