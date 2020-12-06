@@ -3,12 +3,17 @@ from flask import render_template, flash, redirect, url_for, request
 from app import db
 from app.models import Movie
 
-
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods = ['POST','GET'])
+@app.route('/index',methods = ['POST','GET'])
 def index():
-	all_data = Movie.query.all()
-	return render_template('index.html', movies = all_data)
+    movies = None
+    if request.method == "POST":
+        title = request.form['search']
+        movies = Movie.query.filter(Movie.title.contains(title)).order_by(Minerals.title).all()
+        return render_template("index.html",movies = movies)
+    else:
+        all_data = Movie.query.all()
+	    return render_template('index.html', movies = all_data)
 
 @app.route('/view/<int:id>')
 def view_movie(id):
