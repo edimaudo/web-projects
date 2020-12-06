@@ -12,8 +12,8 @@ def index():
         movies = Movie.query.filter(Movie.title.contains(title)).order_by(Minerals.title).all()
         return render_template("index.html",movies = movies)
     else:
-        all_data = Movie.query.all()
-	    return render_template('index.html', movies = all_data)
+        movies = Movie.query.all()
+        return render_template('index.html', movies = movies)
 
 @app.route('/view/<int:id>')
 def view_movie(id):
