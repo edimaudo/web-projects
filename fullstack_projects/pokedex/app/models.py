@@ -34,7 +34,7 @@ class Pokemon(db.Model):
         filename = "pokemon.csv"
         pokemon_info = []
         with open(filename, encoding='utf-8') as file:
-            data = csv.reader(csv_file, delimiter=',')
+            data = csv.reader(filename, delimiter=',')
             first_line = True
         
         for row in data:
