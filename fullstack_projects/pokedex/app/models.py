@@ -32,7 +32,7 @@ class Pokemon(db.Model):
         self.Legendary = Legendary
     
     def __repr__(self):
-        return '<Pokemon {}>'.format(self.name)
+        return '<Pokemon {}>'.format(self.Name)
 
  #load data   
     def load_pokemon():
@@ -41,19 +41,7 @@ class Pokemon(db.Model):
         pokemons = pd.read_csv("pokemon.csv")
         pokemon_info = []
         for i,pokemon in pokemons.iterrows():
-            entry_data = Pokemon(Name = pokemon['Name'],
-            Type1 = pokemon['Type1'],
-            Type2 = pokemon['Type2'],
-            Total = pokemon['Total'],
-            HP = pokemon['HP'], 
-            Attack = pokemon['Attack'],
-            Defense = pokemon['Defense'],
-            Special_Attack = pokemon['Special_Attack'],
-            Special_Defense = pokemon['Special_Defense'],
-            Speed = pokemon['Speed'],
-            Generation = pokemon['Generation'],
-            Legendary = pokemon['Legendary']
-            )
+            entry_data = Pokemon(Name = pokemon['Name'],Type1 = pokemon['Type1'],Type2 = pokemon['Type2'],Total = pokemon['Total'],HP = pokemon['HP'], Attack = pokemon['Attack'],Defense = pokemon['Defense'],Special_Attack = pokemon['Special_Attack'],Special_Defense = pokemon['Special_Defense'],Speed = pokemon['Speed'],Generation = pokemon['Generation'],Legendary = pokemon['Legendary'])
             pokemon_info.append(entry_data)
         db.session.add_all(pokemon_info)
         db.session.commit()
