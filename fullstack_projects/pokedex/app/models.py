@@ -1,10 +1,12 @@
 from app import db
 
 class Pokemon(db.Model):
+
+    __tablename__ = 'pokemon'
     id = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.String(120))
-    Type1 = db.Column(db.String(120))
-    Type2 = db.Column(db.String(120))
+    Name = db.Column(db.String(255))
+    Type1 = db.Column(db.String(255))
+    Type2 = db.Column(db.String(255))
     Total = db.Column(db.Integer)
     HP = db.Column(db.Integer)
     Attack = db.Column(db.Integer)
@@ -13,7 +15,7 @@ class Pokemon(db.Model):
     Special_Defense = db.Column(db.Integer)
     Speed = db.Column(db.Integer)
     Generation = db.Column(db.Integer)
-    Legendary = db.Column(db.String(120))
+    Legendary = db.Column(db.String(255))
 
     def __init__(self, Name, Type1, Type2, Total, HP, Attack, Defense, Special_Attack, Special_Defense, Speed, Generation, Legendary):
         self.Name = Name
@@ -29,30 +31,30 @@ class Pokemon(db.Model):
         self.Generation = Generation
         self.Legendary = Legendary
     
-    def load_csv():
+    def __repr__(self):
+        return '<Pokemon {}>'.format(self.name)
+    
+    def load_pokemon():
         import csv 
         filename = "pokemon.csv"
-        pokemon_info = []
+        
         with open(filename, encoding='utf-8') as file:
-            data = csv.reader(file, delimiter=',')
-            first_line = True
-            for row in data:
-                if not first_line:
-                    entry_data = Pokemon(Name = Pokemon['Name'],
-                    Type1 = Pokemon['Type1'],
-                    Type2 = Pokemon['Type2'],
-                    Total = Pokemon['Total'],
-                    HP = Pokemon['HP'], 
-                    Attack = Pokemon['Attack'],
-                    Defense = Pokemon['Defense'],
-                    Special_Attack = Pokemon['Special_Attack'],
-                    Special_Defense = Pokemon['Special_Defense'],
-                    Speed = Pokemon['Speed'],
-                    Generation = Pokemon['Generation'],
-                    Legendary = Pokemon['Legendary']
+            pokemons = csv.reader(file, delimiter=',')
+            pokemon_info = []
+            for pokemon in pokemons:
+                entry_data = Pokemon(Name = pokemon[0],
+                    Type1 = pokemon[1],
+                    Type2 = pokemon[2],
+                    Total = pokemon[3],
+                    HP = pokemon[4], 
+                    Attack = pokemon[5],
+                    Defense = pokemon[6],
+                    Special_Attack = pokemon[7],
+                    Special_Defense = pokemon[8],
+                    Speed = pokemon[9],
+                    Generation = pokemon[10],
+                    Legendary = pokemon[11]
                     )
-                    pokemon_info.append(entry_data)
-                else:
-                    first_line == False
-        db.session.add_all(pokemon_info)
-        db.session.commit()
+                pokemon_info.append(entry_data)
+            db.session.add_all(pokemon_info)
+            db.session.commit()
