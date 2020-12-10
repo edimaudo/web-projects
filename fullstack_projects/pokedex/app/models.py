@@ -34,26 +34,25 @@ class Pokemon(db.Model):
         filename = "pokemon.csv"
         pokemon_info = []
         with open(filename, encoding='utf-8') as file:
-            data = csv.reader(filename, delimiter=',')
+            data = csv.reader(file, delimiter=',')
             first_line = True
-        
-        for row in data:
-            if not first_line:
-                entry_data = Pokemon(Name = Pokemon['Name'],
-                Type1 = Pokemon['Type1'],
-                Type2 = Pokemon['Type2'],
-                Total = Pokemon['Total'],
-                HP = Pokemon['HP'], 
-                Attack = Pokemon['Attack'],
-                Defense = Pokemon['Defense'],
-                Special_Attack = Pokemon['Special_Attack'],
-                Special_Defense = Pokemon['Special_Defense'],
-                Speed = Pokemon['Speed'],
-                Generation = Pokemon['Generation'],
-                Legendary = Pokemon['Legendary']
-                )
-                pokemon_info.append(entry_data)
-            else:
-                first_line == FALSE
+            for row in data:
+                if not first_line:
+                    entry_data = Pokemon(Name = Pokemon['Name'],
+                    Type1 = Pokemon['Type1'],
+                    Type2 = Pokemon['Type2'],
+                    Total = Pokemon['Total'],
+                    HP = Pokemon['HP'], 
+                    Attack = Pokemon['Attack'],
+                    Defense = Pokemon['Defense'],
+                    Special_Attack = Pokemon['Special_Attack'],
+                    Special_Defense = Pokemon['Special_Defense'],
+                    Speed = Pokemon['Speed'],
+                    Generation = Pokemon['Generation'],
+                    Legendary = Pokemon['Legendary']
+                    )
+                    pokemon_info.append(entry_data)
+                else:
+                    first_line == False
         db.session.add_all(pokemon_info)
         db.session.commit()
