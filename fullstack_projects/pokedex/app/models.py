@@ -33,28 +33,34 @@ class Pokemon(db.Model):
     
     def __repr__(self):
         return '<Pokemon {}>'.format(self.name)
-    
+
+ #load data   
     def load_pokemon():
         import csv 
-        filename = "pokemon.csv"
+        import pandas as pd
+        pokemons = pd.read_csv("pokemon.csv")
+        pokemon_info = []
+        for i,pokemon in pokemons.iterrows():
+            entry_data = Pokemon(Name = pokemon['Name'],
+            Type1 = pokemon['Type1'],
+            Type2 = pokemon['Type2'],
+            Total = pokemon['Total'],
+            HP = pokemon['HP'], 
+            Attack = pokemon['Attack'],
+            Defense = pokemon['Defense'],
+            Special_Attack = pokemon['Special_Attack'],
+            Special_Defense = pokemon['Special_Defense'],
+            Speed = pokemon['Speed'],
+            Generation = pokemon['Generation'],
+            Legendary = pokemon['Legendary']
+            )
+            pokemon_info.append(entry_data)
+        db.session.add_all(pokemon_info)
+        db.session.commit()
+
         
-        with open(filename, encoding='utf-8') as file:
-            pokemons = csv.reader(file, delimiter=',')
-            pokemon_info = []
-            for pokemon in pokemons:
-                entry_data = Pokemon(Name = pokemon[0],
-                    Type1 = pokemon[1],
-                    Type2 = pokemon[2],
-                    Total = pokemon[3],
-                    HP = pokemon[4], 
-                    Attack = pokemon[5],
-                    Defense = pokemon[6],
-                    Special_Attack = pokemon[7],
-                    Special_Defense = pokemon[8],
-                    Speed = pokemon[9],
-                    Generation = pokemon[10],
-                    Legendary = pokemon[11]
-                    )
-                pokemon_info.append(entry_data)
-            db.session.add_all(pokemon_info)
-            db.session.commit()
+
+
+
+
+
