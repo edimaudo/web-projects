@@ -9,3 +9,11 @@ from app.models import Pokemon
 @app.route('/index')
 def index():
     return "hello world"
+
+
+#index route
+
+#search route
+
+
+#filter route
