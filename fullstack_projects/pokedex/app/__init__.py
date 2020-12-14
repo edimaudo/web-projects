@@ -9,5 +9,6 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
+auth = HTTPBasicAuth()
 
 from app import routes, models
