@@ -17,19 +17,36 @@ class Pokemon(db.Model):
     Generation = db.Column(db.Integer)
     Legendary = db.Column(db.String(255))
 
-    def __init__(self, Name, Type1, Type2, Total, HP, Attack, Defense, Special_Attack, Special_Defense, Speed, Generation, Legendary):
-        self.Name = Name
-        self.Type1 = Type1
-        self.Type2 = Type2
-        self.Total = Total
-        self.HP = HP
-        self.Attack = Attack
-        self.Defense = Defense
-        self.Special_Attack = Special_Attack
-        self.Special_Defense = Special_Defense
-        self.Speed = Speed
-        self.Generation = Generation
-        self.Legendary = Legendary
+    @property
+    def serialize(self):
+        return {
+            'Name': self.Name,
+            'Type1':self.Type1,
+            'Type2':self.Type2,
+            'Total':self.Total,
+            'HP':self.HP,
+            'Attack':self.Attack,
+            'Defense': self.Defense,
+            'Special_Attack': self.Special_Attack,
+            'Special_Defense': self.Special_Defense,
+            'Speed':self.Speed,
+            'Generation':self.Generation,
+            'Legendary': self.Legendary
+        }
+
+    # def __init__(self, Name, Type1, Type2, Total, HP, Attack, Defense, Special_Attack, Special_Defense, Speed, Generation, Legendary):
+    #     self.Name = Name
+    #     self.Type1 = Type1
+    #     self.Type2 = Type2
+    #     self.Total = Total
+    #     self.HP = HP
+    #     self.Attack = Attack
+    #     self.Defense = Defense
+    #     self.Special_Attack = Special_Attack
+    #     self.Special_Defense = Special_Defense
+    #     self.Speed = Speed
+    #     self.Generation = Generation
+    #     self.Legendary = Legendary
     
     def __repr__(self):
         return '<Pokemon {}>'.format(self.Name)
