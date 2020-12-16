@@ -8,7 +8,6 @@ Professor Oak is in trouble! A wild Blastoise wreaked havoc in the server room a
     -   Search: name
     -   Filter: HP, Attack & Defense
         -   e.g. `/pokemon?hp[gte]=100&defense[lte]=200`
-    -   Pagination: e.g. `/pokemon?page=1`
 
 
 
