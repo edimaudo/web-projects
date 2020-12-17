@@ -31,6 +31,12 @@ def search_pokemon(pokemon_name):
     return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
 
 #filter  #HP,Attack,Defense e.g. Filter: HP, Attack & Defense `/pokemon?hp[gte]=100&defense[lte]=200` 
+@app.route()
+def filter_pokemon(pokemon_hp,  pokemon_attack, pokemon_defense):
+    pokemons = ""
+    if len(pokemons) == 0:
+        return not_found(404)
+    return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
 
 
  
