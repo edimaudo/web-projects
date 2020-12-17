@@ -3,7 +3,8 @@ from flask import render_template, flash, redirect, url_for, request, jsonify, m
 from app import db
 from app.models import Pokemon
 
-#error handlers
+
+#error handler
 @app.errorhandler(400)
 def bad_request(error):
     return make_response(jsonify({'error': 'Bad request'}),400)
@@ -14,13 +15,20 @@ def not_found(error):
 
 #index route
 @app.route('/')
-@app.route('/pokemon/api/all_pokemon',methods=['GET'])
+@app.route('/pokemon/api/v1/all_pokemon',methods=['GET'])
 def index():
     pokemons = Pokemon.query.all()
-    return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
+    if len(pokemons) == 0:
+        return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
+    return bad_request(400)
 
 #search  - Search: name
-#@app.route('/pokemon/api/search/',methods=['GET'])
+@app.route('/pokemon/api/v1/search/<string:pokemon_name>',methods=['GET'])
+def search_pokemon(pokemon_name):
+    pokemons = Pokemon.query.filter(Pokemon.Name.contains(pokemon_name)).order_by(Pokemon.Name).all()
+    if len(pokemons) == 0:
+        return not_found(404)
+    return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
 
 #filter  #HP,Attack,Defense e.g. Filter: HP, Attack & Defense `/pokemon?hp[gte]=100&defense[lte]=200` 
 
