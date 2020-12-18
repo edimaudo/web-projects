@@ -3,7 +3,6 @@ from flask import render_template, flash, redirect, url_for, request, jsonify, m
 from app import db
 from app.models import Pokemon
 
-
 #error handler
 @app.errorhandler(400)
 def bad_request(error):
@@ -15,7 +14,7 @@ def not_found(error):
 
 #index route
 @app.route('/')
-@app.route('/pokemon/api/v1/pokemons',methods=['GET'])
+@app.route('/pokemon/api/v1/all_pokemon',methods=['GET'])
 def index():
     pokemons = Pokemon.query.all()
     if len(pokemons) == 0:
@@ -32,15 +31,8 @@ def search_pokemon(pokemon_name):
 
 #filter  #HP,Attack,Defense e.g. Filter: HP, Attack & Defense `/pokemon?hp[gte]=100&defense[lte]=200` 
 @app.route('/pokemon/api/v1/pokemon?hp=<int:pokemon_hp>&attack=<int:pokemon_attack>&defense=<int:pokemon_defense>',methods=['GET'])
-def filter_pokemon(pokemon_hp,pokemon_attack, pokemon_defense):
-    pokemons = Pokemon.query.filter(
-        Pokemon.HP == pokemon_hp,
-        Pokemon.Attack == pokemon_attack,
-        Pokemon.Defense == pokemon_defense).all()
-    #pokemons = Pokemon.query.filter(Pokemon.HP.like(pokemon_hp),Pokemon.Attack.like(pokemon_attack),Pokemon.Defense.like(pokemon_defense)).all()
-    #pokemons = Pokemon.query.filter(Pokemon.Attack == pokemon_attack).filter(Pokemon.HP == pokemon_hp).filter(Pokemon.Defense == pokemon_defense).all()
-    #pokemons = Pokemon.query.filter(Pokemon.Attack.contains(pokemon_attack),Pokemon.HP.contains(pokemon_hp),
-    #Pokemon.Defense.contains(pokemon_defense)).order_by(Pokemon.Name).all()
+def filter_pokemon(pokemon_hp,pokemon_attack,pokemon_defense):
+    pokemons = Pokemon.query.filter(Pokemon.HP == pokemon_hp, Pokemon.Attack == pokemon_attack,Pokemon.Defense == pokemon_defense).all()
     if len(pokemons) == 0:
         return not_found(404)
     return jsonify(pokemons = [pokemon.serialize for pokemon in pokemons])
