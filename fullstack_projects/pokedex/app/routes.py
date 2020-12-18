@@ -15,7 +15,7 @@ def not_found(error):
 
 #index route
 @app.route('/')
-@app.route('/pokemon/api/v1/all_pokemon',methods=['GET'])
+@app.route('/pokemon/api/v1/pokemons',methods=['GET'])
 def index():
     pokemons = Pokemon.query.all()
     if len(pokemons) == 0:
@@ -23,7 +23,7 @@ def index():
     return bad_request(400)
 
 #search  - Search: name
-@app.route('/pokemon/api/v1/search/<string:pokemon_name>',methods=['GET'])
+@app.route('/pokemon/api/v1/pokemon/<string:pokemon_name>',methods=['GET'])
 def search_pokemon(pokemon_name):
     pokemons = Pokemon.query.filter(Pokemon.Name.contains(pokemon_name)).order_by(Pokemon.Name).all()
     if len(pokemons) == 0:
@@ -31,12 +31,19 @@ def search_pokemon(pokemon_name):
     return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
 
 #filter  #HP,Attack,Defense e.g. Filter: HP, Attack & Defense `/pokemon?hp[gte]=100&defense[lte]=200` 
-@app.route()
-def filter_pokemon(pokemon_hp,  pokemon_attack, pokemon_defense):
-    pokemons = ""
+@app.route('/pokemon/api/v1/pokemon?hp=<int:pokemon_hp>&attack=<int:pokemon_attack>&defense=<int:pokemon_defense>',methods=['GET'])
+def filter_pokemon(pokemon_hp,pokemon_attack, pokemon_defense):
+    pokemons = Pokemon.query.filter(
+        Pokemon.HP == pokemon_hp,
+        Pokemon.Attack == pokemon_attack,
+        Pokemon.Defense == pokemon_defense).all()
+    #pokemons = Pokemon.query.filter(Pokemon.HP.like(pokemon_hp),Pokemon.Attack.like(pokemon_attack),Pokemon.Defense.like(pokemon_defense)).all()
+    #pokemons = Pokemon.query.filter(Pokemon.Attack == pokemon_attack).filter(Pokemon.HP == pokemon_hp).filter(Pokemon.Defense == pokemon_defense).all()
+    #pokemons = Pokemon.query.filter(Pokemon.Attack.contains(pokemon_attack),Pokemon.HP.contains(pokemon_hp),
+    #Pokemon.Defense.contains(pokemon_defense)).order_by(Pokemon.Name).all()
     if len(pokemons) == 0:
         return not_found(404)
-    return jsonify(pokemons= [pokemon.serialize for pokemon in pokemons])
+    return jsonify(pokemons = [pokemon.serialize for pokemon in pokemons])
 
 
  
