@@ -61,7 +61,7 @@ class Medal(db.Model):
         medals = pd.read_csv("goldmedal.csv")
         medal_info = []
         for i, medal in medals.iterrows():
-            entry_data = Medal()
+            entry_data = Medal(Year = medal['Year'])
             medal_info.append(entry_data)
         db.session.add_all(medal_info)
         db.session.commit()        
