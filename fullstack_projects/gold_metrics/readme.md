@@ -1,8 +1,8 @@
 ## Gold Medal Metrics
-**
+
 
 ### Project Overview
-**
+
 
 This is an Olympic metrics reporting web application called Gold Medal Metrics.
 
