@@ -33,27 +33,27 @@ class Medal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Year = db.Column(db.Integer, nullable = False)
     City = db.Column(db.String(255), nullable=False)
-    Season = db.Column(db.String(255), nullable=False)
-    Name = db.Column(db.String(255), nullable=False)
-    Country = db.Column(db.String(255), nullable=False)
-    Gender = db.Column(db.String(255), nullable=False)
     Sport = db.Column(db.String(255), nullable=False)
     Discipline = db.Column(db.String(255), nullable=False)
+    Athlete = db.Column(db.String(255), nullable=False)
+    Country = db.Column(db.String(255), nullable=False)
+    Gender = db.Column(db.String(255), nullable=False)
     Event = db.Column(db.String(255), nullable=False)
-
-    def __init__(self, Year, City, Season, Name, Country, Gender, Sport, Discipline, Event):
+    Medal = db.Column(db.String(255), nullable=False)
+    
+    def __init__(self, Year,City,Sport,Discipline,Athlete,Country,Gender,Event,Medal):
         self.Year = Year
         self.City = City
-        self.Season = Season
-        self.Name = Name
-        self.Country = Country
-        self.Gender = Gender
         self.Sport = Sport
         self.Discipline = Discipline
+        self.Athlete = Athlete
+        self.Country = Country
+        self.Gender = Gender
         self.Event = Event
+        self.Medal = Medal
     
     def __repr__(self):
-        return 'City {}>'.format(self.City)
+        return 'Medal {}>'.format(self.City)
     
     def load_medal_data():
         import csv
@@ -61,11 +61,7 @@ class Medal(db.Model):
         medals = pd.read_csv("goldmedal.csv")
         medal_info = []
         for i, medal in medals.iterrows():
-            entry_data = Medal(Year = medal['Year'])
+            entry_data = Medal(Year = medal['Year'], City = medal['City'], Sport = medal['Sport'],Discipline = medal['Discpline'],Athlete = medal['Athlete'],Country = medal['Country'],Gender = medal['Gender'],Event = medal['Gender'],Medal = medal['Medal'])
             medal_info.append(entry_data)
         db.session.add_all(medal_info)
-        db.session.commit()        
-
-
-
-
+        db.session.commit()
