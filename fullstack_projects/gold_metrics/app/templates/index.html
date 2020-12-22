@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 
-{%block search %} 
+{%block contentlist %} 
 
-<div id="search">
-    <form id="country-search" method="post" action="{{ url_for('country') }}>
-        <img id="magnifying-glass" alt="Search" src='static/img/magnify.svg' />
-        <input type="text" id="country-search-input" placeholder="Search for a country" value="" />
-        <input type="submit" value="SEARCH" id="country-search-button" />
-    </form>
-</div>
+<h6 id="title"><a href="{{ url_for('countrylist') }}">Country List</a></h6><br>
+<h6 id="title"><a href="{{ url_for('sport') }}">Sports</a></h6><br>
+<h6 id="title"><a href="{{ url_for('goldmedallist') }}">Gold Medalists</a></h6><br>
 
 {% endblock %}
 
