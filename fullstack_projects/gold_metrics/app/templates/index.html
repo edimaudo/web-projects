@@ -3,17 +3,12 @@
 {%block search %} 
 
 <div id="search">
-    <form onSubmit={this.handleSubmit}>
-      <div id="country-search">
-        <img id="magnifying-glass" alt="Search" src='img/magnify.svg' />
-        <input type="text" id="country-search-input" placeholder="Search for a country" value={this.state.value} onChange={this.handleChange} />
-      </div>
-      <input type="submit" value="SEARCH" id="country-search-button" />
+    <form id="country-search" method="post" action="{{ url_for('country') }}>
+        <img id="magnifying-glass" alt="Search" src='static/img/magnify.svg' />
+        <input type="text" id="country-search-input" placeholder="Search for a country" value="" />
+        <input type="submit" value="SEARCH" id="country-search-button" />
     </form>
-    {fireRedirect && (
-      <Redirect to={from || `/country/${country}`}/>
-    )}
-  </div>
+</div>
 
 {% endblock %}
 
