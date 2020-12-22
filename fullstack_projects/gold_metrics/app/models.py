@@ -5,14 +5,14 @@ class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Country = db.Column(db.String(255),unique=True, nullable=False)
     Code = db.Column(db.String(255),unique=True, nullable=False)
-    GDP = db.Column(db.Integer)
     Population = db.Column(db.Integer)
+    GDP = db.Column(db.Integer)
 
-    def __init__(self,Country,Code, GDP, Population):
+    def __init__(self,Country,Code, Population,GDP):
         self.Country = Country
         self.Code = Code
-        self.GDP = GDP
         self.Population = Population
+        self.GDP = GDP
 
     def __repr__(self):
         return 'Country {}>'.format(self.Country)
@@ -23,7 +23,7 @@ class Country(db.Model):
         countries = pd.read_csv("country.csv")
         country_info = []
         for i, country in countries.iterrows():
-            entry_data = Country(Country = country['Country'],Code = country['code'],Population = country['Population'],GDP = country['GDP'])
+            entry_data = Country(Country = country['Country'], Code = country['Code'], Population = country['Population'], GDP = country['GDP'])
             country_info.append(entry_data)
         db.session.add_all(country_info)
         db.session.commit()
@@ -41,6 +41,8 @@ class Medal(db.Model):
     Event = db.Column(db.String(255), nullable=False)
     Medal = db.Column(db.String(255), nullable=False)
     
+#Year,City,Sport,Discipline,Athlete,Country,Gender,Event,Medal
+
     def __init__(self, Year,City,Sport,Discipline,Athlete,Country,Gender,Event,Medal):
         self.Year = Year
         self.City = City
@@ -61,7 +63,7 @@ class Medal(db.Model):
         medals = pd.read_csv("goldmedal.csv")
         medal_info = []
         for i, medal in medals.iterrows():
-            entry_data = Medal(Year = medal['Year'], City = medal['City'], Sport = medal['Sport'],Discipline = medal['Discpline'],Athlete = medal['Athlete'],Country = medal['Country'],Gender = medal['Gender'],Event = medal['Gender'],Medal = medal['Medal'])
+            entry_data = Medal(Year = medal['Year'], City = medal['City'], Sport = medal['Sport'],Discipline = medal['Discipline'],Athlete = medal['Athlete'],Country = medal['Country'],Gender = medal['Gender'],Event = medal['Gender'],Medal = medal['Medal'])
             medal_info.append(entry_data)
         db.session.add_all(medal_info)
         db.session.commit()
