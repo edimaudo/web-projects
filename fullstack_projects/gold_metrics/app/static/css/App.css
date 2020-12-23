@@ -98,9 +98,8 @@ tr {
   height: 50px;
 }
 
-tr:nth-child(even) {
-  background-color: #f5f4f5;
-}
+
+
 
 #country-search-button {
   width: 146px;
