@@ -98,7 +98,10 @@ tr {
   height: 50px;
 }
 
-
+/* #f5f4f5*/
+tr:nth-child(even) {
+  background-color: #c8f1f5; 
+}
 
 
 #country-search-button {
