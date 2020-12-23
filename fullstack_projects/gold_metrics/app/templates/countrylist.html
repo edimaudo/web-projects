@@ -2,10 +2,8 @@
 
 {% block countrylist %}
 
-
-
   <table className="country-table">
-    <tbody>
+    <thead>
       <tr className="table-header country-header">
         <th>
           COUNTRY
@@ -20,14 +18,20 @@
           <img className="sort" alt="Sort Ascending" src="static/img/up.svg" />
           <img className="sort" alt="Sort Descending" src="static/img/down.svg" />
         </th>
-        <th># OF GOLD MEDALS
-          <img className="sort" alt="Sort Ascending" src="static/img/up.svg" />
-          <img className="sort" alt="Sort Descending" src="static/img/down.svg" />
-        </th>
       </tr>
-    
-  
+    </thead>
+
+    <tbody>
+      {% for country in countries %}
+      <tr>
+        <td>{{ country.Country }}</td>
+        <td>{{ country.GDP }}</td>
+        <td>{{ country.Population }}</td>
+        <td ><a href="/countrydetails/{{ country.Country }}">Country Detail</a></td>
+      </tr>
+      {% endfor %}
     </tbody>
+
   </table>
 
 
