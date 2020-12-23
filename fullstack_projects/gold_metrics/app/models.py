@@ -41,8 +41,6 @@ class Medal(db.Model):
     Event = db.Column(db.String(255), nullable=False)
     Medal = db.Column(db.String(255), nullable=False)
     
-#Year,City,Sport,Discipline,Athlete,Country,Gender,Event,Medal
-
     def __init__(self, Year,City,Sport,Discipline,Athlete,Country,Gender,Event,Medal):
         self.Year = Year
         self.City = City
