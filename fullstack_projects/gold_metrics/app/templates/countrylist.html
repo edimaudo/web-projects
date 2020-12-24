@@ -2,12 +2,20 @@
 
 {% block countrylist %}
 
+
   <table className="country-table">
     <thead>
       <tr className="table-header country-header">
         <th>
+          <form method="POST">
+            <a href="{{ url_for('index') }}"><img className="sort" alt="Sort Ascending" name = "country_upwards" src="static/img/up.svg"/></a>
+
+          </form>
+          <form method="POST"></form>
+          <form method="POST"></form>
           COUNTRY
-          <img className="sort" alt="Sort Ascending" src="static/img/up.svg"  />
+
+          
           <img className="sort" alt="Sort Descending" src="static/img/down.svg"  />
         </th>
         <th>GDP
@@ -33,6 +41,9 @@
     </tbody>
 
   </table>
+
+
+
 
 
   {% endblock %}
