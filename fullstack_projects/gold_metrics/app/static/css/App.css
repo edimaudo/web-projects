@@ -1,7 +1,7 @@
 body {
   font-family: Poppins;
-  color: #ffffff;
-  background-color: #9cd1d6;
+  color: #080808;
+  background-color: #aff2f8;
   text-align: center;
   line-height: 1.38;
   letter-spacing: 0.4px;
@@ -98,11 +98,9 @@ tr {
   height: 50px;
 }
 
-/* #f5f4f5*/
 tr:nth-child(even) {
-  background-color: #c8f1f5; 
+  background-color: #f5f4f5;
 }
-
 
 #country-search-button {
   width: 146px;
