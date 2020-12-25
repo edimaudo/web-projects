@@ -2,21 +2,12 @@
 
 {% block countrylist %}
 
-
   <table className="country-table">
     <thead>
       <tr className="table-header country-header">
-        <th>
-          <form method="POST">
-            <a href="{{ url_for('index') }}"><img className="sort" alt="Sort Ascending" name = "country_upwards" src="static/img/up.svg"/></a>
-
-          </form>
-          <form method="POST"></form>
-          <form method="POST"></form>
-          COUNTRY
-
-          
-          <img className="sort" alt="Sort Descending" src="static/img/down.svg"  />
+        <th>COUNTRY
+            <input type="image" value = "country_upwards" src="static/img/up.svg" name = "country_upwards" className="sort" alt="Sort Ascending"/>
+            <input type="image" value = "country_downwards" src="static/img/down.svg" name = "country_downwards" className="sort" alt="Sort Descending"/>  
         </th>
         <th>GDP
           <img className="sort" alt="Sort Ascending" src="static/img/up.svg" />
@@ -35,15 +26,9 @@
         <td>{{ country.Country }}</td>
         <td>{{ country.GDP }}</td>
         <td>{{ country.Population }}</td>
-        <td ><a href="/countrydetails/{{ country.Country }}">Country Detail</a></td>
       </tr>
       {% endfor %}
     </tbody>
 
   </table>
-
-
-
-
-
   {% endblock %}
