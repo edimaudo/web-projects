@@ -25,3 +25,7 @@ fullstack_projects/Business/vet_web_app/RX, Sinke, GR Finisher, Tylan-40 & Posis
 fullstack_projects/Business/vet_web_app/vet.txt
 *.yaml
 fullstack_projects/corteza/.env
+fullstack_projects/the_scoop/test/test.js
+fullstack_projects/the_scoop/app/static/js/bundle.js
+fullstack_projects/the_scoop/venv/bin/activate
+*.csh
