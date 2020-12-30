@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <form action="/instructor/edit/{{instructor.id}}?_method=PATCH" method="POST">
+        <form action="/instructors/edit/{{instructor.id}}?_method=PATCH" method="POST">
             <input type="hidden"  name="id" required="" value="{{instructor.id}}">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
