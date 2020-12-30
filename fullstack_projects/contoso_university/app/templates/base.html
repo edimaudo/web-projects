@@ -39,7 +39,14 @@
             </div>
         </nav>
     </header>
-  
+    <body>
+        {% block content %} {% endblock %}
+    </body>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Contoso University - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/bootstrap.js"></script>
    
