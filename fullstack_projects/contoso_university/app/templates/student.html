@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Index</h2>
+
+<p>
+    <a href="{{url_for('student_add')}}">Create New</a>
+</p>
+
+<form id="searchform" method="post" action="{{ url_for('student') }}" accept-charset="utf-8">
+    <input type="text" placeholder="Search.." name="search">
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Enrollment Date</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{student.first_name}}</td>
+                <td>{{student.last_name}}</td>
+                <td>{{student.enrollment_date}}</td>
+                <td><a href="students/view/{{student.id}}">View</a></td>|
+                <td><a href="students/edit/{{student.id}}">Edit</a></td>|
+                <td><a href="students/delete/{{student.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
