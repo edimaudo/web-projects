@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>View</h1>
+<form action="students/view/{{student.id}}?_method=PATCH" method="POST">
+<div>
+<h4>Student</h4>
+<hr />
+<dl class="row">
+    <dt class = "col-sm-2">
+        <label>First Name</label>
+    </dt>
+    <dd class = "col-sm-10">
+        <input type="text" name="first_name" required="" value="{{student.first_name}}"><br>
+    </dd>
+    <dt class = "col-sm-2">
+        <label>Last Name</label>
+    </dt>
+    <dd class = "col-sm-10">
+        <input type="text" name="last_name" required="" value="{{student.last_name}}"><br>
+    </dd>
+    <dt class = "col-sm-2">
+        <label>Hire Date</label>
+    </dt>
+    <dd class = "col-sm-10">
+        <input type="text" name="hire_date" required="" value="{{student.enrollment_date}}"><br>
+    </dd>
+</dl>
+</div>
+<div>
+    <a href="students/edit/{{student.id}}">Edit</a> |
+    <a href="{{url_for('students')}}">Back to Students</a>
+</div>
+</form>
+
+{% endblock %}
+
+
