@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <form action="{{ url_for('instruction_add') }}" method="POST">
+        <form action="{{ url_for('instructor_add') }}" method="POST">
             <input type="hidden"  name="id" required="" value="{{instructor.id}}">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
