@@ -2,4 +2,46 @@
 
 {% block content %}
 
-{%  endblock %}
+<h1>Details</h1>
+<form action="departments/view/{{department.id}}?_method=PATCH" method="POST">
+<div>
+    <h4>department</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label>Name</label>
+        </dt>
+        <dd class = "col-sm-10">
+            <input type="text" name="name" required="" value="{{department.name}}"><br>
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Budget</label>
+        </dt>
+        <dd class = "col-sm-10">
+            <input type="text" name="budget" required="" value="{{department.budget}}"><br>
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Start Date</label>
+        </dt>
+        <dd class = "col-sm-10">
+            <input type="text" name="start_date" required="" value="{{department.start_date}}"><br>
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Instructor ID</label>
+        </dt>
+        <dd class = "col-sm-10">
+            <input type="text" name="instructor_id" required="" value="{{department.instructor_id}}"><br>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="departments/edit/{{department.id}}">Edit</a> |
+    <a href="{{url_for('departments')}}">Back to departments</a>
+</div>
+</form>
+
+{% endblock %}
+
+
+
+
