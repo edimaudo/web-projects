@@ -17,18 +17,18 @@ def index():
 
 
 #minions
-@app.route('/api/minions')
+@app.route('/minions')
 def minions():
     return ""
 
 
 #ideas
-@app.route('/api/ideas')
+@app.route('/ideas')
 def ideas():
     return ""
 
 #meetings
-@app.route("/api/meetings")
+@app.route("meetings")
 def meetings():
     return ""
 
