@@ -1,0 +1,35 @@
+{% extends base.html %}
+
+{% content %}
+
+      <div id="meetings-landing">
+        <div className="label meetings-label">
+          Meetings
+        </div>
+        <div id="meetings-table">
+          <table>
+            <thead>
+              <tr>
+                <th id="th-time">Time</th>
+                <th id="th-location">Date</th>
+                <th id="th-note">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              {% for meeting in allMeetings %}
+              <tr>
+                <td>{{ meeting.time }}</td>
+                <td>{{ meeting.location }}</td>
+                <td>{{ meeting.note }}</td>
+                <td><a href="meetings/view/{{meeting.id}}">View</a></td>
+                <td><a href="meetings/update/{{meeting.id}}">Edit</a></td>
+                <td><a href="meetings/delete/{{meeting.id}}">Delete</a></td>
+              </tr>
+              {%endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+{%endblock %}
