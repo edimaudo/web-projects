@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+      <div>
+        <div id="single-minion-landing">
+          <div className="minion-details">
+            <div className="label meetings-label">
+              { 
+                this.props.newMinion
+                ? `New Minion`
+                : `Minion Id #${this.state.minion.id}`
+              }
+            </div>
+            <div className="minion-description">
+              { 
+                this.state.editing
+                ? <MinionEdit handleChange={this.handleChange} {...this.props.minion} />
+                : <MinionDescription {...this.props.minion}/>
+                <div>
+                  <p>Name: {name}</p>
+                  <p>Title: {title}</p>
+                  <p>Salary: {salary}</p>
+                  <p>Weaknesses: {weaknesses}</p>
+                </div>
+              }
+            </div>
+            <div className="button minion-save-button" onClick={this.toggleEdit}>
+              { this.state.editing ? 'Save' : 'Edit' }
+            </div>
+          </div>
+          <div className="work-details">
+            <Work />
+          </div>
+        </div>
+        <div className="button back-button">
+          <Link to="/minions">
+            <img className="button" src="static/img/arrow.svg" />
+          </Link>
+        </div>
+      </div>
+
+{% endblock %}
