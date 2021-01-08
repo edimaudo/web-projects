@@ -1,163 +1,239 @@
 from app import app
-from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
+from flask import render_template, flash, redirect, url_for, request, make_response
 from app import db
 from app.errors import errors
 from app.models import Minion, Idea, Meeting, Work
-#from app.api.errors import error_response as api_error_response
 
-#error handlers
-@app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html')
-
-# @app_errorhandler(500)
-# def internal_error(error):
-# #     db.session.rollback()
-# #     return api_error_response(500)
-
-
-#key functions
+#helper functions
 def isMillionDollarIdea(weeklyRevenue, numWeeks):
     totalMoney = numWeeks * weeklyRevenue
     if totalMoney < 1000000:
         return True
     return False
 
+#==========
+#error handlers
+#==========
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html')
 
+#==========
 #home
+#==========
 @app.route('/')
 @app.route('/index')
 def index():
    return render_template("index.html")
 
-/api/minions
-GET /api/minions to get an array of all minions.
-POST /api/minions to create a new minion and save it to the database.
-GET /api/minions/:minionId to get a single minion by id.
-PUT /api/minions/:minionId to update a single minion by id.
-DELETE /api/minions/:minionId to delete a single minion by id.
-
-	all_data = Product.query.all()
-	return render_template('index.html', products = all_data)
+#==========
 #minions
+#==========
+#to get an array of all minions.
 @app.route('/minions')
 def minions():
-    return render_template("minion.html", all_data = minions)
+    all_data = Minion.query.all()
+    return render_template("minion.html", minions = all_data)
 
+#to create a new minion and save it to the database.
+@app.route("/minions/add", methods=["GET", "POST"])
+def minions_add():
+    if request.method == "POST":
+        name = request.form['name']
+        title = request.form['title']
+        salary = request.form['salary']
+        my_data = Minion(name, title, salary)
+        db.session.add(my_data)
+        db.session.commit()
+        flash("Minion added successfully")
+        return redirect(url_for('minions'))
+    return render_template('minion_add.html')
 
-#ideas
-@app.route('/ideas')
-def ideas():
-    return ""
+#to get a single minion by id.
+@app.route('/minions/view/<int:minion_id>')
+def minions_view(minion_id):
+	my_data = Minion.query.get(minion_id)
+	return render_template("minion_view.html", minion = my_data)
 
-#meetings
-@app.route("meetings")
-def meetings():
-    return ""
-
-#works
-
-
-getAllFromDatabase:
-
-Takes only the single argument for model name. Returns the array of elements in the database or null if an invalid argument is supplied
-getFromDatabaseById:
-
-Takes the model name argument and a second string argument representing the unique ID of the element. Returns the instance with valid inputs and -1 with an invalid id.
-addToDatabase:
-
-Takes the model name argument and a second argument which is an object with the key-value pairs of the new instance. addToDatabase handles assigning .id properties to the instances. It does not check to make sure that valid inputs are supplied, so you will have to add those checks to your routes if necessary. addToDatabase will return the newly-created instance from the database. This function will validate the schema of the instance to create and throw an error if it is invalid.
-updateInstanceInDatabase:
-
-Takes the model name argument and a second argument which is an object representing an updated instance. The instance provided must have a valid .id property which will be used to match. updateInstanceInDatabase will return the updated instance in the database or null with invalid inputs. This function will validate the schema of the updated instance and throw an error if it is invalid.
-deleteFromDatabasebyId:
-
-Takes the model name argument and a second string argument representing the unique ID of the element to delete. Returns true if the delete occurs properly and false if the element is not found.
-deleteAllFromDatabase:
-
-Takes only the single argument for model name. Deletes all elements from the proper model and returns a new, empty array. You will only need to use this function for a /api/meetings route.
-
-
-
-
-/api/ideas
-GET /api/ideas to get an array of all ideas.
-POST /api/ideas to create a new idea and save it to the database.
-GET /api/ideas/:ideaId to get a single idea by id.
-PUT /api/ideas/:ideaId to update a single idea by id.
-DELETE /api/ideas/:ideaId to delete a single idea by id.
-
-/api/meetings
-GET /api/meetings to get an array of all meetings.
-POST /api/meetings to create a new meeting and save it to the database.
-DELETE /api/meetings to delete all meetings from the database.
-
-
-GET /api/minions/:minionId/work to get an array of all work for the specified minon.
-POST /api/minions/:minionId/work to create a new work object and save it to the database.
-PUT /api/minions/:minionId/work/:workId to update a single work by id.
-DELETE /api/minions/:minionId/work/:workId to delete a single work by id.
-
-
-
-from app import app
-from flask import render_template, flash, redirect, url_for, request
-from app import db
-from app.models import Product
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-	all_data = Product.query.all()
-	return render_template('index.html', products = all_data)
-
-@app.route('/view/<int:id>')
-def view_product(id):
-	my_data = Product.query.get(id)
-	return render_template("view_product.html", product = my_data)
-
-@app.route('/add/', methods=["GET", "POST"])
-def add_product():
+#to update a single minion by id.
+@app.route('/minions/update/<int:minion_id>',methods = ['GET', 'POST'])
+def minion_update(minion_id):
 	if request.method == "POST":
-		title = request.form['title']
-		price = request.form['price']
-		description = request.form['description']
-		image_url = request.form['image_url']
-		stock = request.form['stock']
-		my_data = Product(title, price, description, image_url, stock)
-		db.session.add(my_data)
-		db.session.commit()
-		flash("Product Added succesfully")
-		return redirect(url_for('index'))
-	return render_template('add_product.html')
-
-
-@app.route('/update/<int:id>',methods = ['GET', 'POST'])
-def update_product(id):
-	if request.method == "POST":
-		my_data = Product.query.get(id)
+		my_data = Minion.query.get(minion_id)
+		my_data.name = request.form['name']
 		my_data.title = request.form['title']
-		my_data.price = request.form['price']
-		my_data.description = request.form['description']
-		my_data.image_url = request.form['image_url']
-		my_data.stock = request.form['stock']
+		my_data.salary = request.form['salary']
 		db.session.commit()
-		flash("Product updated succesfully")
-		return redirect(url_for("index"))
+		flash("Minion updated succesfully")
+		return redirect(url_for("minions"))
 	else:
-		product = Product.query.get(id)
-		return render_template("update_product.html", product = product)
+		minion = Minion.query.get(minion_id)
+		return render_template("minion_update.html", minion = minion)
 
-
-@app.route("/delete/<int:id>")
-def delete_product(id):
-	my_data = Product.query.get(id)
+#to delete a single minion by id.
+@app.route("/minions/delete/<int:minion_id>")
+def minion_delete(minion_id):
+	my_data = Minion.query.get(minion_id)
 	db.session.delete(my_data)
 	db.session.commit()
-	flash("Product Deleted succesfully")
-	return redirect(url_for("index"))
+	flash("Minion deleted succesfully")
+	return redirect(url_for("minions"))
+
+#==========
+#ideas
+#==========
+#to get an array of all ideas.
+@app.route('/ideas')
+def ideas():
+    all_data = Idea.query.all()
+    return render_template("idea.html",  ideas = all_data)
+
+#to create a new idea and save it to the database.
+@app.route("/ideas/add", methods=["GET", "POST"])
+def ideas_add():
+    if request.method == "POST":
+        name = request.form['name']
+        description = request.form['description']
+        numWeeks = request.form['numWeeks']
+        weeklyRevenue = request.form['weeklyRevenue']
+        my_data = Idea(name, title, salary)
+        db.session.add(my_data)
+        db.session.commit()
+        flash("idea added successfully")
+        return redirect(url_for('ideas'))
+    return render_template('idea_add.html')
+
+#to get a single idea by id.
+@app.route('/ideas/view/<int:idea_id>')
+def ideas_view(idea_id):
+	my_data = Idea.query.get(idea_id)
+	return render_template("idea_view.html", idea = my_data)
+
+#to update a single idea by id.
+@app.route('/ideas/update/<int:idea_id>',methods = ['GET', 'POST'])
+def idea_update(idea_id):
+	if request.method == "POST":
+		my_data = Idea.query.get(idea_id)
+		my_data.name = request.form['name']
+		my_data.description = request.form['description']
+		my_data.numWeeks = request.form['numWeeks']
+        my_data.weeklyRevenue = request.form['weeklyRevenue']
+		db.session.commit()
+		flash("idea updated succesfully")
+		return redirect(url_for("ideas"))
+	else:
+		idea = Idea.query.get(idea_id)
+		return render_template("idea_update.html", idea = idea)
+
+#to delete a single idea by id.
+@app.route("/ideas/delete/<int:idea_id>")
+def idea_delete(idea_id):
+	my_data = Idea.query.get(idea_id)
+	db.session.delete(my_data)
+	db.session.commit()
+	flash("idea deleted succesfully")
+	return redirect(url_for("ideas"))
+
+
+#==========
+#meetings
+#==========
+#to get an array of all meetings.
+@app.route("/meetings")
+def meetings():
+    all_data = Meeting.query.all()
+    return render_template("meetings.html", meetings = all_data)
+
+#to create a new meeting and save it to the database.
+@app.route("/meetings/add", methods=["GET", "POST"])
+def meetings_add():
+    if request.method == "POST":
+        day = request.form['day']
+        date = request.form['date']
+        note = request.form['note']
+        my_data = Meeting(date, day, note)
+        db.session.add(my_data)
+        db.session.commit()
+        flash("Meeting added successfully")
+        return redirect(url_for('meetings'))
+    return render_template('meetings_add.html')
+
+#to delete all meetings from the database.
+@app.route("/meetings/delete")
+def meetings_delete():
+	my_data = Meeting.query.all()
+	db.session.delete(my_data)
+	db.session.commit()
+	flash("Meetings deleted succesfully")
+	return redirect(url_for("meetings"))
+
+#==========
+#works
+#==========
+
+@app.route("/work")
+def work():
+    all_data = Work.query.all()
+    return render_template("work.html", work = all_data)
+
+#to get an array of all work for the specified minon.
+@app.route('/minions/<int:minion_id>/work')
+def minion_work_view(minion_id):
+	my_data = Work.query.get(minion_id)
+	return render_template("work_view.html", idea = my_data)
+
+#to create a new work object and save it to the database.
+title, description, hours, minion_id
+@app.route("/minions/<int:minion_id>/work/add", methods=["GET", "POST"])
+def minion_work_add():
+    if request.method == "POST":
+        title = request.form['title']
+        description = request.form['description']
+        hours = request.form['hours']
+        minion_id = request.form['minion_id']
+        my_data = Work(title, description, hours, minion_id)
+        db.session.add(my_data)
+        db.session.commit()
+        flash("Work added successfully")
+        return redirect(url_for('work'))
+    return render_template('work_add.html')
+
+#to update a single work by id.
+@app.route('/minions/<int:minion_id>/work/<int:work_id>',methods = ['GET', 'POST'])
+def idea_update(minion_id, work_id):
+	if request.method == "POST":
+		my_data = Work.query.filter(minion_id == minion_id).filter(work_id == work_id).all()
+		my_data.title = request.form['title']
+		my_data.description = request.form['description']
+		my_data.hours = request.form['hours']
+		db.session.commit()
+		flash("Work updated succesfully")
+		return redirect(url_for("work"))
+	else:
+		idea = Idea.query.get(idea_id)
+		return render_template("idea_update.html", idea = idea)
+
+# to delete a single work by id.
+@app.route("/minions/<int:minion_id>/work/<int:work_id>/delete")
+def meetings_delete(minion_id, work_id):
+	my_data = Work.query.filter(minion_id == minion_id).filter(work_id == work_id).all()
+	db.session.delete(my_data)
+	db.session.commit()
+	flash("Meetings deleted succesfully")
+	return redirect(url_for("work"))
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
