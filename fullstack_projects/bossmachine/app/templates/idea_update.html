@@ -1,0 +1,24 @@
+{% extends base.html %}
+
+{% content %}
+
+      <div>
+        <div id="single-idea-landing">
+          { this.state.editing
+            ? <IdeaEdit idea={this.props.idea} handleChange={this.handleChange} />
+            : <IdeaDescription idea={this.props.idea} />
+          }
+          <div id="save-idea"
+               className={isValid ? "button save-button" : "button save-button disabled"}
+               onClick={isValid ? this.toggleEdit : () => {}} >
+            { buttonText }
+          </div>
+        </div>
+        <div className="button back-button">
+          <Link to="/ideas">
+            <img className="button" src="public/img/arrow.svg" />
+          </Link>
+        </div>
+      </div>
+
+      {% endblock %}
