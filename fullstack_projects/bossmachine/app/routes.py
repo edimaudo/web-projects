@@ -15,9 +15,13 @@ def isMillionDollarIdea(weeklyRevenue, numWeeks):
 #error handlers
 #==========
 @app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html')
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
 
 #==========
 #home
@@ -113,8 +117,8 @@ def ideas_view(idea_id):
 #to update a single idea by id.
 @app.route('/ideas/update/<int:idea_id>',methods = ['GET', 'POST'])
 def idea_update(idea_id):
-	if request.method == "POST":
-		my_data = Idea.query.get(idea_id)
+    if request.method == "POST":
+        my_data = Idea.query.get(idea_id)
 		my_data.name = request.form['name']
 		my_data.description = request.form['description']
 		my_data.numWeeks = request.form['numWeeks']
