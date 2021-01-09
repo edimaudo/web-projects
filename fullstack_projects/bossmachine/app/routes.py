@@ -1,7 +1,6 @@
 from app import app
 from flask import render_template, flash, redirect, url_for, request, make_response
 from app import db
-from app.errors import errors
 from app.models import Minion, Idea, Meeting, Work
 
 #helper functions
@@ -119,16 +118,18 @@ def ideas_view(idea_id):
 def idea_update(idea_id):
     if request.method == "POST":
         my_data = Idea.query.get(idea_id)
-		my_data.name = request.form['name']
-		my_data.description = request.form['description']
-		my_data.numWeeks = request.form['numWeeks']
+        my_data.name = request.form['name']
+        my_data.description = request.form['description']
+        my_data.numWeeks = request.form['numWeeks']
         my_data.weeklyRevenue = request.form['weeklyRevenue']
-		db.session.commit()
-		flash("idea updated succesfully")
-		return redirect(url_for("ideas"))
-	else:
-		idea = Idea.query.get(idea_id)
-		return render_template("idea_update.html", idea = idea)
+        db.session.commit()
+        flash("idea updated succesfully")
+        return redirect(url_for("ideas"))
+    else:
+        idea = Idea.query.get(idea_id)
+        return render_template("idea_update.html", idea = idea)
+		
+		
 
 #to delete a single idea by id.
 @app.route("/ideas/delete/<int:idea_id>")
@@ -183,14 +184,13 @@ def work():
 
 #to get an array of all work for the specified minon.
 @app.route('/minions/<int:minion_id>/work')
-def minion_work_view(minion_id):
+def work_view(minion_id):
 	my_data = Work.query.get(minion_id)
 	return render_template("work_view.html", idea = my_data)
 
 #to create a new work object and save it to the database.
-title, description, hours, minion_id
 @app.route("/minions/<int:minion_id>/work/add", methods=["GET", "POST"])
-def minion_work_add():
+def work_add():
     if request.method == "POST":
         title = request.form['title']
         description = request.form['description']
@@ -205,7 +205,7 @@ def minion_work_add():
 
 #to update a single work by id.
 @app.route('/minions/<int:minion_id>/work/<int:work_id>',methods = ['GET', 'POST'])
-def idea_update(minion_id, work_id):
+def work_update(minion_id, work_id):
 	if request.method == "POST":
 		my_data = Work.query.filter(minion_id == minion_id).filter(work_id == work_id).all()
 		my_data.title = request.form['title']
@@ -216,15 +216,15 @@ def idea_update(minion_id, work_id):
 		return redirect(url_for("work"))
 	else:
 		idea = Idea.query.get(idea_id)
-		return render_template("idea_update.html", idea = idea)
+		return render_template("work_update.html", idea = idea)
 
 # to delete a single work by id.
 @app.route("/minions/<int:minion_id>/work/<int:work_id>/delete")
-def meetings_delete(minion_id, work_id):
+def work_delete(minion_id, work_id):
 	my_data = Work.query.filter(minion_id == minion_id).filter(work_id == work_id).all()
 	db.session.delete(my_data)
 	db.session.commit()
-	flash("Meetings deleted succesfully")
+	flash("Work deleted succesfully")
 	return redirect(url_for("work"))
 
 
