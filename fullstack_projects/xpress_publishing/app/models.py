@@ -42,7 +42,7 @@ class Issue(db.Model):
     name = db.Column(db.String(255), nullable = False)
     issue_number = db.Column(db.Text, nullable = False)
     publication_date = db.Column(db.DateTime, nullable = False)
-    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'),nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'),nullable=False)
     series_id = db.Column(db.Integer, db.ForeignKey('series.id'),nullable=False)
 
     def __init__(self, name, issue_number, publication_date):
