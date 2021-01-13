@@ -4,7 +4,8 @@
 {% block content %}
 
   <div id="root"><div data-reactroot="" class="App">
-    <header><a class="logo" href="#/"><img src="static/img/logo.svg" alt="logo" class="desktop">
+    <header><a class="logo" href="{{ url_for('index') }}">
+      <img src="static/img/logo.svg" alt="logo" class="desktop">
       <img src="static/img/logo-mobile.svg" alt="logo" class="mobile">
     </a></header><div class="Landing">
       <h2>CHOOSE A SERIES</h2>
@@ -14,6 +15,7 @@
       <div class="artist item-list"></div><a class="button" href="{{ url_for('artist_add') }}">ADD</a>
     </div><!-- react-empty: 13 --><!-- react-empty: 14 --></div>
   </div>
-
+</body>
+</html>
 
 {% endblock %}
