@@ -1,0 +1,21 @@
+{% extends base.html %}
+
+{% content %}
+
+<div className="App">
+      <div className="Landing">
+        <h2>MANAGE MENUS</h2>
+        <div className="menu item-list">
+          <!---menu list-->
+        </div>
+        <a className="button" href="{{ url_for('menu_add') }}">ADD</a>
+        <h2>MANAGE EMPLOYEES</h2>
+        <div className="employee item-list">
+          <!---list of employees-->
+        </div>
+        <a className="button" href="{{ url_for('employee_add') }}">ADD</a>
+      </div>
+</div>
+
+{% endblock %}
+
