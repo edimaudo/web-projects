@@ -1,0 +1,17 @@
+{%extends base.html%}
+
+{% content %}
+
+{%endblock %}
+
+<div className="Employee">
+    <h2>Employee</h2>
+    <div className="employee box">
+      {this.renderEmployment()}
+      <p className="strong">Name: <input onChange={this.updateEmployeeName} value={employee.name} /></p>
+      <p>Position: <input onChange={this.updateEmployeePosition} value={employee.position} /></p>
+      <p>Wage: $ <input onChange={this.updateEmployeeWage} value={employee.wage} type="number" /> / hour</p>
+      {this.renderEmployeeButtons()}
+    </div>
+    {this.renderTimesheets()}
+  </div>
