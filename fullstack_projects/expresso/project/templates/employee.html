@@ -1,0 +1,64 @@
+{%extends base.html%}
+
+{% content %}
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Wage</th>
+        <th>Is Employee</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  
+  <tbody>
+      {% for employee in employees %}
+      <tr>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.position }}</td>
+        <td>{{ employee.wage }}</td>
+        <td>{{ employee.current_employee }}</td>
+        <td><a className='button inactive' href="employee/view/{{employee.id}}">View</a></td>
+        <td><a className='button inactive' href="employee/update/{{employee.id}}">Edit</a></td>
+        <td><a className='button delete' href="employee/delete/{{employee.id}}">Delete</a></td>
+  
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+
+
+{%endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+   
+
+
+
+
+
+ 
+
+
+
+
