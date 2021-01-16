@@ -1,6 +1,12 @@
 {%extends base.html%}
 
 {% content %}
-<div id="root"><div data-reactroot="" class="App"><header><a class="logo" href="#/"><img src="public/img/logo.svg" alt="logo"></a></header><!-- react-empty: 14 --><div class="Menu"><div class="title"><input value="" placeholder="Menu Title"><div class="buttons"><a class="button inactive">Save</a><a class="button inactive">Cancel</a><a class="button delete">Delete</a></div></div><!-- react-text: 22 --><!-- /react-text --><a class="button add">Add Menu Item</a></div><!-- react-empty: 13 --></div></div>
-<script src="public/js/bundle.js"></script>
+<div className="Menu">
+    <div className="title">
+      <input onChange={this.updateMenuTitle} value={menu.title} placeholder="Menu Title" />
+      
+    </div>
+    
+    <a className="button add" onClick={this.addMenuItem}>Add Menu Item</a>
+  </div>
 {%endblock %}
