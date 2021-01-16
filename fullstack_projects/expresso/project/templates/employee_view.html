@@ -1,0 +1,23 @@
+{%extends base.html%}
+
+{% content %}
+
+
+<div>
+    <h2>Timesheets</h2>
+    <div className="timesheet-container">
+        {% for timesheet in timesheets %}
+
+        <div className="timesheet box" key={timesheet.id}>
+            <p className="strong">Date: {{timesheet.date}}</p>
+            <p>Hours: <input {{timesheet.hours}} type="number" /></p>
+            <p>Rate: $<input {{timesheet.rate}} type="number" /> / hour</p>
+            <p>Total: {{timesheet.hours * timesheet.rate}}</p>
+        </div>
+        
+        {% endfor %}
+    </div>
+    <a className="button add" onClick={{ url_for('timesheet_add') }}>Add Timesheet</a>
+  </div>
+
+{%endblock %}
