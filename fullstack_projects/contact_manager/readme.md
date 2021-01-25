@@ -1,9 +1,35 @@
-## Objective
+## Contact Manager
+***
 
-Build a contact manager crud app.  It will have first name, last name, phone number, email and notes section.  The information will be saved to a database.
+### What is this app?
 
-## Actions
-I should be able to add contacts
-I should be able to edit contacts
-I should be able to delete contacts
-I should be able to view all the contacts
+A simple web app to help you keep track of your contacts.  
+
+### Core Objective
+
+Learn how to build a crud app
+
+### How it was built
+
+I built it using PHP, MySQL and Bootstrap 3
+
+### Possible extensions
+- Ability to add more details like location
+- Ability to sort the contacts using different criteria
+
+
+### Views
+## Index
+<img src="./index.jpg">
+
+## Add
+<img src="./add.jpg">
+
+## View
+<img src="./view.jpg">
+
+## Update
+<img src="./edit.jpg">
+
+## Delete
+<img src="./delete.jpg">
