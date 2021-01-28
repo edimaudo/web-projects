@@ -1,41 +1,21 @@
+{% extends "base.html" %}
 
 {% block content %}
-<form action="/update/{{product.id}}?_method=PATCH" method="POST">
-    <input type="hidden"  name="id" value="{{product.id}}">
+<h1> Update Author </h1> 
+<form action="l/ocallibrary/authors/update/{{author.id}}?_method=PATCH" method="POST">
+    <input type="hidden"  name="id" value="{{author.id}}">
 
-  <label>Title</label>
-  <input type="text" name="title" required="" value="{{product.title}}"><br>
-      
-  <label>Price</label>
-  <input type="number" min="1" name="price" required="" value="{{product.price}}"><br>
-      
-  <label>Description</label>
-  <input name="description" required="" value="{{product.description}}"></input><br>
+    <label>Title</label>
+    <input type="text" name="title" required="" value="{{book.title}}"><br>
 
-  <label>Stock</label>
-  <input type="number" min="0" name="stock" step = 1 required="" value="{{product.stock}}"><br>
+    <label>Name</label>
+    <input type="text" name="name" required="" value = "{{author.name}}"><br>
 
-  <label>Images</label>
-      <select name="image_url" required value="{{product.image_url}}">
-        <option value="arugula.jpg">Arugula</option>
-        <option value="broccoli.jpg">Broccoli</option>
-        <option value="carrots.jpg">Carrots</option>
-        <option value="cucumber.jpg">Cucumber</option>
-        <option value="eggs.jpg">Eggs</option>
-        <option value="green_apples.jpg">Green apples</option>
-        <option value="green_grapes.jpg">Green grapes</option>
-        <option value="milk.jpg">Milk</option>
-        <option value="oranges.jpg">Oranges</option>
-        <option value="purple_grapes.jpg">Purples Grapes</option>
-        <option value="romaine.jpg">Romaine</option>
-        <option value="swiss_cheese.jpg">Swiss Cheese</option>
-      </select><br>
-
-  <input type="submit" value="Update">
+    <label>Date of Birth</label>
+    <input type="date" name="date_of_birth" value = "{{author.date_of_birth}}"><br>
+  
+    <input type="submit" value="Update">
   
 </form>
-
-<p><button><a href="{{ url_for('index') }}">Products</a></button></p>
-
 
 {% endblock %}
