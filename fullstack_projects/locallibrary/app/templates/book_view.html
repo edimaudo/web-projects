@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+<form action="locallibrary/books/{{book.id}}?_method=PATCH" method="POST"></form>
 
-  <p><strong>Author:</strong> <a href="locallibrary/books/{{author}}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <h1>Title: {{ book.title }}</h1>
+  <p><strong>Author:</strong> <a href="locallibrary/authors/{{ book.author }}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Summary:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>
-  <p><strong>Genre:</strong> {{ book.genre}</p>
+  <p><strong>Genre:</strong> {{ book.genre }}</p>
+</form>
+
 
 {% endblock %}
 
