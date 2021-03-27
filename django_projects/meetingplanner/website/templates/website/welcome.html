@@ -7,14 +7,22 @@
 <body>
     <h1>Welcome to the Meeting Planner!</h1>
     <p>
-        This is the demo application
-        <em>Django: Getting Started</em>
+        This is the demo application using
+        <em>Django</em>
         for <a href="https://www.edimaudo.com">
         Edima</a>.
-    </p>
     <p>
-        There are currently {{ num_meetings }} meetings
-        in the database.
-    </p>
+    <h2>Meetings</h2>
+    <ul>
+        {% for meeting in meetings %}
+            <li>
+                <a href="{% url 'detail' meeting.id %}">
+                    {{ meeting.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'rooms' %}">Rooms list</a>
+
 </body>
 </html>
