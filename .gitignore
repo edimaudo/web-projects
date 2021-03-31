@@ -34,3 +34,5 @@ fullstack_projects/web_Projects.txt
 fullstack_projects/expresso/project/todo.txt
 fullstack_projects/expresso/todo.txt
 django_projects/tango/db.sqlite3
+*.sqlite3
+django_projects/tango/db.sqlite3
