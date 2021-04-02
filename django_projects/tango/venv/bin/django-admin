@@ -1,4 +1,4 @@
-#!/Users/edima/Documents/Coding/web_projects/django_projects/venv/bin/python
+#!/Users/edima/Documents/Coding/web_projects/django_projects/tango/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

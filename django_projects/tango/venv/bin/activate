@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='/Users/edima/Documents/Coding/web_projects/django_projects/venv'
+VIRTUAL_ENV='/Users/edima/Documents/Coding/web_projects/django_projects/tango/venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
