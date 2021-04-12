@@ -23,7 +23,29 @@
         </tr>
     </thead>
     <tbody>
-            <tr class="">
+                 {% if Instructors %}
+        {% for instructor in instructors %}
+             <tr> 
+                <td> {{ instructor_first_name }} </td> 
+                <td> {{ instructor_last_name }} </td> 
+                <td> {{ instructor_hire_date }} </td> 
+                <td>  </td> 
+                <td>  </td>
+                <td> 
+                    <a href="">Edit</a> | 
+                    <a href="">Details</a> | 
+                    <a href="">Delete</a> 
+                </td>
+            </tr> 
+            </tbody>
+        </table> 
+        </main> 
+        </div> 
+
+        {% endfor %}
+     {% else %}
+        <h2>No Instructors currently in the system</h2>
+     {% endif %}
 
     </tbody>
 </table>
