@@ -1,0 +1,50 @@
+{% extends 'contoso_university/base.html' %}
+
+{% block content %}
+<div class="container">
+        <main role="main" class="pb-3">
+            
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Course</h4>
+    <hr>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Number
+        </dt>
+        <dd class="col-sm-10">
+            2
+        </dd>
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            333
+        </dd>
+        <dt class="col-sm-2">
+            Credits
+        </dt>
+        <dd class="col-sm-10">
+            3
+        </dd>
+        <dt class="col-sm-2">
+            Department
+        </dt>
+        <dd class="col-sm-10">
+            2
+        </dd>
+    </dl>
+    
+    <form action="" method="post">
+        <input type="hidden" data-val="true" data-val-required="The Number field is required." id="CourseID" name="CourseID" value="2">
+        <input type="submit" value="Delete" class="btn btn-danger"> |
+        <a href="">Back to List</a>
+    </form>
+</div>
+
+        </main>
+    </div>
+{% endblock %}
