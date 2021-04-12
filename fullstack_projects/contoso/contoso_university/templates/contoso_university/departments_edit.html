@@ -1,0 +1,55 @@
+{% extends 'contoso_university/base.html' %}
+
+{% block content %}
+<div class="container">
+        <main role="main" class="pb-3">
+            
+
+<h1>Edit</h1>
+
+<h4>Department</h4>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <form action="/ContosoUniversity/Departments/Edit/2" method="post" novalidate="novalidate">
+            
+            <input type="hidden" data-val="true" data-val-required="The DepartmentID field is required." id="DepartmentID" name="DepartmentID" value="2">
+            <input type="hidden" id="RowVersion" name="RowVersion" value="">
+            <div class="form-group">
+                <label class="control-label" for="Name">Name</label>
+                <input class="form-control" type="text" data-val="true" data-val-length="The field Name must be a string with a minimum length of 3 and a maximum length of 50." data-val-length-max="50" data-val-length-min="3" id="Name" maxlength="50" name="Name" value="12121">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Budget">Budget</label>
+                <input class="form-control" type="text" data-val="true" data-val-number="The field Budget must be a number." data-val-required="The Budget field is required." id="Budget" name="Budget" value="22222.00">
+                <span class="text-danger field-validation-valid" data-valmsg-for="Budget" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="StartDate">Start Date</label>
+                <input class="form-control" type="date" data-val="true" data-val-required="The Start Date field is required." id="StartDate" name="StartDate" value="2021-03-24">
+                <span class="text-danger field-validation-valid" data-valmsg-for="StartDate" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="InstructorID">InstructorID</label>
+                <select class="form-control" id="InstructorID" name="InstructorID">
+                    <option value="">-- Select Administrator --</option>
+                <option selected="selected" value="2">Schrute, Dwight</option>
+</select>
+                <span class="text-danger field-validation-valid" data-valmsg-for="InstructorID" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/ContosoUniversity/Departments">Back to List</a>
+</div>
+
+
+        </main>
+    </div>
+{% endblock %}
