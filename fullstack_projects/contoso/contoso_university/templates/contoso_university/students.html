@@ -38,7 +38,28 @@
         </tr>
     </thead>
     <tbody>
-            <tr>
+                 {% if students %}
+        {% for student in students %}
+             <tr> 
+                <td> {{ student_first_name }} </td> 
+                <td> {{ student_last_name }} </td> 
+                <td> {{ student_enrollment_date }} </td> 
+                <td>  </td> 
+                <td> 
+                    <a href="">Edit</a> | 
+                    <a href="">Details</a> | 
+                    <a href="">Delete</a> 
+                </td>
+            </tr> 
+            </tbody>
+        </table> 
+        </main> 
+        </div> 
+
+        {% endfor %}
+     {% else %}
+        <h2>No Student data currently in the system</h2>
+     {% endif %}
                 
     </tbody>
 </table>
