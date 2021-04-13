@@ -9,7 +9,7 @@
 <h2>Students</h2>
 
 <p>
-    <a href="">Create New</a>
+    <a href="{% url 'students_create' %}">Create New</a>
 </p>
 
 <form method="get" action="">
@@ -17,7 +17,7 @@
         <p>
             Find by name: <input type="text" name="SearchString">
             <input type="submit" value="Search" class="btn btn-default"> |
-            <a href="">Back to Full List</a>
+            <a href="{% url 'students' %}">Back to Full List</a>
         </p>
     </div>
 </form>
@@ -25,15 +25,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                <a href="">Last Name</a>
-            </th>
-            <th>
-                First Name
-            </th>
-            <th>
-                <a href="">Enrollment Date</a>
-            </th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Enrollment Date</th>
             <th></th>
         </tr>
     </thead>
