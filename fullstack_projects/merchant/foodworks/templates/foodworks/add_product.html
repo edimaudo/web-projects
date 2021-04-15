@@ -1,39 +1,14 @@
+{% extends 'foodworks/base.html' %}
 
-
-<h1> Add Product </h1>
 {% block content %}
-    
-    <form action="{{ url_for('add_product') }}" method="POST">
-    	
-        <label>Title</label>
-        <input type="text" name="title" required=""><br>
-        
-        <label>Price</label>
-        <input type="number" min="1" name="price" step="0.01" required=""><br>
-        
-        <label>Description</label>
-        <input name="description" required=""></input><br>
 
-        <label>Stock</label>
-        <input type="number" min="0" name="stock" step = 1 required=""><br>
+<form action = "{% url 'add_product' %}" method = "post">
+    {% csrf_token %}
+    {{form.as_p }}
+    <input type="submit" value="Submit">
 
-        <label>Images</label>
-        <select name="image_url" required>
-          <option value="arugula.jpg">Arugula</option>
-          <option value="broccoli.jpg">Broccoli</option>
-          <option value="carrots.jpg">Carrots</option>
-          <option value="cucumber.jpg">Cucumber</option>
-          <option value="eggs.jpg">Eggs</option>
-          <option value="green_apples.jpg">Green apples</option>
-          <option value="green_grapes.jpg">Green grapes</option>
-          <option value="milk.jpg">Milk</option>
-          <option value="oranges.jpg">Oranges</option>
-          <option value="purple_grapes.jpg">Purples Grapes</option>
-          <option value="romaine.jpg">Romaine</option>
-          <option value="swiss_cheese.jpg">Swiss Cheese</option>
-        </select>
-        <br>
-        <input type="submit" value="Add">
-    </form>
-  <p><button><a href="{{ url_for('index') }}">Products</a></button></p>
+</form>
+<br><p><a href="{% url 'index' %}"><button>Back to Products</button></p>
+
+
 {% endblock %}

@@ -1,10 +1,9 @@
 {% extends 'foodworks/base.html' %}
 
 {% block content %}
-<h1>Listing products</h1>
+<p><h1>Listing products</h1><br></p>
 
-<p><button><a href="{ static 'add_product'}">Add Product</a></button></p>
-
+<p><a href="{% url 'add_product' %}"><button>Add Product</button></a></p>
 
 <table>
   <thead>
@@ -26,19 +25,18 @@
       <td>{{ product.title }}</td>
       <td>${{ product.price }}</td>
       <td>{{ product.stock }}</td>
-      <td><a href="">View</a></td>
-      <td><a href="">Edit</a></td>
-      <td><a href="">Delete</a></td>
+      
+      <td><a href="{% url 'detail_product' %}">Detail</a></td>|
+      <td><a href="{% url 'update_product' %}">Update</a></td>|
+      <td><a href="{% url 'delete_product' %}">Delete</a></td>
     </tr>
     {% endfor %}
    {% else %}
-      <h4>No products in the data base</h4>
+      <h4>No products available</h4>
    {% endif %}
 </tbody>
 </table>
 
-
-</table>
 
 
 {% endblock %}
