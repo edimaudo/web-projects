@@ -3,8 +3,6 @@
 {% block content %}
 <div class="container">
         <main role="main" class="pb-3">
-            
-
 <h1>Add Student</h1>
 
 <hr>
@@ -12,11 +10,6 @@
     <div class="col-md-4">
         <form action="" method="post" >
             {% csrf_token %}
-            <div class="form-group">
-                <label class="control-label" for="LastName">Student ID</label>
-                <input class="form-control" type="Number" data-val="true" data-val-length="The field must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Student ID is required." id="studentID" maxlength="50" name="studentID" value="" required="">
-                <span class="text-danger field-validation-valid" data-valmsg-for="studentID" data-valmsg-replace="true"></span>
-            </div>
             <div class="form-group">
                 <label class="control-label" for="LastName">Last Name</label>
                 <input class="form-control" type="text" data-val="true" data-val-length="The field Last Name must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Last Name field is required." id="LastName" maxlength="50" name="LastName" value="" required="">
@@ -44,6 +37,6 @@
 </div>
 
 
-        </main>
-    </div>
+</main>
+</div>
 {% endblock %}
