@@ -4,24 +4,21 @@
 
 <div class="container">
         <main role="main" class="pb-3">
-            
-
 <h2>Student Body Statistics</h2>
-
-
 <table class="table">
     <thead>
         <tr>
             <th>Enrollment Date</th>
-            <th>Students</th>
+            <th>Student enrollment Count</th>
         </tr>
     </thead>
     <tbody>
         {% if students %}
             {% for student in students %}
              <tr> 
-                <td> {{ }} </td> 
-                <td> {{  }} </td> 
+                <td> {{ student.student_enrollment_date }} </td> 
+                <td>{{ student.count }}</td>
+                
             </tr>
     </tbody>
         {% endfor %}
