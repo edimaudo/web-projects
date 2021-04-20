@@ -4,12 +4,10 @@
 
 <div class="container">
         <main role="main" class="pb-3">
-            
-
 <h2>Students</h2>
 
 <p>
-    <a href="{% url 'students_create' %}">Create New</a>
+    <a href="{% url 'students_create' %}">Create New Student entry</a>
 </p>
 
 <form method="get" action="">
@@ -41,9 +39,9 @@
                 <td> {{ student.student_last_name }} </td> 
                 <td> {{ student.student_enrollment_date }} </td>  
                 <td> 
-                    <a href="">Edit</a> | 
-                    <a href="">Details</a> | 
-                    <a href="">Delete</a> 
+                    <a href="{% url 'students_edit' pk=student.pk %}">Edit</a> | 
+                    <a href="{% url 'students_detail' pk=student.pk %}">Details</a> | 
+                    <a href="{% url 'students_delete' pk=student.pk %}">Delete</a> 
                 </td>
             </tr> 
      </tbody>
