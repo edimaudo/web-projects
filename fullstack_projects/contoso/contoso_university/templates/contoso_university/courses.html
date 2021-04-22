@@ -11,37 +11,32 @@
 		<tr> 
 			<th> Number </th>
 			<th> Title </th> 
-			<th> Credits </th> 
 			<th> Department </th> 
 			<th></th> 
 		</tr> 
 	</thead> 
 	<tbody>
-			 {% if courses %}
-	 	{% for course in courses %}
+		{% if courses %}
+	 		{% for course in courses %}
 			 <tr> 
-			 	<td> {{ course_title }} </td> 
-			 	<td> {{ course_credits }} </td> 
-			 	<td> {{ course_department_name }} </td> 
+			 	<td> {{ course.id }} </td> 
+			 	<td> {{ course.course_title }} </td> 
+			 	<td> {{ course.course_department_name }} </td> 
 			 	<td>  </td> 
 			 	<td> 
-					<a href="">Edit</a> | 
-					<a href="">Details</a> | 
-					<a href="">Delete</a> 
+					<a href="{% url 'courses_edit' pk=course.pk %}">Edit</a> | 
+					<a href="{% url 'courses_detail' pk=course.pk %}">Details</a> | 
+					<a href="{% url 'courses_delete' pk=course.pk %}">Delete</a> 
 				</td>
 			</tr> 
 			</tbody>
+			{% endfor %}
 		</table> 
 		</main> 
 		</div> 
-
-        {% endfor %}
      {% else %}
      	<h2>No Courses currently in the system</h2>
      {% endif %}
-
-
-
 
 {% endblock %}
 
