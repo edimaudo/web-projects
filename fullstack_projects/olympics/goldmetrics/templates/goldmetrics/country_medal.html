@@ -1,0 +1,41 @@
+{% extends 'goldmetrics/base.html' %}
+
+{% block content %} 
+
+<table>
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Country</th>
+            <th>Sport</th>
+            <th>Discipline</th>
+            <th># of Medals</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if medals %}
+            {% for medal in medals %}
+            <tr>
+                <td>{{medal.Year}}</td>
+                <td>{{medal.Country}}</td>
+                <td>{{medal.Sport}}</td>
+                <td>{{medal.Discpline}}</td>
+                <td>{{medal.medalcount}}</td>
+                <td></td>
+                <td><a href="">Details</a></td>
+            </tr>       
+    </tbody>
+</table> 
+        {% endfor %}
+        {% else %}
+<h2>No medal in system</h2>
+{% endif %}
+</tbody>
+</table>
+
+{% endblock %}
+
+
+
