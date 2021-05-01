@@ -1,0 +1,9 @@
+weather compare html + api
+
+https://pybit.es/codechallenge33.html
+https://pybit.es/flask-simple-weather-app.html
+https://pybit.es/codechallenge28.html
+
+eep a log of cities queried.
+Have a user signup asking for the geo and show (and email) the daily weather.
+Show historic weather info, maybe you could even integrate plots like we did with Flask
