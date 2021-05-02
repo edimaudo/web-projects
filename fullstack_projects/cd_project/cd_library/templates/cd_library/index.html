@@ -1,0 +1,51 @@
+{% extends 'cd_library/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>CD Library</h2>
+
+<p>
+    <a href="{% url 'cd_library_create' %}">Create A New CD Entry</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Title</th>
+            <th>Description</th>
+            <th>Artist</th>
+            <th>Date</th>
+            <th>Genre</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if cd_librarys %}
+        {% for cd_library in cd_librarys %}
+             <tr> 
+                 
+                <td> {{ cd_library.title }} </td> 
+                <td> {{ cd_library.description }} </td> 
+                <td> {{ cd_library.artist }} </td> 
+                <td> {{ cd_library.date }} </td> 
+                <td> {{ cd_library.genre }} </td> 
+                <td 
+                <td> 
+                    <a href="{% url 'cd_library_edit' pk=cd_library.pk %}">Edit</a> | 
+                    <a href="{% url 'cd_library_detail' pk=cd_library.pk %}">Details</a> | 
+                    <a href="{% url 'cd_library_delete' pk=cd_library.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No cd data currently in the system</h2>
+     {% endif %}
+{% endblock %}
