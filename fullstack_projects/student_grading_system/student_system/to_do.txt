@@ -1,0 +1,92 @@
+update base templates 
+
+create message template
+
+add cripsy form + update settings
+
+add messages information + update settings
+
+build forms
+ - Students
+ - Attendance 
+ - Course
+ - Department
+ - Grade
+
+update views
+ - Students
+  - main
+  - Edit
+  - delete
+  - detail
+ - Attendance 
+   - main
+  - Edit
+  - delete
+  - detail
+ - Course
+   - main
+  - Edit
+  - delete
+  - detail
+ - Department
+   - main
+  - Edit
+  - delete
+  - detail
+ - Grade
+   - main
+  - Edit
+  - delete
+  - detail
+
+build templates
+ - Students
+   - main
+  - Edit
+  - delete
+  - detail
+ - Attendance 
+   - main
+  - Edit
+  - delete
+  - detail
+ - Course
+   - main
+  - Edit
+  - delete
+  - detail
+ - Department
+   - main
+  - Edit
+  - delete
+  - detail
+ - Grade
+   - main
+  - Edit
+  - delete
+  - detail
+
+build pagination
+ - Students
+ - Attendance 
+ - Course
+ - Department
+ - Grade
+
+add search functionality 
+ - Students
+ - Attendance 
+ - Course
+ - Department
+ - Grade
+
+build backup, restore and delete_all functionality view
+
+build backup, restore and delete_all functionality urls
+
+build backup, restore and delete_all functionality templates
+
+write tests for 
+ - views
+ - 
