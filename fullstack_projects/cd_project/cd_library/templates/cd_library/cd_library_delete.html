@@ -47,9 +47,12 @@
 <form action="" method="post">
     {% csrf_token %}
     <input type="hidden" data-val="true" data-val-required="The ID field is required." id="ID" name="ID" value="{{cd_library.id}}">
-    <input type="submit" value="Delete" class="btn btn-danger"> |
-    <div>
-        <a href="{% url 'cd_library_edit' pk=student.pk %}">Edit</a> |
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </div>
+    
+    <div class="form-group">
+        <a href="{% url 'cd_library_edit' pk=cd_library.pk %}">Edit</a> |
         <a href="{% url 'index' %}">Back to List</a>
     </div>
 </form>
