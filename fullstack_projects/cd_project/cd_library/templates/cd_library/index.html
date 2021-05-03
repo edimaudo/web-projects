@@ -10,6 +10,23 @@
     <a href="{% url 'cd_library_create' %}">Create A New CD Entry</a>
 </p>
 
+<p>
+    <form method="get" action="">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                Search CD Library <input type="text" name="SearchString">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'index' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -33,7 +50,7 @@
                 <td> {{ cd_library.artist }} </td> 
                 <td> {{ cd_library.date }} </td> 
                 <td> {{ cd_library.genre }} </td> 
-                <td 
+                
                 <td> 
                     <a href="{% url 'cd_library_edit' pk=cd_library.pk %}">Edit</a> | 
                     <a href="{% url 'cd_library_detail' pk=cd_library.pk %}">Details</a> | 
