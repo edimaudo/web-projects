@@ -11,12 +11,12 @@
 </p>
 
 <p>
-    <form method="get" action="">
+    <form method="get" action="{% url 'index' %}">
         {% csrf_token %}
         <div class="form-actions no-color">
             <p>
                 <div class="form-group">
-                Search CD Library <input type="text" name="SearchString">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search CD Library">
                     <input type="submit" value="Search" class="btn btn-primary"> |
                     <a href="{% url 'index' %}">Back to Full List</a>
                 </div>
