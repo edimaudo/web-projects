@@ -1,0 +1,68 @@
+{% extends 'student_grading_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>CD Library</h2>
+
+<p>
+    <a href="{% url 'student_create' %}">Create A New  Student</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'student' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search CD Library">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'student' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Title</th>
+            <th>Description</th>
+            <th>Artist</th>
+            <th>Date</th>
+            <th>Genre</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if students %}
+        {% for student in students %}
+             <tr> 
+                 
+                <td> {{ cd_library.title }} </td> 
+                <td> {{ cd_library.description }} </td> 
+                <td> {{ cd_library.artist }} </td> 
+                <td> {{ cd_library.date }} </td> 
+                <td> {{ cd_library.genre }} </td> 
+                
+                <td> 
+                    <a href="{% url 'student_edit' pk=student.pk %}">Edit</a> | 
+                    <a href="{% url 'student_detail' pk=student.pk %}">Details</a> | 
+                    <a href="{% url 'student_delete' pk=student.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No Student data in the system</h2>
+     {% endif %}
+{% endblock %}
