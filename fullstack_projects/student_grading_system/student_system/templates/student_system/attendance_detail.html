@@ -1,0 +1,42 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+<div class="container">
+        <main role="main" class="pb-3">
+<h1>Attendance Details</h1>
+
+
+
+<div>
+    <hr>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Student
+        </dt>
+        <dd class="col-sm-10">
+            {{attendance.student }}
+        </dd>
+        <dt class="col-sm-2">
+           Course
+        </dt>
+        <dd class="col-sm-10">
+            {{attendance.course}}
+        </dd>
+        <dt class="col-sm-2">
+           Attendance Date
+        </dt>
+        <dd class="col-sm-10">
+            {{attendance.attendance_date}}
+        </dd>
+            </tbody></table>
+        
+    </dl>
+</div>
+<div>
+    <a href="{% url 'attendance_edit' pk=attendance.pk %}">Edit</a> |
+    <a href="{% url 'attendance' %}">Back to List</a>
+</div>
+
+        </main>
+    </div>
+{% endblock %}
