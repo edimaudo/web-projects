@@ -1,16 +1,8 @@
 build templates
 
 
- - Course
-   - main
-  - Edit
-  - delete
-  - detail
- - Department
-   - main
-  - Edit
-  - delete
-  - detail
+
+
  - Grade
    - main
   - Edit
