@@ -1,0 +1,63 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>Attendances</h2>
+
+<p>
+    <a href="{% url 'attendance_create' %}">Create A New  Attendance</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'attendance' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search Attendance">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'attendance' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Student</th>
+            <th>Course</th>
+            <th>Attendance Date</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if attendances %}
+        {% for attendance in attendances %}
+             <tr> 
+                 
+                <td> {{ attendance.student }} </td> 
+                <td> {{ attendance.course }} </td> 
+                <td> {{ attendance.attendance_date }} </td> 
+                
+                <td> 
+                    <a href="{% url 'attendance_edit' pk=attendance.pk %}">Edit</a> | 
+                    <a href="{% url 'attendance_detail' pk=attendance.pk %}">Details</a> | 
+                    <a href="{% url 'attendance_delete' pk=attendance.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No Attendance data in the system</h2>
+     {% endif %}
+{% endblock %}
