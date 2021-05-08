@@ -1,13 +1,4 @@
-build templates
 
-
-
-
- - Grade
-   - main
-  - Edit
-  - delete
-  - detail
 
 #Saturday
 update views
