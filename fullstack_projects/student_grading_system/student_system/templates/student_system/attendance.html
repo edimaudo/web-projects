@@ -7,7 +7,8 @@
 <h2>Attendances</h2>
 
 <p>
-    <a href="{% url 'attendance_create' %}">Create A New  Attendance</a>
+    <a href="{% url 'attendance_create'     %}">Create A New  Attendance</a>
+    
 </p>
 
 <p>
@@ -47,7 +48,7 @@
                 <td> {{ attendance.attendance_date }} </td> 
                 
                 <td> 
-                    <a href="{% url 'attendance_edit' pk=attendance.pk %}">Edit</a> | 
+                    <a href="{% url 'attendance_edit'   pk=attendance.pk %}">Edit</a> | 
                     <a href="{% url 'attendance_detail' pk=attendance.pk %}">Details</a> | 
                     <a href="{% url 'attendance_delete' pk=attendance.pk %}">Delete</a> 
                 </td>
