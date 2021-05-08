@@ -1,13 +1,7 @@
 
 
 #Saturday
-update views
- - Students
-  - main
-  - create
-  - Edit
-  - delete
-  - detail
+
  - Attendance 
    - main
    - create
