@@ -1,0 +1,61 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>Departments</h2>
+
+<p>
+    <a href="{% url 'department_create' %}">Create A New Department</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'department' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search for Department">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'department' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+
+            <th>Department Name</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if departments %}
+        {% for department in departments %}
+             <tr> 
+                 
+                <td> {{ department.name }} </td> 
+
+                
+                <td> 
+                    <a href="{% url 'department_edit' pk=department.pk %}">Edit</a> | 
+                    <a href="{% url 'department_detail' pk=department.pk %}">Details</a> | 
+                    <a href="{% url 'department_delete' pk=department.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No Department data in the system</h2>
+     {% endif %}
+{% endblock %}
