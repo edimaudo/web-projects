@@ -1,0 +1,64 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>Courses</h2>
+
+<p>
+    <a href="{% url 'course_create' %}">Create A New  Course</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'course' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search Courses">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'course' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Department/th>
+
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if courses %}
+        {% for course in courses %}
+             <tr> 
+                 
+                <td> {{ course.code}} </td> 
+                <td> {{ course.name}} </td> 
+                <td> {{ course.department }} </td> 
+                
+                <td> 
+                    <a href="{% url 'course_edit' pk=course.pk %}">Edit</a> | 
+                    <a href="{% url 'course_detail' pk=course.pk %}">Details</a> | 
+                    <a href="{% url 'course_delete' pk=course.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No Course data in the system</h2>
+     {% endif %}
+{% endblock %}
