@@ -25,13 +25,6 @@
     </form>
 </p>
 
-student = models.ForeignKey(Student, on_delete=models.CASCADE)
-course = models.ForeignKey(Course, on_delete=models.CASCADE)
-midterm = models.DecimalField(default=0, max_digits=3, decimal_places=2)
-homework = models.DecimalField(default=0, max_digits=3, decimal_places=2)
-final = models.DecimalField(default=0, max_digits=3, decimal_places=2)
-letter_grade = models.CharField(max_length = 2,choices = LETTER_GRADE_CHOICES)
-
 <table class="table">
     <thead>
         <tr>
@@ -70,6 +63,6 @@ letter_grade = models.CharField(max_length = 2,choices = LETTER_GRADE_CHOICES)
 </main> 
 </div> 
      {% else %}
-        <h2>No Student data in the system</h2>
+        <h2>No Grade data in the system</h2>
      {% endif %}
 {% endblock %}
