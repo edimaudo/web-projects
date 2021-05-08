@@ -1,0 +1,26 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+<div class="container">
+    <main role="main" class="pb-3">
+<h1>Add Student</h1><hr>
+
+{% load crispy_forms_tags %} 
+   <!--CD Library form-->
+
+    <form method="post">
+        {% csrf_token %}
+            {{form|crispy}}
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"> 
+            </div>
+            <div>
+                <a href="{% url 'student' %}">Back to List</a>
+            </div>
+    </form>
+
+</main>
+</div>
+
+{% endblock %}
+
