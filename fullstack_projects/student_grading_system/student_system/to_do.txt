@@ -1,10 +1,6 @@
 build templates
 
- - Attendance 
-   - main
-  - Edit
-  - delete
-  - detail
+
  - Course
    - main
   - Edit
@@ -21,6 +17,7 @@ build templates
   - delete
   - detail
 
+#Saturday
 update views
  - Students
   - main
@@ -53,11 +50,6 @@ update views
   - delete
   - detail
 
-
-
-
-
-#Saturday
 - validate that templates and urls are working
 
 add search functionality 
@@ -66,6 +58,10 @@ add search functionality
  - Course
  - Department
  - Grade
+
+create requirements
+create readme
+clean up messages setup
 
 build pagination
  - Students
@@ -79,11 +75,17 @@ write tests for
  - models
  - forms
 
-create requirements
-create readme
-clean up messages setup
-
 # Sunday
+write tests for 
+ - views
+ - models
+ - forms
+
+build backup, restore and delete_all functionality view
+build backup, restore and delete_all functionality urls
+build backup, restore and delete_all functionality templates
+
+# Monday
 build backup, restore and delete_all functionality view
 build backup, restore and delete_all functionality urls
 build backup, restore and delete_all functionality templates
