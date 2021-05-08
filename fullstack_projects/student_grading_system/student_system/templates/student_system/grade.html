@@ -1,0 +1,75 @@
+{% extends 'student_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>Grades</h2>
+
+<p>
+    <a href="{% url 'grade_create' %}">Create New Grades</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'grade' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search for Grade">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'grade' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+student = models.ForeignKey(Student, on_delete=models.CASCADE)
+course = models.ForeignKey(Course, on_delete=models.CASCADE)
+midterm = models.DecimalField(default=0, max_digits=3, decimal_places=2)
+homework = models.DecimalField(default=0, max_digits=3, decimal_places=2)
+final = models.DecimalField(default=0, max_digits=3, decimal_places=2)
+letter_grade = models.CharField(max_length = 2,choices = LETTER_GRADE_CHOICES)
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Student</th>
+            <th>Course</th>
+            <th>Midterm</th>
+            <th>Homework</th>
+            <th>Finals</th>
+            <th>Letter Grade</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if grades %}
+        {% for grade in grades %}
+             <tr> 
+                 
+                <td> {{ grade.student }} </td> 
+                <td> {{ grade.course}} </td> 
+                <td> {{ grade.midterm }} </td> 
+                <td> {{ grade.homework }} </td> 
+                <td> {{ grade.final }} </td> 
+                <td> {{ grade.letter_grade }} </td> 
+                
+                <td> 
+                    <a href="{% url 'grade_edit' pk=grade.pk %}">Edit</a> | 
+                    <a href="{% url 'grade_detail' pk=grade.pk %}">Details</a> | 
+                    <a href="{% url 'grade_delete' pk=grade.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> 
+</main> 
+</div> 
+     {% else %}
+        <h2>No Student data in the system</h2>
+     {% endif %}
+{% endblock %}
