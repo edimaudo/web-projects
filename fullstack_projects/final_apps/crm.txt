@@ -1,3 +1,0 @@
-crm application
-
-https://www.freecodecamp.org/news/building-a-simple-crm-from-scratch-in-php-58fef061b075/
