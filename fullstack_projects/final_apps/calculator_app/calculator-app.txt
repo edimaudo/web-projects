@@ -1,9 +1,9 @@
-we want to clone these calculators (graph plus table as well). I mean exact design plus functionality
+
 https://www.calculator.net/future-value-calculator.html
 https://www.calculator.net/investment-calculator.html
 https://www.calculator.net/mortgage-calculator.html
 
-Re/Create a credit card payment calculator. Here is what i need created. https://www.bankrate.com/calculators/credit-cards/credit-card-minimum-payment.aspx I would love for the UI to be updated to resemble something like this https://dribbble.com/shots/14787589-Cryptocurrency-Loan-Calculator
+Re/Create a credit card payment calculator. Here is what i need created. https://www.bankrate.com/calculators/credit-cards/credit-card-minimum-payment.aspx 
 
 https://www.nerdwallet.com/investing/retirement-calculator
 
