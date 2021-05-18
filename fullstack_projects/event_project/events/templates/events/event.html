@@ -32,7 +32,7 @@
     <thead>
         <tr>
             
-            <th>Refresh Date</th>
+
             <th>Comp</th>
             <th>Event Stem</th>
             <th>Event Code</th>
@@ -55,8 +55,19 @@
         	{% for event in events %}
              <tr> 
  
-                <td> {{ event.REFRESH_DATE }} </td> 
-            
+                <!------<td> {{ event.COMP }} </td> ----->
+                <td> {{ event.EVENT_STEM }} </td> 
+                <td> {{ event.EVENT_CODE }} </td> 
+                <td> {{ event.EVENT_DATE_BEGIN }} </td> 
+                <td> {{ event.EVENT_TYPE }} </td> 
+                <td> {{ event.EVENT_NAME }} </td> 
+                <td> {{ event.METRIC }} </td> 
+                <td> {{ event.LOCATION }} </td> 
+                <td> {{ event.SPE_OFFICE }} </td> 
+                <td> {{ event.ACTUALS }} </td> 
+                <td> {{ event.BUDGET }} </td>     
+                <td> {{ event.FORECAST_AMT }} </td> 
+                <td> {{ event.FORECAST_COMMENTS }} </td>             
                 <td> 
                     <a href="{% url 'edit_event'   pk=event.pk %}">Edit</a> | 
                     <a href="{% url 'detail_event' pk=event.pk %}">Details</a> | 
