@@ -47,11 +47,9 @@ Register route :
 required email and password
 route should create a user that is not verified in the database
 
-
 Login route :
 check if email and password are correct and that the user is verified, otherwise reject
 if user is verified and email/password are correct
-
 
 ToDo list route :
 only accessible for logged in users
