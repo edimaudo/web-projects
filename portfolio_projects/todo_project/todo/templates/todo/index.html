@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<div class="container">
+        <main role="main" class="pb-3">
+            
+<div class="jumbotron">
+    <h1>ToDo</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>ToDo</h2>
+        <p>
+            ToDo is a simple web application for keeping tracking of tasks for you to do.
+            You just add the title and description and that is it.  
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>ToDo information</h2>
+  
+        <p><a class="btn btn-default" target="_blank" href="{% url 'login'%}">To add an item please sign in</a></p>
+    </div>
+
+</div>
+        </main>
+    </div>
+{% endblock %}

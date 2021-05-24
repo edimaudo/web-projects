@@ -1,0 +1,64 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>ToDo</h2>
+
+<p>
+    <a href="{% url 'todo_add' %}">Add ToDo</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'todo_list' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search ToDo">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'todo_list' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if todos %}
+        {% for todo in todos %}
+             <tr> 
+                 
+                <td> {{ todo.title }} </td> 
+                <td> {{ todo.description }} </td>  
+                
+                <td> 
+                    <a href="{% url 'todo_edit' todo.pk %}">Edit</a> | 
+                    <a href="{% url 'todo_delete' todo.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> <br><p>
+     {% else %}
+        <h4>No ToDos</h4>
+     {% endif %}
+ </p>
+</main> 
+</div> 
+
+{% endblock %}
