@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/jquery.js' %}"></script>
+          <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 </head>
 
 
@@ -23,6 +38,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">  
                             <a class="nav-link text-dark" href="{% url 'index' %}">Home</a>
                         </li>
@@ -41,7 +57,17 @@
                         <li class="nav-item">  
                             <a class="nav-link text-dark" href="{% url 'order_list' %}">Orders</a>
                         </li>
-
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+                            {% else %}
+                        </li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </div>
