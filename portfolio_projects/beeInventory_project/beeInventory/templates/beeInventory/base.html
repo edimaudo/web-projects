@@ -32,7 +32,7 @@
 <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'about' %}">Bee Inventory</a>
+                <a class="navbar-brand" href="{% url 'index' %}">Bee Inventory</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,10 +43,10 @@
                             <a class="nav-link text-dark" href="{% url 'index' %}">Home</a>
                         </li>
                         <li class="nav-item">  
-                            <a class="nav-link text-dark" href="{% url 'productgroup_list' %}">Product Groups</a>
+                            <a class="nav-link text-dark" href="{% url 'variant_list' %}">Variants</a>
                         </li>
                         <li class="nav-item">  
-                            <a class="nav-link text-dark" href="{% url 'variant_list' %}">Variants</a>
+                            <a class="nav-link text-dark" href="{% url 'productgroup_list' %}">Product Groups</a>
                         </li>
                         <li class="nav-item">  
                             <a class="nav-link text-dark" href="{% url 'product_list' %}">Products</a>
