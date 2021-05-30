@@ -15,13 +15,13 @@
             Name
         </dt>
         <dd class="col-sm-10">
-            {{productgroup.name }}
+            {{product.name }}
         </dd>
         <dt class="col-sm-2">
             Product Group
         </dt>
         <dd class="col-sm-10">
-            {{productgroup.productgroup}}
+            {{product.productgroup}}
         </dd>  
         
             </tbody>
@@ -38,7 +38,7 @@
     </div>
     
     <div class="form-group">
-        <a href="{% url 'product_edit' productgroup.pk %}">Edit</a> |
+        <a href="{% url 'product_edit' product.pk %}">Edit</a> |
         <a href="{% url 'product_list' %}">Back to List</a>
     </div>
 </form>
