@@ -1,0 +1,14 @@
+{% extends 'foodworks/base.html' %}
+
+{% block content %}
+
+<form action = "{% url 'add_product' %}" method = "post">
+    {% csrf_token %}
+    {{form.as_p }}
+    <input type="submit" value="Submit">
+
+</form>
+<br><p><a href="{% url 'index' %}"><button>Back to Products</button></p>
+
+
+{% endblock %}
