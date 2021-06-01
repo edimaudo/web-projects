@@ -1,35 +1,34 @@
 foodworks
-create crud template for product, product add, product edit, product delete
-create crud views
-update crud url
-create admin
-create order and order item model
-
-Implement order workflow
-Displaying an order
-Create an admin interface for viewing and modifying all orders
-
-create user models
-create session
-create login and logout
-
-Add authorization so only administrators can add or change product information
-Create a /profile page where a user can view/change their information and past orders
-Let users pick a default shipping addres
-
-
-create test files
 
 Done
 set up django project called merchant
 create django app called foodwork
 create read me
-update settings (add foodowkr, )
-create templates folder
-create static folder + css information
+update settings (add foodwork + messages)
 update urls.py in merchant
-create urls.py in foodworks
-create static folder and files
-create templates folder, sub folder and files
-create product model
+update urls.py in foodworks
+update product model
 
+Todo
+
+I1-I2
+update templates (product crud) 
+create order and order item model
+update templates (order)
+
+I3-4
+Implement order workflow
+Displaying an order
+Create an admin interface for viewing and modifying all orders
+
+I5 to end
+create user models
+create login and logout
+create admin
+Add authorization so only administrators can add or change product information
+Create an admin interface for viewing and modifying all orders
+Create a /profile page where a user can view/change their information and past orders
+Let users pick a default shipping address
+Add a billing address that uses the same set of user addresses
+create test files
+create requirement.txt
