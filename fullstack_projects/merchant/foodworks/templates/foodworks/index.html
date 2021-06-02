@@ -3,17 +3,13 @@
 {% block content %}
 <p><h1>Listing products</h1><br></p>
 
-
-
+<div>
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Price</th>
       <th>Stock</th>
-      <th></th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -26,18 +22,21 @@
       <td>${{ product.price }}</td>
       <td>{{ product.stock }}</td>
       
-      <td><a href="{% url 'detail_product' %}">Detail</a></td>|
-      <td><a href="{% url 'update_product' %}">Update</a></td>|
-      <td><a href="{% url 'delete_product' %}">Delete</a></td>
+      <td><a href="{% url 'product_detail' product.pk%}">Detail</a>|
+      <a href="{% url 'product_edit' product.pk %}">Update</a>|
+      a href="{% url 'product_delete' product.pk %}">Delete</a></td>
+
     </tr>
     {% endfor %}
    {% else %}
-      <h4>No products available</h4>
+      
    {% endif %}
 </tbody>
-</table>
+</table>  
+</div>
 
-<p><a href="{% url 'add_product' %}"><button>Add Product</button></a></p>
+
+<p><a href="{% url 'product_add' %}"><button>Add Product</button></a></p>
 
 
 
