@@ -1,5 +1,49 @@
 {% extends 'foodworks/base.html' %}
 
 {% block content %}
+<div class="container">
+        <main role="main" class="pb-3">
+<h1>Product Details</h1>
 
+<div>
+    <hr>
+    <table>
+        <tbody>
+        
+    <dl class="row">
+        <dt class="col-sm-2">
+            Product
+        </dt>
+        <dd class="col-sm-10">
+            {{product.title }}
+        </dd><br>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            {{product.description}}
+        </dd>        
+            </tbody>
+        </table>
+        
+    </dl>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" data-val="true" data-val-required="The ID field is required." id="ID" name="ID" value="{{product.id}}">
+    <br><div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </div>
+    
+    <br><div class="form-group">
+        <a href="{% url 'product_edit' product.pk %}">Edit</a> |
+        <a href="{% url 'index' %}">Back to List</a>
+    </div>
+</form>
+
+
+
+</main>
+</div>
 {% endblock %}
