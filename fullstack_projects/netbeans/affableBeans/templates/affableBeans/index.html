@@ -1,0 +1,46 @@
+{% extends 'affableBeans/base.html' %}
+
+{% block content %}
+
+
+
+<body>
+<p>
+    <form method="get" action="{% url 'product_list' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search product">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'index' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+    *<div id="main">
+        <div id="header">
+            header
+        </div>
+
+        <div id="indexLeftColumn">
+            left column
+        </div>
+
+        <div id="indexRightColumn">
+            right column
+        </div>
+
+        <div id="footer">
+            footer
+        </div>
+    </div>*
+</body>
+
+
+ <!--Pagination-->
+
+
+{% endblock %}
