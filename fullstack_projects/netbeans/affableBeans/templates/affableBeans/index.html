@@ -1,12 +1,9 @@
 {% extends 'affableBeans/base.html' %}
 
 {% block content %}
-
-
-
 <body>
 <p>
-    <form method="get" action="{% url 'product_list' %}">
+    <form method="get" action="{% url 'index' %}">
         {% csrf_token %}
         <div class="form-actions no-color">
             <p>
@@ -40,7 +37,6 @@
 </body>
 
 
- <!--Pagination-->
 
 
 {% endblock %}
