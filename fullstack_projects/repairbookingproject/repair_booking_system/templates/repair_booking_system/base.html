@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDo </title> 
+    <title>Repair and Bookings System </title> 
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
@@ -31,11 +31,11 @@
 
 <header class="mb-auto">
     <div>
-      <h3 class="nav nav-madsthead justify-content-center">ToDo</h3>
+      <h3 class="nav nav-madsthead justify-content-center">Bookings</h3>
       <nav class="nav nav-madsthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'booking_list' %}">Home</a>
         {% if user.is_authenticated %}
-         <a class="nav-link" href="{% url 'todo_list' %}">Todo</a>
+         <a class="nav-link" href="{% url 'booking_list' %}">Bookings</a>
           <a class="nav-link" href="/logout">Logout</a>
           <a class="nav-link" href="#">Welcome, {{user.username}}</a>
         {% else %}
@@ -45,7 +45,7 @@
         
        
     </div>
-      {% include 'todo/messages.html' %}
+      {% include 'repair_booking_system/messages.html' %}
   </header>
 
 

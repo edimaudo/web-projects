@@ -1,1 +1,98 @@
-contract_list
+{% extends 'repair_booking_system/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <main role="main" class="pb-3">
+<h2>Bookings</h2>
+
+<p>
+    <a href="{% url 'booking_add' %}">Add Booking</a>
+</p>
+
+<p>
+    <form method="get" action="{% url 'booking_list' %}">
+        {% csrf_token %}
+        <div class="form-actions no-color">
+            <p>
+                <div class="form-group">
+                 <input type="search" name="search" aria-label="Search" placeholder="Search ToDo">
+                    <input type="submit" value="Search" class="btn btn-primary"> |
+                    <a href="{% url 'booking_list' %}">Back to Full List</a>
+                </div>
+            </p>
+        </div>
+    </form>
+</p>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Customer First Name</th>
+            <th>Customer Last Name</th>
+            <th>Employee</th>
+            <th>Repair Type</th>
+            <th>Repair Date</th>
+            <th>Repair Time</th>
+            <th>Manufacturer</th>
+            <th>Vehicle Registration Number</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if bookings %}
+        {% for booking in bookings %}
+             <tr> 
+                 
+                <td> {{ booking.customer_first_name }} </td> 
+                <td> {{ booking.customer_last_name }} </td> 
+                <td> {{ booking.employee }} </td> 
+                <td> {{ booking.repair_type }} </td> 
+                <td> {{ booking.repair_date }} </td> 
+                <td> {{ booking.repair_time }} </td> 
+                <td> {{ booking.manufacturer }} </td> 
+                <td> {{ booking.vehicle_registration_number }} </td>  
+                
+                <td> 
+                    <a href="{% url 'booking_edit' booking.pk %}">Edit</a> | 
+                    <a href="{% url 'booking_delete' booking.pk %}">Delete</a> 
+                </td>
+            </tr> 
+     </tbody>
+             {% endfor %}
+</table> <br><p>
+     {% else %}
+        <h4>No Bookings</h4>
+     {% endif %}
+ </p>
+</main> 
+</div> 
+
+ <!--Pagination-->
+      <div class="container p-4">
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+              {% if bookings.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ bookings.previous_page_number }}">previous</a>
+              {% endif %}
+
+                <span class="current">
+                    Page {{ bookings.number }} of {{ bookings.paginator.num_pages }}
+                </span>
+
+              {% if bookings.has_next %}
+                  <a href="?page={{ bookings.next_page_number }}">next</a>
+                  <a href="?page={{ bookings.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+            </span>
+            </div>
+        </div>
+      <!--end of Pagination-->
+
+{% endblock %}
